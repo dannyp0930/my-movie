@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../components/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 
 function Detail() {
@@ -21,7 +22,7 @@ function Detail() {
   return (
     <div>
       { loading ? ( 
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
         <div>
           <img src={IMG_URL + movie.backdrop_path}></img>

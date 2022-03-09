@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
 import Movie from "../components/Movie";
 import { BASE_URL, API_KEY } from "../utils/API"
 
@@ -19,7 +20,7 @@ function Home() {
   return (
     <div>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
         <div>
           {movies.map((movie) => (
