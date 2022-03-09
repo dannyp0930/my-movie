@@ -25,14 +25,14 @@ function Detail() {
         <Loading />
       ) : (
         <div>
-          <img src={IMG_URL + movie.backdrop_path}></img>
+          <img src={IMG_URL + movie.backdrop_path} alt={movie.title}></img>
           <h1>{movie.title}</h1>
           <ul>
             {movie.genres.map((genre) => (
               <li key={genre.id}>{genre.name}</li>
               ))}
           </ul>
-          <img src={IMG_URL + movie.poster_path}></img>
+          <img src={IMG_URL + movie.poster_path} alt={movie.title}></img>
           <p>{movie.overview}</p>
         </div>
       )}
