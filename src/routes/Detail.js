@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 
 function Detail() {
   const [ loading, setLoading ] = useState(true);
@@ -8,9 +9,9 @@ function Detail() {
   const [ movie, setMovie ] = useState({});
   const getMovie = async() => {
     const json = await (
-      await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
+      await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`)
     ).json();
-    setMovie(json.data.movie)
+    setMovie(json)
     setLoading(false)
   }
   useEffect(() => {
@@ -23,15 +24,15 @@ function Detail() {
         <h1>Loading...</h1>
       ) : (
         <div>
-          <img src={movie.background_image}></img>
+          <img src={IMG_URL + movie.backdrop_path}></img>
           <h1>{movie.title}</h1>
           <ul>
-            {movie.genres.map((g) => (
-              <li key={g}>{g}</li>
-            ))}
+            {movie.genres.map((genre) => (
+              <li key={genre.id}>{genre.name}</li>
+              ))}
           </ul>
-          <img src={movie.large_cover_image} />
-          <p>{movie.description_full}</p>
+          <img src={IMG_URL + movie.poster_path}></img>
+          <p>{movie.overview}</p>
         </div>
       )}
     </div>
