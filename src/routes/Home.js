@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading/Loading";
 import Movie from "../components/Movie/Movie";
+import { Container } from "../styles/styles";
 import { BASE_URL, API_KEY } from "../utils/API"
 
 function Home() {
@@ -22,7 +23,7 @@ function Home() {
       {loading ? (
         <Loading />
       ) : (
-        <div>
+        <Container>
           {movies.map((movie) => (
             <Movie 
               key={movie.id}
@@ -33,7 +34,7 @@ function Home() {
               genreIds={movie.genre_ids}
             />
           ))}
-        </div>
+        </Container>
       )}
     </div>
   );

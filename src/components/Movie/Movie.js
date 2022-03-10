@@ -1,24 +1,17 @@
 import Proptypes from "prop-types"
-import { Link } from "react-router-dom"
+import { Card, CardContent, CardImage, CardLink, CardText } from "../../styles/styles"
 import { IMG_URL } from "../../utils/API"
 
 function Movie({id, posterPath, title, overview, genreIds}) {
   const poster_path = IMG_URL + posterPath
   return (
-    <div>
-      <img src={poster_path} alt="../images/default_poster.jpg"/>
-      <h2>
-        <Link to={`/movie/${id}`}>
-          {title}
-        </Link>
-      </h2>
-      <p>{overview}</p>
-      <ul>
-        {genreIds.map((g) => (
-          <li key={g}>{g}</li>
-        ))}
-      </ul>
-    </div>
+    <Card>
+      <CardImage src={poster_path} alt="../images/default_poster.jpg"/>
+      <CardContent>
+        <CardLink to={`/movie/${id}`}>{title}</CardLink>
+        <CardText>{overview.length > 130 ? `${overview.slice(0, 130)}...` : overview}</CardText>
+      </CardContent>
+    </Card>
   )
 }
 
@@ -27,7 +20,6 @@ Movie.propTypes = {
   posterPath: Proptypes.string.isRequired,
   title: Proptypes.string.isRequired,
   overview: Proptypes.string.isRequired,
-  genreIds: Proptypes.arrayOf(Proptypes.number).isRequired,
 }
 
 export default Movie
