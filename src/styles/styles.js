@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+// Navigation
 export const Navbar = styled.div`
   background-color: black;
   height: 4rem;
@@ -17,3 +18,11 @@ export const NavbarLink = styled(NavLink)`
   color: white;
   font-size: 1.5rem;
 `
+
+// Loading
+export const Load = styled.div`
+  display: flex;
+  min-height: 100vh;
+  font-size: 5rem;
+`
+

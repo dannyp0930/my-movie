@@ -1,6 +1,8 @@
+import { Load } from "../../styles/styles"
+
 function Loading() {
   return (
-    <div>Loading...</div>
+    <Load>Loading...</Load>
   )
 }
 
