@@ -1,12 +1,12 @@
 import Proptypes from "prop-types"
 import { Link } from "react-router-dom"
-import { IMG_URL } from "../utils/API"
+import { IMG_URL } from "../../utils/API"
 
 function Movie({id, posterPath, title, overview, genreIds}) {
   const poster_path = IMG_URL + posterPath
   return (
     <div>
-      <img src={poster_path} />
+      <img src={poster_path} alt="../images/default_poster.jpg"/>
       <h2>
         <Link to={`/movie/${id}`}>
           {title}

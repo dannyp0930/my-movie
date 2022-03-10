@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../components/Loading";
+import Loading from "../components/Loading/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 
 function Detail() {
@@ -24,14 +24,14 @@ function Detail() {
         <Loading />
       ) : (
         <div>
-          <img src={IMG_URL + movie.backdrop_path} alt={movie.title}></img>
+          <img src={IMG_URL + movie.backdrop_path} alt="../images/default_banner.jpg"></img>
           <h1>{movie.title}</h1>
           <ul>
             {movie.genres.map((genre) => (
               <li key={genre.id}>{genre.name}</li>
               ))}
           </ul>
-          <img src={IMG_URL + movie.poster_path} alt={movie.title}></img>
+          <img src={IMG_URL + movie.poster_path} alt="../images/default_poster.jpg"></img>
           <p>{movie.overview}</p>
         </div>
       )}

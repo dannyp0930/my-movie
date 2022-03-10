@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Loading from "../components/Loading";
-import Movie from "../components/Movie";
+import Loading from "../components/Loading/Loading";
+import Movie from "../components/Movie/Movie";
 import { BASE_URL, API_KEY } from "../utils/API"
 
 function Home() {
