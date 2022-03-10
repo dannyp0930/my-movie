@@ -69,3 +69,9 @@ export const CardLink = styled(Link)`
 export const CardText = styled.div`
   font-size: 1rem;
 `
+
+// detail
+export const BackDropImg = styled.img`
+  width: 70%;
+  filter: opacity(0.4) drop-shadow(0 0 0 ${props => props.layer})
+`
