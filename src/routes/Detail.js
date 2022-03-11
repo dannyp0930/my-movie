@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import { usePalette } from "react-palette";
-import { BackDropImg } from "../styles/styles";
+import { MovieContainer, MovieContent, MovieImg } from "../styles/styles";
 
 function Detail() {
   const [ loading, setLoading ] = useState(true);
@@ -18,12 +18,19 @@ function Detail() {
   }
   useEffect(() => {
     getMovie();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const BACKDROP_PATH = IMG_URL + movie.backdrop_path
-  const POSTER_PATH = IMG_URL + movie.poster_path
-  const { data } = usePalette(IMG_URL + movie.poster_path)
-  const dominant = data.darkVibrant
+  const [ POSTER_PATH, setPOSTER_PATH ] = useState('')
+
+  useEffect(() => {
+    if (movie) {
+      setPOSTER_PATH(IMG_URL + movie.poster_path)
+    }
+  }, [movie])
+
+  const { data } = usePalette(POSTER_PATH)
+  const color = data.darkVibrant
   
   // data = {
   //   darkMuted: "#2a324b"
@@ -39,17 +46,21 @@ function Detail() {
       { loading ? ( 
         <Loading />
       ) : (
-        <div>
-          <BackDropImg src={BACKDROP_PATH} layer={dominant}/>
-          <h1>{movie.title}</h1>
-          <ul>
-            {movie.genres.map((genre) => (
-              <li key={genre.id}>{genre.name}</li>
+        <MovieContainer color={color}>
+          <MovieImg src={POSTER_PATH} alt="../images/default_poster.jpg"/>
+          <MovieContent>
+            <h1>{movie.title}</h1>
+            <h2>{movie.original_title}</h2>
+            <p>{movie.release_date}({movie.original_language.toUpperCase()}) · {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m</p>
+            <p>회원점수: {movie.vote_average}</p>
+            <ul>
+              {movie.genres.map((genre) => (
+                <li key={genre.id}>{genre.name}</li>
               ))}
-          </ul>
-          <img src={POSTER_PATH} alt="../images/default_poster.jpg"/>
-          <p>{movie.overview}</p>
-        </div>
+            </ul>
+            <p>{movie.overview}</p>
+          </MovieContent>
+        </MovieContainer>
       )}
     </div>
   )

@@ -48,7 +48,6 @@ export const Card = styled.div`
 
 export const CardImage = styled.img`
   width: 15rem;
-  object-fit: fill;
   margin: 1rem;
 `
 
@@ -71,7 +70,20 @@ export const CardText = styled.div`
 `
 
 // detail
-export const BackDropImg = styled.img`
-  width: 70%;
-  filter: opacity(0.4) drop-shadow(0 0 0 ${props => props.layer})
+export const MovieContainer = styled(Container)`
+  margin: 5rem auto;
+  width: 50rem;
+  background-color: ${props => props.color};
+  grid-template-columns: 25rem 1fr;
+  column-gap: 1rem;
+`
+
+export const MovieImg = styled.img`
+  width: 25rem;
+  margin: auto;
+  object-fit: fill;
+`
+
+export const MovieContent = styled.div`
+  color: white;
 `
