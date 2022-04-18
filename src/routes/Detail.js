@@ -18,13 +18,12 @@ function Detail() {
   }
   useEffect(() => {
     getMovie();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [ POSTER_PATH, setPOSTER_PATH ] = useState('')
+  const [ POSTER_PATH, setPOSTER_PATH ] = useState(`${process.env.PUBLIC_URL}/images/default_poster.jpg`)
 
   useEffect(() => {
-    if (movie) {
+    if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path)
     }
   }, [movie])
@@ -47,7 +46,7 @@ function Detail() {
         <Loading />
       ) : (
         <MovieContainer color={color}>
-          <MovieImg src={POSTER_PATH} alt="../images/default_poster.jpg"/>
+          <MovieImg src={POSTER_PATH} alt="poster_img"/>
           <MovieContent>
             <h1>{movie.title}</h1>
             <h2>{movie.original_title}</h2>

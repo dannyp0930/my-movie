@@ -6,7 +6,11 @@ function Movie({id, posterPath, title, overview, genreIds}) {
   const poster_path = IMG_URL + posterPath
   return (
     <Card>
-      <CardImage src={poster_path} alt="../images/default_poster.jpg"/>
+      { posterPath ? 
+        <CardImage src={poster_path} alt="poster_img"/>
+        :
+        <CardImage src={`${process.env.PUBLIC_URL}/images/default_poster.jpg`} alt="poster_img"/>
+      }
       <CardContent>
         <CardLink to={`/movie/${id}`}>{title}</CardLink>
         <CardText>{overview.length > 130 ? `${overview.slice(0, 130)}...` : overview}</CardText>
