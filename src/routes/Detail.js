@@ -13,8 +13,8 @@ function Detail() {
     const json = await (
       await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`)
     ).json();
-    setMovie(json)
-    setLoading(false)
+    setMovie(json);
+    setLoading(false);
   };
   useEffect(() => {
     getMovie();
