@@ -3,19 +3,19 @@ import Loading from "../components/Loading/Loading";
 import Movie from "../components/Movie/Movie";
 import { Container } from "../styles/styles";
 import { BASE_URL, API_KEY } from "../utils/API";
+import axios from "axios";
 
 function Home() {
   const [ loading, setLoading ] = useState(true);
   const [ movies, setMovies ] = useState([]);
-  const getMovies = async() => {
-    const json = await (
-      await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`)
-    ).json();
-    setMovies(json.results);
-    setLoading(false);
-  };
+  
   useEffect(() => {
-    getMovies();
+    axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`)
+    .then(res => {
+      setMovies(res.data.results);
+    }).then(setTimeout(
+      setLoading(false)
+    ), 500);
   }, []);
 
   return (
