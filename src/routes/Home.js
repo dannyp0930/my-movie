@@ -9,13 +9,14 @@ function Home() {
   const [ loading, setLoading ] = useState(true);
   const [ movies, setMovies ] = useState([]);
   
+  const getMovies = async () => {
+    const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`)
+    setMovies(res.data.results);
+  }
+  
   useEffect(() => {
-    axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`)
-    .then(res => {
-      setMovies(res.data.results);
-    }).then(setTimeout(
-      setLoading(false)
-    ), 500);
+    getMovies();
+    setLoading(false);
   }, []);
 
   return (
