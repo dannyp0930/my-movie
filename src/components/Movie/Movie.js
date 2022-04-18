@@ -2,11 +2,11 @@ import Proptypes from "prop-types"
 import { Card, CardContent, CardImage, CardLink, CardText } from "../../styles/styles"
 import { IMG_URL } from "../../utils/API"
 
-function Movie({id, posterPath, title, overview, genreIds}) {
+function Movie({id, posterPath, title, overview}) {
   const poster_path = IMG_URL + posterPath
   return (
     <Card>
-      { posterPath ? 
+      { posterPath !== "null" ? 
         <CardImage src={poster_path} alt="poster_img"/>
         :
         <CardImage src={`${process.env.PUBLIC_URL}/images/default_poster.jpg`} alt="poster_img"/>

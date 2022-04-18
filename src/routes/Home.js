@@ -24,16 +24,20 @@ function Home() {
         <Loading />
       ) : (
         <Container>
-          {movies.map((movie) => (
+          {movies.map((movie) => {
+          let posterPath = "null"
+          if (movie.poster_path) {
+            posterPath = movie.poster_path
+          }
+          return (
             <Movie 
               key={movie.id}
               id={movie.id}
-              posterPath={movie.poster_path}
+              posterPath={posterPath}
               title={movie.title}
               overview={movie.overview}
-              genreIds={movie.genre_ids}
             />
-          ))}
+          )})}
         </Container>
       )}
     </div>
