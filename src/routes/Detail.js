@@ -25,8 +25,8 @@ function Detail() {
   useEffect(() => {
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path);
-      setLoading(false);
     }
+    setLoading(false);
   }, [movie]);
 
   const { data } = usePalette(POSTER_PATH);
