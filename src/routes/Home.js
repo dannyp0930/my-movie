@@ -10,7 +10,7 @@ function Home() {
   const [ movies, setMovies ] = useState([]);
   
   const getMovies = async () => {
-    const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`)
+    const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
     setMovies(res.data.results);
   }
   
