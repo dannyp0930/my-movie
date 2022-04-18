@@ -15,21 +15,23 @@ function Detail() {
     ).json();
     setMovie(json)
     setLoading(false)
-  }
+  };
   useEffect(() => {
     getMovie();
   }, []);
 
-  const [ POSTER_PATH, setPOSTER_PATH ] = useState(`${process.env.PUBLIC_URL}/images/default_poster.jpg`)
+  const [ POSTER_PATH, setPOSTER_PATH ] = useState(
+    `${process.env.PUBLIC_URL}/images/default_poster.jpg`
+  );
 
   useEffect(() => {
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path)
     }
-  }, [movie])
+  }, [movie]);
 
-  const { data } = usePalette(POSTER_PATH)
-  const color = data.darkVibrant
+  const { data } = usePalette(POSTER_PATH);
+  const color = data.darkVibrant;
   
   // data = {
   //   darkMuted: "#2a324b"
@@ -62,7 +64,7 @@ function Detail() {
         </MovieContainer>
       )}
     </div>
-  )
+  );
 };
 
 export default Detail;

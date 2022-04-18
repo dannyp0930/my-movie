@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Loading from "../components/Loading/Loading";
 import Movie from "../components/Movie/Movie";
 import { Container } from "../styles/styles";
-import { BASE_URL, API_KEY } from "../utils/API"
+import { BASE_URL, API_KEY } from "../utils/API";
 
 function Home() {
   const [ loading, setLoading ] = useState(true);
@@ -13,7 +13,7 @@ function Home() {
     ).json();
     setMovies(json.results);
     setLoading(false);
-  }
+  };
   useEffect(() => {
     getMovies();
   }, []);

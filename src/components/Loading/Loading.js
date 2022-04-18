@@ -1,9 +1,9 @@
-import { Load } from "../../styles/styles"
+import { Load } from "../../styles/styles";
 
 function Loading() {
   return (
     <Load>Loading...</Load>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;

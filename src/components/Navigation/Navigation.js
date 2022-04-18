@@ -5,7 +5,7 @@ function Navigation() {
     <Navbar>
       <NavbarLink to='/'>Home</NavbarLink>
     </Navbar>
-  )
+  );
 };
 
 export default Navigation;
