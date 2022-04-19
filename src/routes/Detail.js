@@ -30,7 +30,7 @@ function Detail() {
       setTimeout(() => {
         setLoading(false);
 
-      }, 500);
+      }, 300);
     }
   }, [movie]);
 

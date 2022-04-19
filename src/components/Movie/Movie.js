@@ -12,7 +12,7 @@ function Movie({id, posterPath, title, overview}) {
         <CardImage src={`${process.env.PUBLIC_URL}/images/default_poster.jpg`} alt="poster_img"/>
       }
       <CardContent>
-        <CardLink to={`${id}`}>{title}</CardLink>
+        <CardLink to={`movie/${id}`}>{title}</CardLink>
         <CardText>{overview.length > 130 ? `${overview.slice(0, 130)}...` : overview}</CardText>
       </CardContent>
     </Card>
