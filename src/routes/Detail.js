@@ -8,25 +8,30 @@ import axios from "axios";
 
 function Detail() {
   const [ loading, setLoading ] = useState(true);
-  const { id }= useParams();
+  const { id } = useParams();
   const [ movie, setMovie ] = useState({});
   const [ POSTER_PATH, setPOSTER_PATH ] = useState(
     `${process.env.PUBLIC_URL}/images/default_poster.jpg`
     );
-  
+
   useEffect(() => {
     const getMovie = async () => {
       const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`);
       setMovie(res.data);
-    };
+    };    
     getMovie();
-  }, [id]);
+  }, [id])
+  console.log(movie)
   
+  // setLoading(false);
   useEffect(() => {
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path);
+      setTimeout(() => {
+        setLoading(false);
+
+      }, 500);
     }
-    setLoading(false);
   }, [movie]);
 
   const { data } = usePalette(POSTER_PATH);
