@@ -19,9 +19,7 @@ function Detail() {
     };    
     getMovie();
   }, [id])
-  console.log(movie)
-  
-  // setLoading(false);
+
   useEffect(() => {
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path);

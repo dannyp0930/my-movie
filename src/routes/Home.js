@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading/Loading";
 import Movie from "../components/Movie/Movie";
-import { Container } from "../styles/styles";
+import { Container, Header, Title } from "../styles/styles";
 import { BASE_URL, API_KEY } from "../utils/API";
 import axios from "axios";
 
 function Home() {
   const [ loading, setLoading ] = useState(true);
-  const [ movies, setMovies ] = useState([]);
+  const [ popularMovies, setPopularMovies ] = useState([]);
+  const [ nowPlayingMovies, setNowPlayingMovies ] = useState([]);
   
-  const getMovies = async () => {
+  const getPopularMovies = async () => {
     const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
-    setMovies(res.data.results);
-  }
+    setPopularMovies(res.data.results);
+  };
+  
+  const getNowPlayingMovies = async () => {
+    const res = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`);
+    setNowPlayingMovies(res.data.results);
+  };
   
   useEffect(() => {
-    getMovies();
-    setLoading(false);
+    getPopularMovies();
+    getNowPlayingMovies();
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
   }, []);
 
   return (
@@ -25,11 +34,33 @@ function Home() {
         <Loading />
       ) : (
         <div>
-          <h1>
+          <Header>
+            My Movie
+          </Header>
+          <Title>
             현재 인기 영화
-          </h1>
+          </Title>
           <Container>
-            {movies.map((movie) => {
+            {popularMovies.map((movie) => {
+            let posterPath = "null"
+            if (movie.poster_path) {
+              posterPath = movie.poster_path
+            }
+            return (
+              <Movie 
+                key={movie.id}
+                id={movie.id}
+                posterPath={posterPath}
+                title={movie.title}
+                overview={movie.overview}
+              />
+            )})}
+          </Container>
+          <Title>
+            최고 평점 영화
+          </Title>
+          <Container>
+            {nowPlayingMovies.map((movie) => {
             let posterPath = "null"
             if (movie.poster_path) {
               posterPath = movie.poster_path

@@ -26,14 +26,29 @@ export const Load = styled.div`
   font-size: 5rem;
 `;
 
+// Home
+export const Header = styled.div`
+  padding: 10rem;
+  background-image: url(./images/banner.jpg);
+  background-size: cover;
+  text-align: center;
+  color: white;
+  font-size: 7rem;
+`
+
 export const Container = styled.div`
   display: grid;
-  margin-top: 3rem;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 `;
 
-// Card
+export const Title = styled.div`
+  margin: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+`
+
+// Movie
 export const Card = styled.div`
   display: grid;
   border-radius: 0.5rem;
