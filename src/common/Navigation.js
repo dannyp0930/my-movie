@@ -1,4 +1,4 @@
-import { Navbar, NavbarLink } from "../../styles/styles";
+import { Navbar, NavbarLink } from "../styles/styles";
 
 function Navigation() {
   return (
