@@ -24,22 +24,27 @@ function Home() {
       {loading ? (
         <Loading />
       ) : (
-        <Container>
-          {movies.map((movie) => {
-          let posterPath = "null"
-          if (movie.poster_path) {
-            posterPath = movie.poster_path
-          }
-          return (
-            <Movie 
-              key={movie.id}
-              id={movie.id}
-              posterPath={posterPath}
-              title={movie.title}
-              overview={movie.overview}
-            />
-          )})}
-        </Container>
+        <div>
+          <h1>
+            현재 인기 영화
+          </h1>
+          <Container>
+            {movies.map((movie) => {
+            let posterPath = "null"
+            if (movie.poster_path) {
+              posterPath = movie.poster_path
+            }
+            return (
+              <Movie 
+                key={movie.id}
+                id={movie.id}
+                posterPath={posterPath}
+                title={movie.title}
+                overview={movie.overview}
+              />
+            )})}
+          </Container>
+        </div>
       )}
     </div>
   );
