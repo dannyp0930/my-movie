@@ -27,11 +27,11 @@ function Detail() {
   useEffect(() => {
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path);
-      setTimeout(() => {
-        setLoading(false);
-
-      }, 300);
     }
+    setTimeout(() => {
+      setLoading(false);
+
+    }, 300);
   }, [movie]);
 
   const { data } = usePalette(POSTER_PATH);
