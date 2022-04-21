@@ -1,15 +1,20 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Loading from "../components/Loading/Loading";
 import Movie from "../components/Movie/Movie";
-import { Container, SearchButton, SearchContainer, SearchInput } from "../styles/styles";
+import {
+  Container,
+  NoSearchMovies,
+  SearchButton,
+  SearchContainer,
+  SearchInput
+} from "../styles/styles";
 import { API_KEY, BASE_URL } from "../utils/API";
 
 export function Search() {
   const [ query, setQuery ] = useState('');
   const [ searchMovies, setSearchMovies ] = useState([]);
   const [ loading, setLoading ] = useState(false);
-  const [ noMovies, setNoMovies ] = useState(false);
 
   function handleChange(e) {
     setQuery(e.target.value)
@@ -37,11 +42,6 @@ export function Search() {
       setTimeout(() => {
         setLoading(false);
       }, 300);
-      if (!searchMovies.length) {
-        setNoMovies(true)
-      } else {
-        setNoMovies(false)
-      }
     } else {
       alert("검색어를 입력하세요.")
     }
@@ -59,13 +59,15 @@ export function Search() {
       { loading ? (
         <Loading />
       ) : (
-        <Container>
-          {noMovies ? (
-            <div>검색 결과가 없습니다.</div>
-          ) : (
-            searchMovies
-          )}
-        </Container>
+      <div>
+        {searchMovies.length ? (
+          <Container>
+            {searchMovies}
+          </Container>
+        ) : (
+          <NoSearchMovies>검색 결과가 없습니다.</NoSearchMovies>
+        )}
+      </div>
       )}
     </div>
   )

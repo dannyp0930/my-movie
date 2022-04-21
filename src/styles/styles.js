@@ -121,3 +121,8 @@ export const SearchInput = styled.input`
 
 export const SearchButton = styled.button`
 `
+
+export const NoSearchMovies = styled.div`
+  text-align: center;
+  font-size: 2rem;
+`
