@@ -18,6 +18,7 @@ export const NavbarLink = styled(NavLink)`
   text-decoration: none;
   color: white;
   font-size: 1.5rem;
+  margin-right: 1rem;
 `;
 
 // Loading
