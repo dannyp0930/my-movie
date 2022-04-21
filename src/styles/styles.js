@@ -108,12 +108,15 @@ export const MovieContent = styled.div`
 // search
 export const SearchContainer = styled.div`
   display: grid;
-  justify-content: center;
-  margin-top: 5rem;
+  width: 20rem;
+  grid-template-columns: 4fr 1fr;
+  column-gap: 1rem;
+  margin: 5rem auto 2rem;
 `
 
 export const SearchInput = styled.input`
-
+  height: 2rem;
+  font-size: 1rem;
 `
 
 export const SearchButton = styled.button`

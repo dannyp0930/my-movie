@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
-import { SearchButton, SearchContainer, SearchInput } from "../styles/styles";
+import Movie from "../components/Movie/Movie";
+import { Container, SearchButton, SearchContainer, SearchInput } from "../styles/styles";
 import { API_KEY, BASE_URL } from "../utils/API";
 
 export function Search() {
-  const [query, setQuery] = useState('');
-  const [searchMovies, setSearchMovies] = useState([]);
+  const [ query, setQuery ] = useState('');
+  const [ searchMovies, setSearchMovies ] = useState(null);
 
-  function handleChange (e) {
+  function handleChange(e) {
     setQuery(e.target.value)
   };
 
@@ -15,7 +16,21 @@ export function Search() {
     if (query) {
       axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=ko-KR`)
       .then(res => {
-        setSearchMovies(res.data.results)
+        setSearchMovies(res.data.results.map(movie => {
+          let posterPath = "null"
+          if (movie.poster_path) {
+            posterPath = movie.poster_path
+          }
+          return (
+            <Movie
+              key={movie.id}
+              id={movie.id}
+              posterPath={posterPath}
+              title={movie.title}
+              overview={movie.overview}
+            />
+          )
+        }))
       })
     } else {
       alert("검색어를 입력하세요.")
@@ -23,21 +38,17 @@ export function Search() {
   };
 
   return (
-    <SearchContainer>
-      <div>
-        <SearchInput onChange={handleChange}/>
+    <div>
+      <SearchContainer>
+        <SearchInput
+          onChange={handleChange}
+          placeholder="검색어를 입력하세요."
+        />
         <SearchButton onClick={handleClick}>검색</SearchButton>
-      </div>
-      <div>
-        {!searchMovies && <>검색결과 없음</>}
-        {searchMovies.map(movie => {
-          return (
-            <div>
-              {movie.title}
-            </div>
-          )
-        })}
-      </div>
-    </SearchContainer>
+      </SearchContainer>
+      <Container>
+        {searchMovies}
+      </Container>
+    </div>
   )
 }
