@@ -104,3 +104,17 @@ export const MovieImg = styled.img`
 export const MovieContent = styled.div`
   color: white;
 `;
+
+// search
+export const SearchContainer = styled.div`
+  display: grid;
+  justify-content: center;
+  margin-top: 5rem;
+`
+
+export const SearchInput = styled.input`
+
+`
+
+export const SearchButton = styled.button`
+`
