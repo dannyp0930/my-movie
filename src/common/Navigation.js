@@ -4,6 +4,7 @@ function Navigation() {
   return (
     <Navbar>
       <NavbarLink to='/'>Home</NavbarLink>
+      <NavbarLink to='search'>Search</NavbarLink>
     </Navbar>
   );
 };

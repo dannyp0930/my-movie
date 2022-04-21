@@ -3,6 +3,7 @@ import Home from "../routes/Home";
 import Detail from "../routes/Detail";
 import Navigation from "../common/Navigation";
 import NotFound from "../routes/NotFound";
+import { Search } from "../routes/Search";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="movie/:id" element={<Detail/>} />
+        <Route path="search" element={<Search/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
