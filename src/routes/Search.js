@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../components/Loading/Loading";
 import Movie from "../components/Movie/Movie";
 import { Container, SearchButton, SearchContainer, SearchInput } from "../styles/styles";
@@ -15,35 +15,33 @@ export function Search() {
     setQuery(e.target.value)
   };
 
-  function handleClick() {
+  const handleClick = async () => {
     if (query) {
       setLoading(true);
-      axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=ko-KR`)
-        .then(res => {
-          if (res.data.results.length) {
-            setNoMovies(false);
-            setSearchMovies(res.data.results.map(movie => {
-              let posterPath = "null"
-              if (movie.poster_path) {
-                posterPath = movie.poster_path
-              }
-              return (
-                <Movie
-                  key={movie.id}
-                  id={movie.id}
-                  posterPath={posterPath}
-                  title={movie.title}
-                  overview={movie.overview}
-                />
-              )
-            }))
-          } else {
-            setNoMovies(true);
-          }
-        });
+      const res = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=ko-KR`)
+      setSearchMovies(res.data.results.map(movie => {
+        let posterPath = "null"
+        if (movie.poster_path) {
+          posterPath = movie.poster_path
+        }
+        return (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            posterPath={posterPath}
+            title={movie.title}
+            overview={movie.overview}
+          />
+        )
+      }))
       setTimeout(() => {
         setLoading(false);
       }, 300);
+      if (!searchMovies.length) {
+        setNoMovies(true)
+      } else {
+        setNoMovies(false)
+      }
     } else {
       alert("검색어를 입력하세요.")
     }
