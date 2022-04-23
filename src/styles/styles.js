@@ -118,7 +118,7 @@ export const MovieContainer = styled(Container)`
 
 export const MovieImg = styled.img`
   width: 90%;
-  margin: auto;
+  margin: 2rem auto;
   object-fit: fill;
 `;
 

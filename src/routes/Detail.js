@@ -30,7 +30,7 @@ function Detail() {
   }, [movie]);
 
   const { data } = usePalette(POSTER_PATH);
-  const color = data.darkMuted;
+  const color = data.darkVibrant;
 
   // data = {
   //   darkMuted: "#2a324b"
