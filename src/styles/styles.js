@@ -86,25 +86,6 @@ export const CardText = styled.div`
   font-size: 1rem;
 `;
 
-// detail
-export const MovieContainer = styled(Container)`
-  margin: 5rem auto;
-  width: 50rem;
-  background-color: ${props => props.color};
-  grid-template-columns: 25rem 1fr;
-  column-gap: 1rem;
-`;
-
-export const MovieImg = styled.img`
-  width: 25rem;
-  margin: auto;
-  object-fit: fill;
-`;
-
-export const MovieContent = styled.div`
-  color: white;
-`;
-
 // search
 export const SearchContainer = styled.div`
   display: grid;
@@ -126,3 +107,23 @@ export const NoSearchMovies = styled.div`
   text-align: center;
   font-size: 2rem;
 `
+
+// detail
+export const MovieContainer = styled(Container)`
+  margin: 5rem auto;
+  background-color: ${props => props.color};
+  grid-template-columns: 1fr 2fr;
+  column-gap: 1rem;
+`;
+
+export const MovieImg = styled.img`
+  width: 90%;
+  margin: auto;
+  object-fit: fill;
+`;
+
+export const MovieContent = styled.div`
+  width: 90%;
+  color: white;
+  margin: 0 auto;
+`;
