@@ -29,7 +29,7 @@ function Detail() {
     }
     setTimeout(() => {
       setLoading(false);
-    }, 300);
+    }, 500);
   }, [movie]);
 
   const { data } = usePalette(POSTER_PATH);
