@@ -5,6 +5,7 @@ import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import { usePalette } from "react-palette";
 import { MovieContainer, MovieContent, MovieImg } from "../styles/styles";
 import axios from "axios";
+import DonutChart from "../components/DonutChart/DonutChart";
 
 function Detail() {
   const [ loading, setLoading ] = useState(true);
@@ -55,7 +56,13 @@ function Detail() {
             <h2>{movie.original_title}</h2>
             <h3>{movie.tagline}</h3>
             <p>{movie.release_date}({movie.original_language.toUpperCase()}) · {movie.genres.map(genre => genre.name).join(', ')} · {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m</p>
-            <p>회원점수: {movie.vote_average}</p>
+            <div 
+             style={{
+               width: "3rem"
+             }}
+            >
+              <DonutChart percentage={movie.vote_average * 10}/>
+            </div>
             <h2>개요</h2>
             <p>{movie.overview}</p>
           </MovieContent>
