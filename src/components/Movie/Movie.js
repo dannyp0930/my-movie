@@ -1,16 +1,18 @@
 import Proptypes from "prop-types";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardImage, CardLink, CardText } from "../../styles/styles";
 import { IMG_URL } from "../../utils/API";
 
 function Movie({id, posterPath, title, overview}) {
-  const poster_path = IMG_URL + posterPath;
+  const [ imgSrc, setImgSrc ] = useState(`${process.env.PUBLIC_URL}/images/default_poster.jpg`)
+  useEffect(() => {
+    if ( posterPath !== "null") {
+      setImgSrc(IMG_URL + posterPath)
+    }
+  }, [posterPath])
   return (
     <Card>
-      { posterPath !== "null" ? 
-        <CardImage src={poster_path} alt="poster_img"/>
-        :
-        <CardImage src={`${process.env.PUBLIC_URL}/images/default_poster.jpg`} alt="poster_img"/>
-      }
+      <CardImage src={imgSrc} alt="poster_img"/>
       <CardContent>
         <CardLink to={`/movie/${id}`}>{title}</CardLink>
         <CardText>{overview.length > 130 ? `${overview.slice(0, 130)}...` : overview}</CardText>
