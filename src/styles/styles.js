@@ -31,11 +31,17 @@ export const Load = styled.div`
 // Home
 export const Header = styled.div`
   padding: 10rem;
-  background-image: url(${banner});
+  // background-image: url(${banner});
   background-size: cover;
   text-align: center;
   color: white;
   font-size: 7rem;
+`
+
+export const Title = styled.div`
+  margin: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
 `
 
 export const Container = styled.div`
@@ -43,12 +49,6 @@ export const Container = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 `;
-
-export const Title = styled.div`
-  margin: 1.5rem;
-  font-size: 2.5rem;
-  font-weight: bold;
-`
 
 // Movie
 export const Card = styled.div`
