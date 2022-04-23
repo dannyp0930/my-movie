@@ -24,9 +24,6 @@ function Home() {
   useEffect(() => {
     getPopularMovies();
     getNowPlayingMovies();
-    setTimeout(() => {
-      setLoading(false);
-    }, 300);
   }, []);
 
   useEffect(() => {
@@ -34,6 +31,9 @@ function Home() {
       const backdropPath = popularMovies[Math.floor(Math.random()*popularMovies.length)].backdrop_path
       setBackdropURL(IMG_URL + backdropPath)
     }
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
   }, [popularMovies])
 
   return (
