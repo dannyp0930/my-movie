@@ -40,11 +40,7 @@ function Detail() {
   //   muted: "#64aa8a"
   //   vibrant: "#b4d43c"
   // }
-
-  useEffect(() => {
-    console.log(movie)
-  }, [movie])
-
+  
   return (
     <div>
       { loading ? ( 
