@@ -1,13 +1,14 @@
-import Proptypes from "prop-types";
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardImage, CardLink, CardText } from "../../styles/styles";
 import { IMG_URL } from "../../utils/API";
 
 function Movie({id, posterPath, title, overview}) {
-  const [ imgSrc, setImgSrc ] = useState(`${process.env.PUBLIC_URL}/images/default_poster.jpg`)
+  const [ imgSrc, setImgSrc ] = useState("")
   useEffect(() => {
     if ( posterPath !== "null") {
       setImgSrc(IMG_URL + posterPath)
+    } else {
+      setImgSrc(`${process.env.PUBLIC_URL}/images/default_poster.jpg`)
     }
   }, [posterPath])
   return (
@@ -19,13 +20,6 @@ function Movie({id, posterPath, title, overview}) {
       </CardContent>
     </Card>
   );
-};
-
-Movie.propTypes = {
-  id: Proptypes.number.isRequired,
-  posterPath: Proptypes.string.isRequired,
-  title: Proptypes.string.isRequired,
-  overview: Proptypes.string.isRequired,
 };
 
 export default Movie;

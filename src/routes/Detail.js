@@ -10,7 +10,7 @@ function Detail() {
   const [ loading, setLoading ] = useState(true);
   const { id } = useParams();
   const [ movie, setMovie ] = useState({});
-  const [ POSTER_PATH, setPOSTER_PATH ] = useState(`${process.env.PUBLIC_URL}/images/default_poster.jpg`);
+  const [ POSTER_PATH, setPOSTER_PATH ] = useState("");
 
   useEffect(() => {
     const getMovie = async () => {
@@ -23,6 +23,8 @@ function Detail() {
   useEffect(() => {
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path);
+    } else {
+      setPOSTER_PATH(`${process.env.PUBLIC_URL}/images/default_poster.jpg`)
     }
     setTimeout(() => {
       setLoading(false);
