@@ -15,11 +15,15 @@ export default function DonutChart({ percentage }) {
 
   const data = [{
     value: `${percentage}`,
-    color: color(81),
+    color: color(percentage),
     name: "name1",
   }]
   return (
     <PieChart
+      style={{
+        width: "10%",
+        margin: "1rem"
+      }}
       data={data}
       reveal={percentage}
       lineWidth={30}

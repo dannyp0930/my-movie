@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import { usePalette } from "react-palette";
-import { MovieContainer, MovieContent, MovieImg } from "../styles/styles";
+import { MoiveInfo, MovieContainer, MovieContent, MovieImg } from "../styles/styles";
 import axios from "axios";
 import DonutChart from "../components/DonutChart/DonutChart";
 
@@ -55,14 +55,10 @@ function Detail() {
             <h1>{movie.title}</h1>
             <h2>{movie.original_title}</h2>
             <h3>{movie.tagline}</h3>
-            <p>{movie.release_date}({movie.original_language.toUpperCase()}) · {movie.genres.map(genre => genre.name).join(', ')} · {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m</p>
-            <div 
-             style={{
-               width: "3rem"
-             }}
-            >
+            <MoiveInfo>
               <DonutChart percentage={movie.vote_average * 10}/>
-            </div>
+              <p>{movie.release_date}({movie.original_language.toUpperCase()}) · {movie.genres.map(genre => genre.name).join(', ')} · {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m</p>
+            </MoiveInfo>
             <h2>개요</h2>
             <p>{movie.overview}</p>
           </MovieContent>

@@ -127,3 +127,8 @@ export const MovieContent = styled.div`
   color: white;
   margin: 0 auto;
 `;
+
+export const MoiveInfo = styled.div`
+  display: flex;
+  align-items: center;
+`
