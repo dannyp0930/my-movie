@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardImage, CardLink, CardText } from "../../styles/styles";
 import { IMG_URL } from "../../utils/API";
+import DefatulPoster from "../../assets/images/default_poster.jpg"
 
 function Movie({id, posterPath, title, overview}) {
   const [ imgSrc, setImgSrc ] = useState("")
@@ -8,7 +9,7 @@ function Movie({id, posterPath, title, overview}) {
     if ( posterPath !== "null") {
       setImgSrc(IMG_URL + posterPath)
     } else {
-      setImgSrc(`${process.env.PUBLIC_URL}/images/default_poster.jpg`)
+      setImgSrc(DefatulPoster)
     }
   }, [posterPath])
   return (

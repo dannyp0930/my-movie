@@ -1,3 +1,5 @@
+import NotFoundImage from "../assets/images/NotFound.png"
+
 function NotFound () {
   return (
     <div
@@ -7,7 +9,7 @@ function NotFound () {
       }}
     >
       <img
-        src="./images/NotFound.png"
+        src={NotFoundImage}
         alt="NotFound"
         style={{
           width: "50%",

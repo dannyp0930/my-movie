@@ -4,6 +4,7 @@ import Loading from "../components/Loading/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import { usePalette } from "react-palette";
 import { MoiveInfo, MovieContainer, MovieContent, MovieImg } from "../styles/styles";
+import DefatulPoster from "../assets/images/default_poster.jpg"
 import axios from "axios";
 import DonutChart from "../components/DonutChart/DonutChart";
 
@@ -25,7 +26,7 @@ function Detail() {
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path);
     } else {
-      setPOSTER_PATH(`${process.env.PUBLIC_URL}/images/default_poster.jpg`)
+      setPOSTER_PATH(DefatulPoster)
     }
     setTimeout(() => {
       setLoading(false);
