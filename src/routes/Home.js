@@ -43,9 +43,7 @@ function Home() {
       ) : (
         <div>
           <Header
-            style={{
-              backgroundImage: `url(${backdropURL})`
-            }}
+            backdrop={backdropURL}
           >
             My Movie
           </Header>

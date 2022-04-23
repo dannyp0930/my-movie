@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import banner from "../assets/images/banner.jpg"
 
 // Navigation
 export const Navbar = styled.div`
@@ -31,7 +30,7 @@ export const Load = styled.div`
 // Home
 export const Header = styled.div`
   padding: 10rem;
-  // background-image: url(${banner});
+  background-image: url(${props => props.backdrop});
   background-size: cover;
   text-align: center;
   color: white;
