@@ -52,13 +52,8 @@ function Detail() {
             <h1>{movie.title}</h1>
             <h2>{movie.original_title}</h2>
             <h3>{movie.tagline}</h3>
-            <p>{movie.release_date}({movie.original_language.toUpperCase()}) · {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m</p>
+            <p>{movie.release_date}({movie.original_language.toUpperCase()}) · {movie.genres.map(genre => genre.name).join(', ')} · {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m</p>
             <p>회원점수: {movie.vote_average}</p>
-            <ul>
-              {movie.genres.map((genre) => (
-                <li key={genre.id}>{genre.name}</li>
-              ))}
-            </ul>
             <h2>개요</h2>
             <p>{movie.overview}</p>
           </MovieContent>
