@@ -1,8 +1,17 @@
 import { useEffect, useState, useRef } from "react"
-import { CarouselContainer, CarouselImgContainer, CarouselItem, CarouselButton } from "../../styles/styles";
+import {
+  CarouselContainer,
+  CarouselItemContainer,
+  CarouselItem,
+  CarouselButton,
+  CarouselTitle,
+  CarouselHeader,
+  CarouselPagination,
+  CarouselPages,
+} from "../../styles/styles";
 import Movie from "../Movie/Movie";
 
-export default function Carousel({ movies }) {
+export default function Carousel({ movies, title }) {
   const TOTAL_SLIDES = 9;
   const [ currentSlide, setCurrentSlide ] = useState(0);
   const slideRef = useRef(null);
@@ -28,8 +37,15 @@ export default function Carousel({ movies }) {
 
   return (
     <CarouselContainer>
-      <CarouselButton onClick={prevSlide}>prev</CarouselButton>
-      <CarouselImgContainer ref={slideRef}>
+      <CarouselHeader>
+        <CarouselTitle>{title}</CarouselTitle>
+        <CarouselPagination>
+          <CarouselButton onClick={prevSlide}>&lt;</CarouselButton>
+          <CarouselPages>{currentSlide}</CarouselPages>
+          <CarouselButton onClick={nextSlide}>&gt;</CarouselButton>
+        </CarouselPagination>
+      </CarouselHeader>
+      <CarouselItemContainer ref={slideRef}>
         {movies.map((movie) => {
           let posterPath = "null"
           if (movie.poster_path) {
@@ -48,8 +64,7 @@ export default function Carousel({ movies }) {
             </CarouselItem>
           )
         })}
-      </CarouselImgContainer>
-      <CarouselButton onClick={nextSlide}>next</CarouselButton>
+      </CarouselItemContainer>
     </CarouselContainer>
   )
 }

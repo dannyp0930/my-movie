@@ -38,10 +38,45 @@ export const Header = styled.div`
   font-size: 7rem;
 `
 
-export const Title = styled.div`
+
+// Carousel
+export const CarouselContainer = styled.div`
+  width: 100%;
+`
+
+export const CarouselHeader = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`
+
+export const CarouselTitle = styled.div`
   margin: 1.5rem;
   font-size: 2.5rem;
   font-weight: bold;
+`
+
+export const CarouselPagination = styled.div`
+  display: flex;
+`
+
+export const CarouselButton = styled.div`
+margin: auto;
+cursor: pointer;
+`
+
+export const CarouselPages = styled.div`
+  margin: auto;
+`
+
+export const CarouselItemContainer = styled.div`
+  width: 100%;
+  display: flex;
+  margin: 0;
+  padding: 0;
+`
+
+export const CarouselItem = styled.div`
+  flex: 0 0 50%;
 `
 
 // Movie
@@ -83,11 +118,11 @@ export const CardText = styled.div`
 // search
 
 export const SearchContainer = styled.div`
-display: grid;
-width: 20rem;
-grid-template-columns: 4fr 1fr;
-column-gap: 1rem;
-margin: 5rem auto 2rem;
+  display: grid;
+  width: 20rem;
+  grid-template-columns: 4fr 1fr;
+  column-gap: 1rem;
+  margin: 5rem auto 2rem;
 `
 
 export const ResultContainer = styled.div`
@@ -134,34 +169,4 @@ export const MovieContent = styled.div`
 export const MoiveInfo = styled.div`
   display: flex;
   align-items: center;
-`
-
-// Carousel
-export const CarouselContainer = styled.div`
-  width: 100%;
-  overflow: hidden;
-`
-
-export const CarouselButton = styled.button`
-  all: unset;
-  border: 1px solid coral;
-  padding: 0.5em 2em;
-  color: coral;
-  border-radius: 10px;
-  &:hover {
-    transition: all 0.3s ease-in-out;
-    background-color: coral;
-    color: #fff;
-  }
-`;
-
-export const CarouselImgContainer = styled.div`
-  width: 100%;
-  display: flex;
-  margin: 0;
-  padding: 0;
-`
-
-export const CarouselItem = styled.div`
-  flex: 0 0 50%;
 `

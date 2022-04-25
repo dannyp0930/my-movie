@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading/Loading";
-import Movie from "../components/Movie/Movie";
-import { Header, Title } from "../styles/styles";
+import { Header } from "../styles/styles";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import axios from "axios";
 import Carousel from "../components/Carousel/Carousel";
@@ -48,14 +47,14 @@ function Home() {
             >
             My Movie
           </Header>
-          <Title>
-            현재 인기 영화
-          </Title>
-          <Carousel movies={popularMovies}></Carousel>
-          <Title>
-            최고 평점 영화
-          </Title>
-          <Carousel movies={topMovies}></Carousel>
+          <Carousel
+            movies={popularMovies}
+            title="현재 인기 영화"
+          />
+          <Carousel
+            movies={topMovies}
+            title="최고 평점 영화"
+          />
         </div>
       )}
     </div>
