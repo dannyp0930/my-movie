@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading/Loading";
-import { Header } from "../styles/styles";
+import { Header, Title } from "../styles/styles";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import axios from "axios";
 import Carousel from "../components/Carousel/Carousel";
@@ -45,7 +45,9 @@ function Home() {
           <Header
             backdrop={backdropURL}
             >
-            My Movie
+              <Title>
+                My Movie
+              </Title>
           </Header>
           <Carousel
             movies={popularMovies}

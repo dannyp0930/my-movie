@@ -31,13 +31,27 @@ export const Load = styled.div`
 // Home
 export const Header = styled.div`
   padding: 10rem;
-  background-image: url(${props => props.backdrop});
-  background-size: cover;
+  position: relative;
+  
+  &::before {
+    content: "";
+    background-image: url(${props => props.backdrop});
+    background-size: cover;
+    filter: opacity(0.6) drop-shadow(0 0 0 violet);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+`;
+
+export const Title = styled.div`
   text-align: center;
   color: white;
   font-size: 7rem;
-`;
-
+  position: relative;
+`
 
 // Carousel
 export const CarouselContainer = styled.div`
