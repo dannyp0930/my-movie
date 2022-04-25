@@ -16,7 +16,7 @@ export default function Carousel({ movies, title }) {
   const [ currentSlide, setCurrentSlide ] = useState(0);
   const slideRef = useRef(null);
 
-  const nextSlide = () => {
+  function nextSlide() {
     if (currentSlide >= TOTAL_SLIDES) {
       setCurrentSlide(0);
     } else {
@@ -24,7 +24,7 @@ export default function Carousel({ movies, title }) {
     }
   };
 
-  const prevSlide = () => {
+  function prevSlide() {
     if (currentSlide === 0) {
       setCurrentSlide(TOTAL_SLIDES);
     } else {
@@ -37,7 +37,7 @@ export default function Carousel({ movies, title }) {
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [currentSlide]);
 
-  const pages = () => {
+  function pages() {
     const array = [];
     for (let i = 0; i < TOTAL_SLIDES + 1; i++) {
       array.push(
