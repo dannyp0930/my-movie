@@ -11,11 +11,11 @@ import DonutChart from "../components/DonutChart/DonutChart";
 
 function Detail() {
   const [ loading, setLoading ] = useState(true);
-  const [ color, setColor ] = useState("black");
+  const [ color, setColor ] = useState();
   const { id } = useParams();
   const [ movie, setMovie ] = useState();
-  const [ POSTER_PATH, setPOSTER_PATH ] = useState(DefatulPoster);
-  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState(DefatulBanner);
+  const [ POSTER_PATH, setPOSTER_PATH ] = useState();
+  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState();
 
   useEffect(() => {
     const getMovie = async () => {
@@ -29,13 +29,18 @@ function Detail() {
     if (movie) {
       if (movie.poster_path) {
         setPOSTER_PATH(IMG_URL + movie.poster_path);
+      } else {
+        setPOSTER_PATH(DefatulPoster);
       }
       if (movie.backdrop_path) {
         setBACKDROP_PATH(IMG_URL + movie.backdrop_path);
+      } else {
+        setBACKDROP_PATH(DefatulBanner);
       }
     }
   }, [movie]);
   
+  // 커스텀 훅으로 만들어 보자
   const { data } = usePalette(POSTER_PATH);
 
   useEffect(() => {
@@ -56,9 +61,7 @@ function Detail() {
 
   return (
     <div>
-      { loading && !movie ? ( 
-        <Loading />
-      ) : (
+      { !loading && movie && color && BACKDROP_PATH && POSTER_PATH ? ( 
         <MovieBackdrop
           color={color}
           backdrop={BACKDROP_PATH}
@@ -78,6 +81,8 @@ function Detail() {
             </MovieContent>
           </MovieContainer>
         </MovieBackdrop>
+      ) : (
+        <Loading />
       )}
     </div>
   );
