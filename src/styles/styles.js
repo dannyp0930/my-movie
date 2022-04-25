@@ -32,12 +32,13 @@ export const Load = styled.div`
 export const Header = styled.div`
   padding: 10rem;
   position: relative;
+  background-image: url(${props => props.backdrop});
+  background-size: cover;
   
   &::before {
     content: "";
-    background-image: url(${props => props.backdrop});
-    background-size: cover;
-    filter: opacity(0.6) drop-shadow(0 0 0 violet);
+    background-color: skyblue;
+    opacity: 0.7;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -134,7 +135,7 @@ export const CardText = styled.div`
   font-size: 1rem;
 `;
 
-// search
+// Search
 
 export const SearchContainer = styled.div`
   display: grid;
@@ -163,15 +164,16 @@ export const NoSearchMovies = styled.div`
   font-size: 2rem;
 `;
 
-// detail
+// Detail
 export const MovieBackdrop = styled.div`
   position: relative;
+  background-image: url(${props => props.backdrop});
+  background-size: cover;
   
   &::before {
     content: "";
-    background-image: url(${props => props.backdrop});
-    background-size: cover;
-    filter: opacity(0.6) drop-shadow(0 0 0 ${props => props.color});
+    background-color: ${props => props.color};
+    opacity: 0.8;
     position: absolute;
     top: 0px;
     left: 0px;

@@ -14,8 +14,8 @@ function Detail() {
   const [ color, setColor ] = useState("black");
   const { id } = useParams();
   const [ movie, setMovie ] = useState();
-  const [ POSTER_PATH, setPOSTER_PATH ] = useState("");
-  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState("");
+  const [ POSTER_PATH, setPOSTER_PATH ] = useState(DefatulPoster);
+  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState(DefatulBanner);
 
   useEffect(() => {
     const getMovie = async () => {
@@ -29,13 +29,9 @@ function Detail() {
     if (movie) {
       if (movie.poster_path) {
         setPOSTER_PATH(IMG_URL + movie.poster_path);
-      } else {
-        setPOSTER_PATH(DefatulPoster)
       }
       if (movie.backdrop_path) {
         setBACKDROP_PATH(IMG_URL + movie.backdrop_path);
-      } else {
-        setPOSTER_PATH(DefatulBanner)
       }
     }
   }, [movie]);
@@ -43,12 +39,10 @@ function Detail() {
   const { data } = usePalette(POSTER_PATH);
 
   useEffect(() => {
-    if (data) {
-      setColor(data.darkVibrant);
-      setTimeout(() => {
-        setLoading(false);
-      }, 500);
-    }
+    setColor(data.darkVibrant);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
   }, [data])
 
   // data = {
@@ -59,10 +53,10 @@ function Detail() {
   //   muted: "#64aa8a"
   //   vibrant: "#b4d43c"
   // }
-  
+
   return (
     <div>
-      { loading ? ( 
+      { loading && !movie ? ( 
         <Loading />
       ) : (
         <MovieBackdrop
