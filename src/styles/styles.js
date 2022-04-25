@@ -83,10 +83,10 @@ export const CarouselItem = styled.div`
 export const Card = styled.div`
   display: grid;
   border-radius: 0.5rem;
-  margin: 1rem;
+  margin: auto 1rem;
   background-color: lightgray;
   box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem gray;
-  width: 33rem;
+  min-height: 25rem;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: center;
