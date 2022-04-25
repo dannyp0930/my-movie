@@ -164,12 +164,28 @@ export const NoSearchMovies = styled.div`
 `;
 
 // detail
+export const MovieBackdrop = styled.div`
+  position: relative;
+  
+  &::before {
+    content: "";
+    background-image: url(${props => props.backdrop});
+    background-size: cover;
+    filter: opacity(0.6) drop-shadow(0 0 0 ${props => props.color});
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+`
+
 export const MovieContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   justify-items: center;
   margin: 5rem auto;
-  background-color: ${props => props.color};
+  position: relative;
   column-gap: 1rem;
 `;
 
