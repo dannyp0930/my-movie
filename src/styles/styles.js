@@ -88,7 +88,7 @@ export const CarouselItem = styled.div`
 export const Card = styled.div`
   display: grid;
   border-radius: 0.5rem;
-  margin: auto 1rem;
+  margin: 1rem;
   background-color: lightgray;
   box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem gray;
   min-height: 25rem;
