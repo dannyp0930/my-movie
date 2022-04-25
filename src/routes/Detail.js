@@ -13,7 +13,7 @@ function Detail() {
   const [ loading, setLoading ] = useState(true);
   const [ color, setColor ] = useState("black");
   const { id } = useParams();
-  const [ movie, setMovie ] = useState({});
+  const [ movie, setMovie ] = useState();
   const [ POSTER_PATH, setPOSTER_PATH ] = useState("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState("");
 
@@ -26,25 +26,29 @@ function Detail() {
   }, [id])
 
   useEffect(() => {
-    if (movie.poster_path) {
-      setPOSTER_PATH(IMG_URL + movie.poster_path);
-    } else {
-      setPOSTER_PATH(DefatulPoster)
-    }
-    if (movie.backdrop_path) {
-      setBACKDROP_PATH(IMG_URL + movie.backdrop_path);
-    } else {
-      setPOSTER_PATH(DefatulBanner)
+    if (movie) {
+      if (movie.poster_path) {
+        setPOSTER_PATH(IMG_URL + movie.poster_path);
+      } else {
+        setPOSTER_PATH(DefatulPoster)
+      }
+      if (movie.backdrop_path) {
+        setBACKDROP_PATH(IMG_URL + movie.backdrop_path);
+      } else {
+        setPOSTER_PATH(DefatulBanner)
+      }
     }
   }, [movie]);
   
   const { data } = usePalette(POSTER_PATH);
 
   useEffect(() => {
-    setColor(data.darkVibrant);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    if (data) {
+      setColor(data.darkVibrant);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    }
   }, [data])
 
   // data = {
