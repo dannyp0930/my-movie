@@ -61,8 +61,8 @@ export const CarouselPagination = styled.div`
 
 export const CarouselButton = styled.div`
   margin: auto;
-  cursor: pointer;
   font-size: 2rem;
+  cursor: pointer;
 `;
 
 export const CarouselPage = styled.div`
@@ -70,6 +70,7 @@ export const CarouselPage = styled.div`
   height: 0.5rem;
   background-color: ${props => props.now ? "gray" : "lightgray"};
   margin: auto 0.5rem;
+  cursor: pointer;
 `;
 
 export const CarouselItemContainer = styled.div`

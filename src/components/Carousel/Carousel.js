@@ -44,6 +44,7 @@ export default function Carousel({ movies, title }) {
         <CarouselPage 
           key={i}
           now={i === currentSlide}
+          onClick={() => {setCurrentSlide(i)}}
         />)
     }
     return array;
