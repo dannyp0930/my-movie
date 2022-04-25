@@ -11,6 +11,7 @@ export const Navbar = styled.div`
   padding: 0 3rem;
   position: sticky;
   top: 0;
+  z-index: 1;
 `;
 
 export const NavbarLink = styled(NavLink)`
@@ -42,12 +43,6 @@ export const Title = styled.div`
   font-size: 2.5rem;
   font-weight: bold;
 `
-
-export const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-`;
 
 // Movie
 export const Card = styled.div`
@@ -86,13 +81,20 @@ export const CardText = styled.div`
 `;
 
 // search
+
 export const SearchContainer = styled.div`
-  display: grid;
-  width: 20rem;
-  grid-template-columns: 4fr 1fr;
-  column-gap: 1rem;
-  margin: 5rem auto 2rem;
+display: grid;
+width: 20rem;
+grid-template-columns: 4fr 1fr;
+column-gap: 1rem;
+margin: 5rem auto 2rem;
 `
+
+export const ResultContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+`;
 
 export const SearchInput = styled.input`
   height: 2rem;
@@ -108,10 +110,12 @@ export const NoSearchMovies = styled.div`
 `
 
 // detail
-export const MovieContainer = styled(Container)`
+export const MovieContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-items: center;
   margin: 5rem auto;
   background-color: ${props => props.color};
-  grid-template-columns: 1fr 2fr;
   column-gap: 1rem;
 `;
 
@@ -130,4 +134,34 @@ export const MovieContent = styled.div`
 export const MoiveInfo = styled.div`
   display: flex;
   align-items: center;
+`
+
+// Carousel
+export const CarouselContainer = styled.div`
+  width: 100%;
+  overflow: hidden;
+`
+
+export const CarouselButton = styled.button`
+  all: unset;
+  border: 1px solid coral;
+  padding: 0.5em 2em;
+  color: coral;
+  border-radius: 10px;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: coral;
+    color: #fff;
+  }
+`;
+
+export const CarouselImgContainer = styled.div`
+  width: 100%;
+  display: flex;
+  margin: 0;
+  padding: 0;
+`
+
+export const CarouselItem = styled.div`
+  flex: 0 0 50%;
 `

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Loading from "../components/Loading/Loading";
 import Movie from "../components/Movie/Movie";
 import {
-  Container,
+  ResultContainer,
   NoSearchMovies,
   SearchButton,
   SearchContainer,
@@ -61,9 +61,9 @@ export function Search() {
       ) : (
       <div>
         {searchMovies.length ? (
-          <Container>
+          <ResultContainer>
             {searchMovies}
-          </Container>
+          </ResultContainer>
         ) : (
           <NoSearchMovies>검색 결과가 없습니다.</NoSearchMovies>
         )}

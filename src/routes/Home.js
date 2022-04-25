@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading/Loading";
 import Movie from "../components/Movie/Movie";
-import { Container, Header, Title } from "../styles/styles";
+import { Header, Title } from "../styles/styles";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import axios from "axios";
+import Carousel from "../components/Carousel/Carousel";
 
 function Home() {
   const [ loading, setLoading ] = useState(true);
   const [ popularMovies, setPopularMovies ] = useState([]);
-  const [ nowPlayingMovies, setNowPlayingMovies ] = useState([]);
+  const [ topMovies, setTopMovies ] = useState([]);
   const [ backdropURL, setBackdropURL ] = useState('');
   
   const getPopularMovies = async () => {
@@ -18,7 +19,7 @@ function Home() {
   
   const getNowPlayingMovies = async () => {
     const res = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`);
-    setNowPlayingMovies(res.data.results);
+    setTopMovies(res.data.results);
   };
   
   useEffect(() => {
@@ -40,51 +41,21 @@ function Home() {
     <div>
       {loading ? (
         <Loading />
-      ) : (
+        ) : (
         <div>
           <Header
             backdrop={backdropURL}
-          >
+            >
             My Movie
           </Header>
           <Title>
             현재 인기 영화
           </Title>
-          <Container>
-            {popularMovies.map((movie) => {
-            let posterPath = "null"
-            if (movie.poster_path) {
-              posterPath = movie.poster_path
-            }
-            return (
-              <Movie 
-                key={movie.id}
-                id={movie.id}
-                posterPath={posterPath}
-                title={movie.title}
-                overview={movie.overview}
-              />
-            )})}
-          </Container>
+          <Carousel movies={popularMovies}></Carousel>
           <Title>
             최고 평점 영화
           </Title>
-          <Container>
-            {nowPlayingMovies.map((movie) => {
-            let posterPath = "null"
-            if (movie.poster_path) {
-              posterPath = movie.poster_path
-            }
-            return (
-              <Movie 
-                key={movie.id}
-                id={movie.id}
-                posterPath={posterPath}
-                title={movie.title}
-                overview={movie.overview}
-              />
-            )})}
-          </Container>
+          <Carousel movies={topMovies}></Carousel>
         </div>
       )}
     </div>
