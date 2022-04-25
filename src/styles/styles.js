@@ -36,55 +36,52 @@ export const Header = styled.div`
   text-align: center;
   color: white;
   font-size: 7rem;
-`
+`;
 
 
 // Carousel
 export const CarouselContainer = styled.div`
   width: 100%;
-`
+`;
 
 export const CarouselHeader = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-`
+`;
 
 export const CarouselTitle = styled.div`
   margin: 1.5rem;
   font-size: 2.5rem;
   font-weight: bold;
-`
+`;
 
 export const CarouselPagination = styled.div`
   display: flex;
-`
+`;
 
 export const CarouselButton = styled.div`
-margin: auto;
-cursor: pointer;
-`
-
-export const CarouselPages = styled.div`
-  display: flex;
-`
+  margin: auto;
+  cursor: pointer;
+  font-size: 2rem;
+`;
 
 export const CarouselPage = styled.div`
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 0.5rem;
   background-color: ${props => props.now ? "gray" : "lightgray"};
   margin: auto 0.5rem;
-`
+`;
 
 export const CarouselItemContainer = styled.div`
   width: 100%;
   display: flex;
   margin: 0;
   padding: 0;
-`
+`;
 
 export const CarouselItem = styled.div`
   flex: 0 0 50%;
-`
+`;
 
 // Movie
 export const Card = styled.div`
@@ -130,7 +127,7 @@ export const SearchContainer = styled.div`
   grid-template-columns: 4fr 1fr;
   column-gap: 1rem;
   margin: 5rem auto 2rem;
-`
+`;
 
 export const ResultContainer = styled.div`
   display: grid;
@@ -141,15 +138,15 @@ export const ResultContainer = styled.div`
 export const SearchInput = styled.input`
   height: 2rem;
   font-size: 1rem;
-`
+`;
 
 export const SearchButton = styled.button`
-`
+`;
 
 export const NoSearchMovies = styled.div`
   text-align: center;
   font-size: 2rem;
-`
+`;
 
 // detail
 export const MovieContainer = styled.div`
@@ -176,4 +173,4 @@ export const MovieContent = styled.div`
 export const MoiveInfo = styled.div`
   display: flex;
   align-items: center;
-`
+`;

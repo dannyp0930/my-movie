@@ -7,13 +7,12 @@ import {
   CarouselTitle,
   CarouselHeader,
   CarouselPagination,
-  CarouselPages,
   CarouselPage,
 } from "../../styles/styles";
 import Movie from "../Movie/Movie";
 
 export default function Carousel({ movies, title }) {
-  const TOTAL_SLIDES = 9;
+  const TOTAL_SLIDES = Math.ceil(movies.length / 2) - 1;
   const [ currentSlide, setCurrentSlide ] = useState(0);
   const slideRef = useRef(null);
 
@@ -24,6 +23,7 @@ export default function Carousel({ movies, title }) {
       setCurrentSlide(currentSlide + 1);
     }
   };
+
   const prevSlide = () => {
     if (currentSlide === 0) {
       setCurrentSlide(TOTAL_SLIDES);
@@ -31,6 +31,7 @@ export default function Carousel({ movies, title }) {
       setCurrentSlide(currentSlide - 1);
     }
   };
+
   useEffect(() => {
     slideRef.current.style.transition = "all 0.5s ease-in-out";
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
@@ -54,9 +55,7 @@ export default function Carousel({ movies, title }) {
         <CarouselTitle>{title}</CarouselTitle>
         <CarouselPagination>
           <CarouselButton onClick={prevSlide}>&lt;</CarouselButton>
-          <CarouselPages>
-            {pages()}
-          </CarouselPages>
+          {pages()}
           <CarouselButton onClick={nextSlide}>&gt;</CarouselButton>
         </CarouselPagination>
       </CarouselHeader>
