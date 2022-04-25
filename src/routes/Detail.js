@@ -65,9 +65,7 @@ function Detail() {
           color={color}
           backdrop={BACKDROP_PATH}
         >
-          <MovieContainer
-
-          >
+          <MovieContainer>
             <MovieImg src={POSTER_PATH} alt="poster_img"/>
             <MovieContent>
               <h1>{movie.title}</h1>
