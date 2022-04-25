@@ -4,14 +4,16 @@ import { IMG_URL } from "../../utils/API";
 import DefatulPoster from "../../assets/images/default_poster.jpg"
 
 function Movie({id, posterPath, title, overview}) {
-  const [ imgSrc, setImgSrc ] = useState("")
+  const [ imgSrc, setImgSrc ] = useState("");
+  
   useEffect(() => {
     if ( posterPath !== "null") {
       setImgSrc(IMG_URL + posterPath)
     } else {
       setImgSrc(DefatulPoster)
     }
-  }, [posterPath])
+  }, [posterPath]);
+
   return (
     <Card>
       <CardImage src={imgSrc} alt="poster_img"/>
