@@ -55,7 +55,6 @@ export default function Carousel({ movies, title }) {
         <CarouselPagination>
           <CarouselButton onClick={prevSlide}>&lt;</CarouselButton>
           <CarouselPages>
-            {/* {currentSlide} */}
             {pages()}
           </CarouselPages>
           <CarouselButton onClick={nextSlide}>&gt;</CarouselButton>
