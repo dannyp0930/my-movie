@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef } from "react";
 import {
   CarouselContainer,
   CarouselItemContainer,
@@ -8,6 +8,7 @@ import {
   CarouselHeader,
   CarouselPagination,
   CarouselPages,
+  CarouselPage,
 } from "../../styles/styles";
 import Movie from "../Movie/Movie";
 
@@ -35,13 +36,28 @@ export default function Carousel({ movies, title }) {
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
   }, [currentSlide]);
 
+  const pages = () => {
+    const array = [];
+    for (let i = 0; i < TOTAL_SLIDES + 1; i++) {
+      array.push(
+        <CarouselPage 
+          key={i}
+          now={i === currentSlide}
+        />)
+    }
+    return array;
+  };
+
   return (
     <CarouselContainer>
       <CarouselHeader>
         <CarouselTitle>{title}</CarouselTitle>
         <CarouselPagination>
           <CarouselButton onClick={prevSlide}>&lt;</CarouselButton>
-          <CarouselPages>{currentSlide}</CarouselPages>
+          <CarouselPages>
+            {/* {currentSlide} */}
+            {pages()}
+          </CarouselPages>
           <CarouselButton onClick={nextSlide}>&gt;</CarouselButton>
         </CarouselPagination>
       </CarouselHeader>

@@ -65,7 +65,14 @@ cursor: pointer;
 `
 
 export const CarouselPages = styled.div`
-  margin: auto;
+  display: flex;
+`
+
+export const CarouselPage = styled.div`
+  width: 1rem;
+  height: 1rem;
+  background-color: ${props => props.now ? "gray" : "lightgray"};
+  margin: auto 0.5rem;
 `
 
 export const CarouselItemContainer = styled.div`
