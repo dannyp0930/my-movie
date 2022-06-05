@@ -203,6 +203,12 @@ export const MovieContent = styled.div`
   margin: 0 auto;
 `;
 
+export const MovieTitleContent = styled.div`
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+`
+
 export const MoiveInfo = styled.div`
   display: flex;
   align-items: center;

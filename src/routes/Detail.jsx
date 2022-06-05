@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import { usePalette } from "react-palette";
-import { MoiveInfo, MovieBackdrop, MovieContainer, MovieContent, MovieImg } from "../styles/styles";
+import { MoiveInfo, MovieBackdrop, MovieContainer, MovieContent, MovieImg, MovieTitleContent } from "../styles/styles";
 import DefatulPoster from "../assets/images/default_poster.jpg"
 import DefatulBanner from "../assets/images/default_banner.jpg"
 import axios from "axios";
@@ -14,6 +14,9 @@ function Detail() {
   const [ color, setColor ] = useState();
   const { id } = useParams();
   const [ movie, setMovie ] = useState();
+  const [ releaseDates, setReleaseDates ] = useState();
+  const [ releaseCountry, setReleaseCountry ] = useState("KR");
+  const [ releaseDate, setReleaseDate ] = useState();
   const [ POSTER_PATH, setPOSTER_PATH ] = useState();
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState();
 
@@ -39,7 +42,35 @@ function Detail() {
       }
     }
   }, [movie]);
-  
+
+
+  // 국내 개봉 일자와 북미 개봉 일자 저장
+  useEffect(() => {
+    const getReleaseDates = async () => {
+      const res = await axios.get(`${BASE_URL}/movie/${id}/release_dates?api_key=${API_KEY}`);
+      setReleaseDates(res.data.results.filter(data => 
+        data.iso_3166_1 === "KR" || data.iso_3166_1 === "US"
+      ));
+    }
+    getReleaseDates();
+  }, [id])
+
+
+  // 국내 개봉 한 경우와 아닌경우 따로 저장
+  useEffect(() => {
+    if (releaseDates) {
+      const releaseKR = releaseDates.filter(data => data.iso_3166_1 === "KR")[0]
+      const releaseUS = releaseDates.filter(data => data.iso_3166_1 === "US")[0]
+      if (releaseKR) {
+        setReleaseDate(releaseKR.release_dates.filter(data => data.type === 3)[0])
+      } else {
+        setReleaseCountry("US")
+        setReleaseDate(releaseUS.release_dates.filter(data => data.type === 3)[0])
+      }
+    }
+  }, [releaseDates])
+
+
   // 커스텀 훅으로 만들어 보자
   const { data } = usePalette(POSTER_PATH);
 
@@ -71,11 +102,30 @@ function Detail() {
             <MovieContent>
               <h1>{movie.title}</h1>
               <h2>{movie.original_title}</h2>
-              <h3>{movie.tagline}</h3>
+              <MovieTitleContent>
+                <div style={{
+                  border: "solid 1px white",
+                  borderRadius: "2px",
+                  padding: "3px"
+                }}>
+                  {releaseDate.certification}
+                </div>
+                <div>
+                  {releaseDate.release_date.slice(0, 10)}({releaseCountry})
+                </div>
+                <div style={{fontSize: "1.5rem"}}>·</div>
+                <div>
+                  {movie.genres.map(genre => genre.name).join(', ')}
+                </div>
+                <div style={{fontSize: "1.5rem"}}>·</div>
+                <div>
+                  {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m
+                </div>
+              </MovieTitleContent>
               <MoiveInfo>
                 <DonutChart percentage={movie.vote_average * 10}/>
-                <p>{movie.release_date}({movie.original_language.toUpperCase()}) · {movie.genres.map(genre => genre.name).join(', ')} · {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m</p>
               </MoiveInfo>
+              <h3>{movie.tagline}</h3>
               <h2>개요</h2>
               <p>{movie.overview}</p>
             </MovieContent>
