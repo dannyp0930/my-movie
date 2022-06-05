@@ -1,3 +1,4 @@
+import React from "react";
 import { Navbar, NavbarLink } from "../styles/styles";
 
 function Navigation() {

@@ -1,3 +1,4 @@
+import React from "react";
 import NotFoundImage from "../assets/images/NotFound.png"
 
 function NotFound () {

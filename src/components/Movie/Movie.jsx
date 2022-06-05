@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardImage, CardLink, CardText } from "../../styles/styles";
 import { IMG_URL } from "../../utils/API";
 import DefatulPoster from "../../assets/images/default_poster.jpg"

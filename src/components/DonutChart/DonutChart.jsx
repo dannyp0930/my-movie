@@ -1,3 +1,4 @@
+import React from "react";
 import { PieChart } from "react-minimal-pie-chart";
 
 export default function DonutChart({ percentage }) {

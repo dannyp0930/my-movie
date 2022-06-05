@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
