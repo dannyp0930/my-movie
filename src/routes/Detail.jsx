@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../components/Loading/Loading";
+import Loading from "../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import { usePalette } from "react-palette";
 import { MoiveInfo, MovieBackdrop, MovieContainer, MovieContent, MovieImg } from "../styles/styles";

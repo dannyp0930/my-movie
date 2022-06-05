@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Loading from "../components/Loading/Loading";
+import Loading from "../components/common/Loading";
 import { Header, Title } from "../styles/styles";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import axios from "axios";
