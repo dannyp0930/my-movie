@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../routes/Home";
 import Detail from "../routes/Detail";
-import Navigation from "../common/Navigation";
+import Navigation from "../components/common/Navigation";
 import NotFound from "../routes/NotFound";
 import { Search } from "../routes/Search";
 
