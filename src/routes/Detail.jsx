@@ -23,6 +23,7 @@ function Detail() {
   useEffect(() => {
     const getMovie = async () => {
       const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`);
+      console.log(res.data)
       setMovie(res.data);
     };    
     getMovie();
@@ -48,12 +49,17 @@ function Detail() {
   useEffect(() => {
     const getReleaseDates = async () => {
       const res = await axios.get(`${BASE_URL}/movie/${id}/release_dates?api_key=${API_KEY}`);
+      console.log(res)
       setReleaseDates(res.data.results.filter(data => 
         data.iso_3166_1 === "KR" || data.iso_3166_1 === "US"
       ));
     }
     getReleaseDates();
   }, [id])
+
+  useEffect(() => {
+    console.log(releaseDates)
+  }, [releaseDates])
 
 
   // 국내 개봉 한 경우와 아닌경우 따로 저장
@@ -62,10 +68,10 @@ function Detail() {
       const releaseKR = releaseDates.filter(data => data.iso_3166_1 === "KR")[0]
       const releaseUS = releaseDates.filter(data => data.iso_3166_1 === "US")[0]
       if (releaseKR) {
-        setReleaseDate(releaseKR.release_dates.filter(data => data.type === 3)[0])
+        setReleaseDate(releaseKR.release_dates.filter(data => data.type === 3 || 2)[0])
       } else {
         setReleaseCountry("US")
-        setReleaseDate(releaseUS.release_dates.filter(data => data.type === 3)[0])
+        setReleaseDate(releaseUS.release_dates.filter(data => data.type === 3 || 2)[0])
       }
     }
   }, [releaseDates])
