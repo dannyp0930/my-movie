@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { CardImage } from "../../styles/styles";
+import { Card, CardImage } from "../../styles/styles";
 import { IMG_URL } from "../../utils/API";
 import DefatulPoster from "../../assets/images/default_poster.jpg"
 import { Link } from "react-router-dom";
 
-function Movie({id, posterPath, title, overview}) {
+function Movie({id, posterPath}) {
   const [ imgSrc, setImgSrc ] = useState("");
   
   useEffect(() => {
@@ -17,7 +17,9 @@ function Movie({id, posterPath, title, overview}) {
 
   return (
     <Link to={`/movie/${id}`}>
-      <CardImage src={imgSrc} alt="poster_img"/>
+      <Card>
+        <CardImage src={imgSrc} alt="poster_img"/>
+      </Card>
     </Link>
   );
 };

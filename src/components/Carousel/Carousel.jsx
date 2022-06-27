@@ -84,8 +84,6 @@ export default function Carousel({ movies, title }) {
                   <Movie 
                     id={movie.id}
                     posterPath={posterPath}
-                    title={movie.title}
-                    overview={movie.overview}
                   />
                 </CarouselItem>
               )

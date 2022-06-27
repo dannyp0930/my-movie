@@ -107,7 +107,7 @@ export const CarouselButton = styled.div`
   position: absolute;
   z-index: 2;
   height: 100%;
-  width: 5%;
+  width: calc(5% - 1px);
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
@@ -133,8 +133,14 @@ export const CarouselNext = styled(CarouselButton)`
 
 // Movie
 
+export const Card = styled.div`
+  margin: 0 2px;
+  height: 100%;
+`
+
 export const CardImage = styled.img`
   width: 100%;
+  height: 100%;
   border-radius: 1rem;
 `;
 
