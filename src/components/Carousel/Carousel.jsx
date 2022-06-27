@@ -13,6 +13,8 @@ import {
   CarouselHeader,
 } from "../../styles/styles";
 import Movie from "../Movie/Movie";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Carousel({ movies, title }) {
   const TOTAL_SLIDES = Math.ceil(movies.length / 4) - 1;
@@ -62,8 +64,12 @@ export default function Carousel({ movies, title }) {
         </CarouselPagination>
       </CarouselHeader>
       <CarouselContent>
-        <CarouselPrev onClick={prevSlide}></CarouselPrev>
-        <CarouselNext onClick={nextSlide}></CarouselNext>
+        <CarouselPrev onClick={prevSlide}>
+          <FontAwesomeIcon icon={faAngleLeft}/>
+        </CarouselPrev>
+        <CarouselNext onClick={nextSlide}>
+          <FontAwesomeIcon icon={faAngleRight}/>
+        </CarouselNext>
         <CarouselSlide>
           <CarouselItems ref={slideRef}>
             {movies.map((movie) => {

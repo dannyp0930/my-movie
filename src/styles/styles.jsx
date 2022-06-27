@@ -109,11 +109,14 @@ export const CarouselButton = styled.div`
   height: 100%;
   width: 5%;
   background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
   cursor: pointer;
 
   :hover {
     background-color: rgba(0, 0, 0, 0.6);
-    color: white;
   }
 `;
 
