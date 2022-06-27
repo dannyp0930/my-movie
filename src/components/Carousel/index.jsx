@@ -12,7 +12,7 @@ import {
   CarouselSlide,
   CarouselHeader,
 } from "../../styles/styles";
-import Movie from "../Movie/Movie";
+import Movie from "../Movie";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

@@ -7,7 +7,7 @@ import { MoiveInfo, MovieBackdrop, MovieContainer, MovieContent, MovieImg, Movie
 import DefatulPoster from "../assets/images/default_poster.jpg"
 import DefatulBanner from "../assets/images/default_banner.jpg"
 import axios from "axios";
-import DonutChart from "../components/DonutChart/DonutChart";
+import DonutChart from "../components/DonutChart";
 
 function Detail() {
   const [ loading, setLoading ] = useState(true);

@@ -3,7 +3,7 @@ import Loading from "../components/common/Loading";
 import { Header, Title } from "../styles/styles";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import axios from "axios";
-import Carousel from "../components/Carousel/Carousel";
+import Carousel from "../components/Carousel";
 
 function Home() {
   const [ loading, setLoading ] = useState(true);

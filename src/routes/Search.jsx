@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loading from "../components/common/Loading";
-import Movie from "../components/Movie/Movie";
+import Movie from "../components/Movie";
 import {
   ResultContainer,
   NoSearchMovies,
