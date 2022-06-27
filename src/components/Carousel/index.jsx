@@ -11,10 +11,15 @@ import {
   CarouselContent,
   CarouselSlide,
   CarouselHeader,
+  Card,
+  CardImage,
 } from "../../styles/styles";
-import Movie from "../Movie";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import DefatulPoster from "../../assets/images/default_poster.jpg"
+import { IMG_URL } from "../../utils/API";
+
 
 export default function Carousel({ movies, title }) {
   const TOTAL_SLIDES = Math.ceil(movies.length / 4) - 1;
@@ -73,18 +78,16 @@ export default function Carousel({ movies, title }) {
         <CarouselSlide>
           <CarouselItems ref={slideRef}>
             {movies.map((movie) => {
-              let posterPath = "null"
-              if (movie.poster_path) {
-                posterPath = movie.poster_path
-              }
+              console.log(movie)
               return (
                 <CarouselItem
                   key={movie.id}
                 >
-                  <Movie 
-                    id={movie.id}
-                    posterPath={posterPath}
-                  />
+                  <Link to={`/movie/${movie.id}`}>
+                    <Card>
+                      <CardImage src={movie.poster_path ? IMG_URL + movie.poster_path : DefatulPoster} alt="poster_img"/>
+                    </Card>
+                  </Link>
                 </CarouselItem>
               )
             })}

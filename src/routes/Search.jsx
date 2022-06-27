@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loading from "../components/common/Loading";
-import Movie from "../components/Movie";
 import {
   ResultContainer,
   NoSearchMovies,
   SearchButton,
   SearchContainer,
-  SearchInput
+  SearchInput,
+  Card,
+  CardImage
 } from "../styles/styles";
-import { API_KEY, BASE_URL } from "../utils/API";
+import { API_KEY, BASE_URL, IMG_URL } from "../utils/API";
+import { Link } from "react-router-dom";
+import DefatulPoster from "../assets/images/default_poster.jpg"
 
 export function Search() {
   const [ query, setQuery ] = useState('');
@@ -25,18 +28,12 @@ export function Search() {
       setLoading(true);
       const res = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=ko-KR`)
       setSearchMovies(res.data.results.map(movie => {
-        let posterPath = "null"
-        if (movie.poster_path) {
-          posterPath = movie.poster_path
-        }
         return (
-          <Movie
-            key={movie.id}
-            id={movie.id}
-            posterPath={posterPath}
-            title={movie.title}
-            overview={movie.overview}
-          />
+          <Link to={`/movie/${movie.id}`}>
+            <Card>
+              <CardImage src={movie.poster_path ? IMG_URL + movie.poster_path : DefatulPoster} alt="poster_img"/>
+            </Card>
+          </Link>
         )
       }))
       setTimeout(() => {
