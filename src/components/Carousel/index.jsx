@@ -17,8 +17,8 @@ import {
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import DefatulPoster from "../../assets/images/default_poster.jpg"
 import { IMG_URL } from "../../utils/API";
+import DefatulPoster from "../../assets/images/default_poster.jpg"
 
 
 export default function Carousel({ movies, title }) {
