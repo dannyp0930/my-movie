@@ -1,18 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
   CarouselContainer,
-  CarouselItemContainer,
   CarouselItem,
-  CarouselButton,
+  CarouselItems,
   CarouselTitle,
-  CarouselHeader,
   CarouselPagination,
   CarouselPage,
+  CarouselPrev,
+  CarouselNext,
+  CarouselContent,
+  CarouselSlide,
+  CarouselHeader,
 } from "../../styles/styles";
 import Movie from "../Movie/Movie";
 
 export default function Carousel({ movies, title }) {
-  const TOTAL_SLIDES = Math.ceil(movies.length / 2) - 1;
+  const TOTAL_SLIDES = Math.ceil(movies.length / 4) - 1;
   const [ currentSlide, setCurrentSlide ] = useState(0);
   const slideRef = useRef(null);
 
@@ -34,7 +37,7 @@ export default function Carousel({ movies, title }) {
 
   useEffect(() => {
     slideRef.current.style.transition = "all 0.5s ease-in-out";
-    slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+    slideRef.current.style.transform = `translateX(-${currentSlide * 100}%)`;
   }, [currentSlide]);
 
   function pages() {
@@ -55,31 +58,35 @@ export default function Carousel({ movies, title }) {
       <CarouselHeader>
         <CarouselTitle>{title}</CarouselTitle>
         <CarouselPagination>
-          <CarouselButton onClick={prevSlide}>&lt;</CarouselButton>
           {pages()}
-          <CarouselButton onClick={nextSlide}>&gt;</CarouselButton>
         </CarouselPagination>
       </CarouselHeader>
-      <CarouselItemContainer ref={slideRef}>
-        {movies.map((movie) => {
-          let posterPath = "null"
-          if (movie.poster_path) {
-            posterPath = movie.poster_path
-          }
-          return (
-            <CarouselItem
-              key={movie.id}
-            >
-              <Movie 
-                id={movie.id}
-                posterPath={posterPath}
-                title={movie.title}
-                overview={movie.overview}
-              ></Movie>
-            </CarouselItem>
-          )
-        })}
-      </CarouselItemContainer>
+      <CarouselContent>
+        <CarouselPrev onClick={prevSlide}></CarouselPrev>
+        <CarouselNext onClick={nextSlide}></CarouselNext>
+        <CarouselSlide>
+          <CarouselItems ref={slideRef}>
+            {movies.map((movie) => {
+              let posterPath = "null"
+              if (movie.poster_path) {
+                posterPath = movie.poster_path
+              }
+              return (
+                <CarouselItem
+                  key={movie.id}
+                >
+                  <Movie 
+                    id={movie.id}
+                    posterPath={posterPath}
+                    title={movie.title}
+                    overview={movie.overview}
+                  />
+                </CarouselItem>
+              )
+            })}
+          </CarouselItems>
+        </CarouselSlide>
+      </CarouselContent>
     </CarouselContainer>
   )
 }

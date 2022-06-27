@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardImage, CardLink, CardText } from "../../styles/styles";
+import { CardImage } from "../../styles/styles";
 import { IMG_URL } from "../../utils/API";
 import DefatulPoster from "../../assets/images/default_poster.jpg"
+import { Link } from "react-router-dom";
 
 function Movie({id, posterPath, title, overview}) {
   const [ imgSrc, setImgSrc ] = useState("");
@@ -15,13 +16,9 @@ function Movie({id, posterPath, title, overview}) {
   }, [posterPath]);
 
   return (
-    <Card>
+    <Link to={`/movie/${id}`}>
       <CardImage src={imgSrc} alt="poster_img"/>
-      <CardContent>
-        <CardLink to={`/movie/${id}`}>{title}</CardLink>
-        <CardText>{overview.length > 130 ? `${overview.slice(0, 130)}...` : overview}</CardText>
-      </CardContent>
-    </Card>
+    </Link>
   );
 };
 

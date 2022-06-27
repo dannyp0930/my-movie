@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 // Navigation
@@ -57,12 +57,13 @@ export const Title = styled.div`
 // Carousel
 export const CarouselContainer = styled.div`
   width: 100%;
+
 `;
 
 export const CarouselHeader = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`;
+  display: flex;
+  justify-content: space-between;
+`
 
 export const CarouselTitle = styled.div`
   margin: 1.5rem;
@@ -74,12 +75,6 @@ export const CarouselPagination = styled.div`
   display: flex;
 `;
 
-export const CarouselButton = styled.div`
-  margin: auto;
-  font-size: 2rem;
-  cursor: pointer;
-`;
-
 export const CarouselPage = styled.div`
   width: 2rem;
   height: 0.5rem;
@@ -88,51 +83,56 @@ export const CarouselPage = styled.div`
   cursor: pointer;
 `;
 
-export const CarouselItemContainer = styled.div`
-  width: 100%;
+export const CarouselContent = styled.div`
+  position: relative;
+`
+
+export const CarouselSlide = styled.div`
+  overflow: hidden;
+`
+
+export const CarouselItems = styled.div`
+  position: relative;
+  width: 90%;
   display: flex;
-  margin: 0;
-  padding: 0;
+  left: 5%;
 `;
 
 export const CarouselItem = styled.div`
-  flex: 0 0 50%;
+  flex: 0 0 25%;
 `;
+
+
+export const CarouselButton = styled.div`
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 5%;
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+
+  :hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+  }
+`;
+
+export const CarouselPrev = styled(CarouselButton)`
+  left: 0;
+  border-radius: 0 1rem 1rem 0;
+`
+
+export const CarouselNext = styled(CarouselButton)`
+  right: 0;
+  border-radius: 1rem 0 0 1rem;
+`
+
 
 // Movie
-export const Card = styled.div`
-  display: grid;
-  border-radius: 0.5rem;
-  margin: 1rem;
-  background-color: lightgray;
-  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem gray;
-  min-height: 25rem;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-`;
 
 export const CardImage = styled.img`
-  width: 15rem;
-  margin: 1rem;
-`;
-
-
-export const CardContent = styled.div`
-  display: grid;
-  row-gap: 1rem;
-  margin: 1.2rem;
-`;
-
-export const CardLink = styled(Link)`
-  font-size: 1.4rem;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-`;
-
-export const CardText = styled.div`
-  font-size: 1rem;
+  width: 100%;
+  border-radius: 1rem;
 `;
 
 // Search
