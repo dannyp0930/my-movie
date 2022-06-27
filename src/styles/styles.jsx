@@ -130,9 +130,6 @@ export const CarouselNext = styled(CarouselButton)`
   border-radius: 1rem 0 0 1rem;
 `
 
-
-// Movie
-
 export const Card = styled.div`
   margin: 0 2px;
   height: 100%;
