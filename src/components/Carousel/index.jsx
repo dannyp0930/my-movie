@@ -22,12 +22,12 @@ import DefatulPoster from "../../assets/images/default_poster.jpg"
 
 
 export default function Carousel({ movies, title }) {
-  const TOTAL_SLIDES = Math.ceil(movies.length / 4) - 1;
+  const totalSlides = Math.ceil(movies.length / 4) - 1;
   const [ currentSlide, setCurrentSlide ] = useState(0);
   const slideRef = useRef(null);
 
   function nextSlide() {
-    if (currentSlide >= TOTAL_SLIDES) {
+    if (currentSlide >= totalSlides) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
@@ -36,7 +36,7 @@ export default function Carousel({ movies, title }) {
 
   function prevSlide() {
     if (currentSlide === 0) {
-      setCurrentSlide(TOTAL_SLIDES);
+      setCurrentSlide(totalSlides);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -49,7 +49,7 @@ export default function Carousel({ movies, title }) {
 
   function pages() {
     const array = [];
-    for (let i = 0; i < TOTAL_SLIDES + 1; i++) {
+    for (let i = 0; i < totalSlides + 1; i++) {
       array.push(
         <CarouselPage 
           key={i}
@@ -78,7 +78,6 @@ export default function Carousel({ movies, title }) {
         <CarouselSlide>
           <CarouselItems ref={slideRef}>
             {movies.map((movie) => {
-              console.log(movie)
               return (
                 <CarouselItem
                   key={movie.id}
