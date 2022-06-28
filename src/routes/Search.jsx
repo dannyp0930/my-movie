@@ -12,7 +12,8 @@ import {
 } from "../styles/styles";
 import { API_KEY, BASE_URL, IMG_URL } from "../utils/API";
 import { Link } from "react-router-dom";
-import DefatulPoster from "../assets/images/default_poster.jpg"
+import Carousel from "../components/Carousel";
+import DefatulPoster from "../assets/images/default_poster.jpg";
 
 export function Search() {
   const [ query, setQuery ] = useState('');
@@ -23,19 +24,11 @@ export function Search() {
     setQuery(e.target.value)
   };
 
-  const handleClick = async () => {
+  async function handleClick() {
     if (query) {
       setLoading(true);
       const res = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=ko-KR`)
-      setSearchMovies(res.data.results.map(movie => {
-        return (
-          <Link to={`/movie/${movie.id}`}>
-            <Card>
-              <CardImage src={movie.poster_path ? IMG_URL + movie.poster_path : DefatulPoster} alt="poster_img"/>
-            </Card>
-          </Link>
-        )
-      }))
+      setSearchMovies(res.data.results)
       setTimeout(() => {
         setLoading(false);
       }, 300);
@@ -44,11 +37,18 @@ export function Search() {
     }
   };
 
+  function handleKeyPress(e) {
+    if (e.key === 'Enter'){
+      handleClick();
+    }
+  };
+
   return (
     <div>
       <SearchContainer>
         <SearchInput
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
           placeholder="검색어를 입력하세요."
         />
         <SearchButton onClick={handleClick}>검색</SearchButton>
@@ -58,9 +58,7 @@ export function Search() {
       ) : (
       <div>
         {searchMovies.length ? (
-          <ResultContainer>
-            {searchMovies}
-          </ResultContainer>
+          <Carousel movies={searchMovies}></Carousel>
         ) : (
           <NoSearchMovies>검색 결과가 없습니다.</NoSearchMovies>
         )}
