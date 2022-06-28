@@ -13,12 +13,13 @@ import {
   CarouselHeader,
   Card,
   CardImage,
+  CardTitle,
 } from "../../styles/styles";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { IMG_URL } from "../../utils/API";
-import DefatulPoster from "../../assets/images/default_poster.jpg"
+import DefatulBanner from "../../assets/images/default_banner.jpg"
 
 
 export default function Carousel({ movies, title }) {
@@ -84,7 +85,8 @@ export default function Carousel({ movies, title }) {
                 >
                   <Link to={`/movie/${movie.id}`}>
                     <Card>
-                      <CardImage src={movie.poster_path ? IMG_URL + movie.poster_path : DefatulPoster} alt="poster_img"/>
+                      <CardTitle>{movie.title}</CardTitle>
+                      <CardImage src={movie.backdrop_path ? IMG_URL + movie.backdrop_path : DefatulBanner} alt="poster_img"/>
                     </Card>
                   </Link>
                 </CarouselItem>

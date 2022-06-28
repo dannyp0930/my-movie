@@ -88,11 +88,11 @@ export const CarouselPage = styled.div`
 
 export const CarouselContent = styled.div`
   position: relative;
-`
+`;
 
 export const CarouselSlide = styled.div`
   overflow: hidden;
-`
+`;
 
 export const CarouselItems = styled.div`
   position: relative;
@@ -126,22 +126,35 @@ export const CarouselButton = styled.div`
 export const CarouselPrev = styled(CarouselButton)`
   left: 0;
   border-radius: 0 1rem 1rem 0;
-`
+`;
 
 export const CarouselNext = styled(CarouselButton)`
   right: 0;
   border-radius: 1rem 0 0 1rem;
-`
+`;
 
 export const Card = styled.div`
   margin: 0 2px;
   height: 100%;
-`
+  position: relative;
+`;
 
 export const CardImage = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 1rem;
+`;
+
+export const CardTitle = styled.div`
+  position: absolute;
+  width: 100%;
+  color: white;
+  font-size: 12px;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+  text-align: center;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 // Search
@@ -189,7 +202,7 @@ export const MovieBackdrop = styled.div`
     right: 0px;
     bottom: 0px;
   }
-`
+`;
 
 export const MovieContainer = styled.div`
   display: grid;
@@ -216,7 +229,7 @@ export const MovieTitleContent = styled.div`
   display: flex;
   column-gap: 0.5rem;
   align-items: center;
-`
+`;
 
 export const MoiveInfo = styled.div`
   display: flex;
