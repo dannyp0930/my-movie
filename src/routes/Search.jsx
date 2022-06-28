@@ -2,18 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loading from "../components/common/Loading";
 import {
-  ResultContainer,
   NoSearchMovies,
   SearchButton,
   SearchContainer,
   SearchInput,
-  Card,
-  CardImage
 } from "../styles/styles";
-import { API_KEY, BASE_URL, IMG_URL } from "../utils/API";
-import { Link } from "react-router-dom";
+import { API_KEY, BASE_URL } from "../utils/API";
 import Carousel from "../components/Carousel";
-import DefatulPoster from "../assets/images/default_poster.jpg";
 
 export function Search() {
   const [ query, setQuery ] = useState('');

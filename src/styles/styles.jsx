@@ -167,12 +167,6 @@ export const SearchContainer = styled.div`
   margin: 5rem auto 2rem;
 `;
 
-export const ResultContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-`;
-
 export const SearchInput = styled.input`
   height: 2rem;
   font-size: 1rem;
