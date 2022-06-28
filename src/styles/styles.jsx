@@ -49,28 +49,12 @@ export const Spinner = styled.div`
 
 // Home
 export const Header = styled.div`
-  padding: 10rem;
-  position: relative;
-  background-image: url(${props => props.backdrop});
-  background-size: cover;
-  
-  &::before {
-    content: "";
-    background-color: skyblue;
-    opacity: 0.7;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-  }
 `;
 
 export const Title = styled.div`
   text-align: center;
-  color: white;
+  color: black;
   font-size: 7rem;
-  position: relative;
 `
 
 // Carousel
