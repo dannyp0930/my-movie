@@ -5,18 +5,28 @@ import Detail from "../routes/Detail";
 import Navigation from "../components/common/Navigation";
 import NotFound from "../routes/NotFound";
 import { Search } from "../routes/Search";
+import styled from "styled-components";
+
+const Container = styled.div`
+  background-color: black;
+  max-width: 1080px;
+  min-height: 100vh;
+  color: white;
+`
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Navigation/>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="movie/:id" element={<Detail/>} />
-        <Route path="search" element={<Search/>} />
-        <Route path="*" element={<NotFound/>} />
-      </Routes>
-    </BrowserRouter>
+    <Container>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Navigation/>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="movie/:id" element={<Detail/>} />
+          <Route path="search" element={<Search/>} />
+          <Route path="*" element={<NotFound/>} />
+        </Routes>
+      </BrowserRouter>
+    </Container>
   );
 };
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // Navigation
 export const Navbar = styled.div`
-  background-color: black;
+  background-color: white;
   height: 4rem;
   display: flex;
   justify-items: center;
@@ -16,7 +16,7 @@ export const Navbar = styled.div`
 
 export const NavbarLink = styled(NavLink)`
   text-decoration: none;
-  color: white;
+  color: black;
   font-size: 1.5rem;
   margin-right: 1rem;
 `;
@@ -53,7 +53,6 @@ export const Header = styled.div`
 
 export const Title = styled.div`
   text-align: center;
-  color: black;
   font-size: 7rem;
 `
 
