@@ -75,14 +75,14 @@ export const CarouselTitle = styled.div`
 
 export const CarouselPagination = styled.div`
   display: flex;
+  margin-right: 1rem;
 `;
 
 export const CarouselPage = styled.div`
-  width: 2rem;
-  height: 0.5rem;
+  width: 1rem;
+  height: 0.2rem;
   background-color: ${props => props.now ? "gray" : "lightgray"};
-  margin: auto 0.5rem;
-  cursor: pointer;
+  margin: auto 0.1rem;
 `;
 
 export const CarouselContent = styled.div`
