@@ -98,6 +98,8 @@ export const CarouselItems = styled.div`
   width: 90%;
   display: flex;
   left: 5%;
+  transition: all 0.5s ease-in-out;
+  transform: translateX(-${props => props.currentSlide * 100}%);
 `;
 
 export const CarouselItem = styled.div`

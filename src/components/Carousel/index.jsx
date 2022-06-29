@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import {
   CarouselContainer,
   CarouselItem,
@@ -25,7 +25,6 @@ import DefatulBanner from "../../assets/images/default_banner.jpg"
 export default function Carousel({ movies, title }) {
   const totalSlides = Math.ceil(movies.length / 4) - 1;
   const [ currentSlide, setCurrentSlide ] = useState(0);
-  const slideRef = useRef(null);
 
   function nextSlide() {
     if (currentSlide >= totalSlides) {
@@ -42,11 +41,6 @@ export default function Carousel({ movies, title }) {
       setCurrentSlide(currentSlide - 1);
     }
   };
-
-  useEffect(() => {
-    slideRef.current.style.transition = "all 0.5s ease-in-out";
-    slideRef.current.style.transform = `translateX(-${currentSlide * 100}%)`;
-  }, [currentSlide]);
 
   function pages() {
     const array = [];
@@ -76,7 +70,7 @@ export default function Carousel({ movies, title }) {
           <FontAwesomeIcon icon={faAngleRight}/>
         </CarouselNext>
         <CarouselSlide>
-          <CarouselItems ref={slideRef}>
+          <CarouselItems currentSlide={currentSlide}>
             {movies.map((movie) => {
               return (
                 <CarouselItem
