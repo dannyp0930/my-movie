@@ -97,6 +97,7 @@ export const CarouselSlide = styled.div`
 
 export const CarouselItems = styled.div`
   position: relative;
+  margin: 1rem 0;
   width: 90%;
   display: flex;
   left: 5%;
@@ -113,7 +114,7 @@ export const CarouselButton = styled.div`
   position: absolute;
   z-index: 2;
   height: 100%;
-  width: calc(5% - 1px);
+  width: calc(5% - 0.5rem);
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
@@ -137,9 +138,16 @@ export const CarouselNext = styled(CarouselButton)`
 `;
 
 export const Card = styled.div`
-  margin: 0 2px;
+  margin: 0 0.5rem;
   height: 100%;
   position: relative;
+  border-radius: 1rem;
+
+  :hover {
+    transition: all 0.2s ease-out;
+    transform: scale(1.02);
+    box-shadow: 0 0 0 5px white;
+  };
 `;
 
 export const CardImage = styled.img`
