@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // Navigation
 export const Navbar = styled.div`
-  background-color: white;
+  width: 100%;
   height: 4rem;
   display: flex;
   justify-items: center;
@@ -16,7 +16,7 @@ export const Navbar = styled.div`
 
 export const NavbarLink = styled(NavLink)`
   text-decoration: none;
-  color: black;
+  color: white;
   font-size: 1.5rem;
   margin-right: 1rem;
 `;

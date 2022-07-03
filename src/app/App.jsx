@@ -8,8 +8,6 @@ import { Search } from "../routes/Search";
 import styled from "styled-components";
 
 const Container = styled.div`
-  background-color: black;
-  max-width: 1080px;
   min-height: 100vh;
   color: white;
 `
