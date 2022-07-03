@@ -5,6 +5,7 @@ import styled from "styled-components";
 export const Navbar = styled.div`
   width: 100%;
   height: 4rem;
+  background-color: black;
   display: flex;
   justify-items: center;
   align-items: center;
@@ -23,6 +24,7 @@ export const NavbarLink = styled(NavLink)`
 
 // Loading
 export const Load = styled.div`
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
