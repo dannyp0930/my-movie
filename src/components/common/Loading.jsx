@@ -1,5 +1,5 @@
 import React from "react";
-import { Load, Spinner } from "../../styles/styles";
+import { Load, Spinner } from "./style";
 
 function Loading() {
   return (

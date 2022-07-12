@@ -14,7 +14,7 @@ import {
   Card,
   CardImage,
   CardTitle,
-} from "../../styles/styles";
+} from "./style";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
