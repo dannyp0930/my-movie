@@ -7,17 +7,16 @@ export const CarouselContainer = styled.div`
 export const CarouselHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 0 1rem;
 `;
 
 export const CarouselTitle = styled.div`
-  margin-left: 1rem;
   font-size: 2.5rem;
   font-weight: bold;
 `;
 
 export const CarouselPagination = styled.div`
   display: flex;
-  margin-right: 1rem;
 `;
 
 export const CarouselPage = styled.div`
