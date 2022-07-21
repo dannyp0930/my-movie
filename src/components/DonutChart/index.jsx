@@ -14,8 +14,7 @@ export default function DonutChart({ percentage }) {
   };
 
   function getDrawColor(percentage) {
-    console.log(percentage / 100 * 360)
-    return percentage / 100 * 360
+    return 4 * Math.PI * percentage / 5
   };
 
   return (
@@ -28,21 +27,19 @@ export default function DonutChart({ percentage }) {
         width="4rem" height="4rem"
         viewBox="0 0 100 100"
       >
-        <path
-          d = "M 92.5 50 A 42.5 42.5 0 1 1 92.5 49.9999"
+        <circle
+          cx="50" cy="50" r="40"
           fill="none"
           stroke="white"
           strokeWidth="15"
-          strokeLinecap="round"
         />
-        <path
-          d = "M 92.5 50 A 42.5 42.5 0 1 1 92.5 49.9999"
+        <circle
+          cx="50" cy="50" r="40"
           fill="none"
           stroke={getColor(percentage)}
           strokeWidth="15"
           strokeLinecap="round"
-          strokeDasharray={getDrawColor(percentage) - 20}
-          strokeDashoffset={380 - getDrawColor(percentage)}
+          strokeDasharray={getDrawColor(percentage)}
         />
         <text
           dominantBaseline="central"
