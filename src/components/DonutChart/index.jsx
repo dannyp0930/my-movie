@@ -41,8 +41,8 @@ export default function DonutChart({ percentage }) {
           stroke={getColor(percentage)}
           strokeWidth="15"
           strokeLinecap="round"
-          strokeDasharray={getDrawColor(percentage) - 10}
-          strokeDashoffset={370 - getDrawColor(percentage)}
+          strokeDasharray={getDrawColor(percentage) - 20}
+          strokeDashoffset={380 - getDrawColor(percentage)}
         />
         <text
           dominantBaseline="central"
