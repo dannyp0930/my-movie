@@ -25,13 +25,13 @@ function Home() {
     getNowPlayingMovies();
     setTimeout(() => {
       setLoading(false);
-    }, 300);
+    }, 3000);
   }, []);
 
   return (
-    <div>
+    <>
       {loading ? (
-        <Loading />
+          <Loading />
         ) : (
         <>
           <Header>
@@ -49,7 +49,7 @@ function Home() {
           />
         </>
       )}
-    </div>
+    </>
   );
 };
 

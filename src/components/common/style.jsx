@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Load = styled.div`
-  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,7 +27,7 @@ export const Spinner = styled.div`
 `;
 
 export const Navbar = styled.div`
-  width: 100%;
+  width: calc(100vw - 6rem);
   height: 4rem;
   background-color: black;
   display: flex;
