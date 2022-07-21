@@ -52,7 +52,8 @@ export const CarouselItem = styled.div`
 export const CarouselButton = styled.div`
   position: absolute;
   z-index: 2;
-  height: 100%;
+  top: 1rem;
+  bottom: 1rem;
   width: calc(5% - 0.5rem);
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
