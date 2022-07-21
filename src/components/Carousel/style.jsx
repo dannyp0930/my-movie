@@ -10,7 +10,7 @@ export const CarouselHeader = styled.div`
 `;
 
 export const CarouselTitle = styled.div`
-  margin: 1.5rem;
+  margin-left: 1rem;
   font-size: 2.5rem;
   font-weight: bold;
 `;
