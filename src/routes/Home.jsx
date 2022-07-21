@@ -10,19 +10,15 @@ function Home() {
   const [ popularMovies, setPopularMovies ] = useState([]);
   const [ topMovies, setTopMovies ] = useState([]);
 
-  const getPopularMovies = async () => {
-    const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
-    setPopularMovies(res.data.results);
-  };
-  
-  const getNowPlayingMovies = async () => {
-    const res = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`);
-    setTopMovies(res.data.results);
+  async function getMovies() {
+    const res1 = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
+    setPopularMovies(res1.data.results);
+    const res2 = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`);
+    setTopMovies(res2.data.results);
   };
   
   useEffect(() => {
-    getPopularMovies();
-    getNowPlayingMovies();
+    getMovies();
     setTimeout(() => {
       setLoading(false);
     }, 3000);
