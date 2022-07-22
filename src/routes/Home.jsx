@@ -11,20 +11,28 @@ function Home() {
   const [ topMovies, setTopMovies ] = useState([]);
   const [ comeMovies, setComeMovies ] = useState([]);
 
-  async function getMovies() {
-    const res1 = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
-    setPopularMovies(res1.data.results);
-    const res2 = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`);
-    setTopMovies(res2.data.results);
-    const res3 = await axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=ko-KR`);
-    setComeMovies(res3.data.results);
+  async function getPopularMovies() {
+    const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
+    setPopularMovies(res.data.results);
   };
-  
+
+  async function getTopMovies() {
+    const res = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`);
+    setTopMovies(res.data.results);
+  };
+
+  async function getComeMovies() {
+    const res = await axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=ko-KR`);
+    setComeMovies(res.data.results);
+  };
+
   useEffect(() => {
-    getMovies();
+    getPopularMovies();
+    getTopMovies();
+    getComeMovies();
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 3000)
   }, []);
 
   return (
