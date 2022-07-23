@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../components/common/Loading";
-import { Header, Title } from "../styles/styles";
+import { Article, Content, Header, Title } from "../styles/styles";
 import { BASE_URL, API_KEY } from "../utils/API";
 import axios from "axios";
 import Carousel from "../components/Carousel";
@@ -40,25 +40,27 @@ function Home() {
       {loading ? (
           <Loading />
         ) : (
-        <>
+        <Article>
           <Header>
             <Title>
               My Movie
             </Title>
           </Header>
-          <Carousel
-            movies={popularMovies}
-            title="현재 인기 영화"
-          />
-          <Carousel
-            movies={topMovies}
-            title="최고 평점 영화"
-          />
-          <Carousel
-            movies={comeMovies}
-            title="개봉 예정 영화"
-          />
-        </>
+          <Content>
+            <Carousel
+              movies={popularMovies}
+              title="현재 인기 영화"
+            />
+            <Carousel
+              movies={topMovies}
+              title="최고 평점 영화"
+            />
+            <Carousel
+              movies={comeMovies}
+              title="개봉 예정 영화"
+            />
+          </Content>
+        </Article>
       )}
     </>
   );
