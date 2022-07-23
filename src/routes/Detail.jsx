@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
 import { usePalette } from "react-palette";
-import { MoiveInfo, MovieBackdrop, MovieContainer, MovieContent, MovieImg, MovieTitleContent } from "../styles/styles";
+import { H1, H2, H3, MoiveInfo, MovieBackdrop, MovieContainer, MovieContent, MovieImg, MovieTitleContent } from "../styles/styles";
 import DefatulPoster from "../assets/images/default_poster.jpg"
 import DefatulBanner from "../assets/images/default_banner.jpg"
 import axios from "axios";
@@ -68,8 +68,8 @@ function Detail() {
           <MovieContainer>
             <MovieImg src={POSTER_PATH} alt="poster_img"/>
             <MovieContent>
-              <h1>{movie.title}</h1>
-              <h2>{movie.original_title}</h2>
+              <H1>{movie.title}</H1>
+              <H2>{movie.original_title}</H2>
               <MovieTitleContent>
                 <div>
                   {movie.release_date}
@@ -85,10 +85,10 @@ function Detail() {
               </MovieTitleContent>
               <MoiveInfo>
                 <DonutChart percentage={parseInt(movie.vote_average * 10)}/>
+                <H3>{movie.tagline}</H3>
+                <H2>개요</H2>
+                <p>{movie.overview}</p>
               </MoiveInfo>
-              <h3>{movie.tagline}</h3>
-              <h2>개요</h2>
-              <p>{movie.overview}</p>
             </MovieContent>
           </MovieContainer>
         </MovieBackdrop>

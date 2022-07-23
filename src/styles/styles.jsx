@@ -88,5 +88,19 @@ export const MovieTitleContent = styled.div`
 
 export const MoiveInfo = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
 `;
+
+
+// Hgroup
+export const H1 = styled.h1`
+  
+`
+
+export const H2 = styled.h2`
+  
+`
+
+export const H3 = styled.h3`
+  
+`
