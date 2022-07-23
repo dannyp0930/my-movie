@@ -32,7 +32,7 @@ export const MovieImg = styled.img`
   object-fit: fill;
 `;
 
-export const MovieContent = styled.div`
+export const MovieContent = styled.section`
   width: 90%;
   color: white;
   margin: 0 auto;

@@ -67,7 +67,7 @@ function Detail() {
   // }
 
   return (
-    <div>
+    <article>
       { !loading && movie && color && BACKDROP_PATH && POSTER_PATH ? ( 
         <MovieBackdrop
           color={color}
@@ -103,7 +103,7 @@ function Detail() {
       ) : (
         <Loading />
       )}
-    </div>
+    </article>
   );
 };
 

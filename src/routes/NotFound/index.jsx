@@ -3,7 +3,7 @@ import NotFoundImage from "../../assets/images/NotFound.png"
 
 function NotFound () {
   return (
-    <div
+    <article
       style={{
         marginTop: "10rem",
         textAlign: "center",
@@ -16,7 +16,7 @@ function NotFound () {
           width: "50%",
         }}
       />
-    </div>
+    </article>
   )
 };
 

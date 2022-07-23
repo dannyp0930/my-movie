@@ -39,7 +39,7 @@ function Search() {
   };
 
   return (
-    <div>
+    <article>
       <SearchContainer>
         <SearchInput
           onChange={handleChange}
@@ -51,15 +51,15 @@ function Search() {
       { loading ? (
         <Loading />
       ) : (
-      <div>
+      <main>
         {searchMovies.length ? (
           <Carousel movies={searchMovies}></Carousel>
         ) : (
           <NoSearchMovies>검색 결과가 없습니다.</NoSearchMovies>
         )}
-      </div>
+      </main>
       )}
-    </div>
+    </article>
   )
 };
 

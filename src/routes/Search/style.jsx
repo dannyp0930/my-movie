@@ -18,7 +18,7 @@ export const SearchInput = styled.input`
 export const SearchButton = styled.button`
 `;
 
-export const NoSearchMovies = styled.div`
+export const NoSearchMovies = styled.article`
   text-align: center;
   font-size: 2rem;
 `;

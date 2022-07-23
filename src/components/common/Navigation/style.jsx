@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-export const Navbar = styled.div`
+export const Navbar = styled.nav`
   width: calc(100vw - 6rem);
   height: 4rem;
   background-color: black;

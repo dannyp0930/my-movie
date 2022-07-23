@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-export const CarouselContainer = styled.div`
+export const CarouselContainer = styled.article`
   width: 100%;
 `;
 
-export const CarouselHeader = styled.div`
+export const CarouselHeader = styled.header`
   display: flex;
   justify-content: space-between;
   margin: 0 1rem;
 `;
 
-export const CarouselTitle = styled.div`
+export const CarouselTitle = styled.h1`
   font-size: 2.5rem;
   font-weight: bold;
 `;
@@ -49,12 +49,13 @@ export const CarouselItem = styled.div`
 `;
 
 
-export const CarouselButton = styled.div`
+export const CarouselButton = styled.button`
   position: absolute;
+  border: none;
   z-index: 2;
   top: 1rem;
   bottom: 1rem;
-  width: calc(5% - 0.5rem);
+  width: calc(5% - 0.487rem);
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
@@ -69,7 +70,7 @@ export const CarouselButton = styled.div`
 
 export const CarouselPrev = styled(CarouselButton)`
   left: 0;
-  border-radius: 0 1rem 1rem 0;
+  border-radius: 1rem;
 `;
 
 export const CarouselNext = styled(CarouselButton)`
@@ -77,7 +78,7 @@ export const CarouselNext = styled(CarouselButton)`
   border-radius: 1rem 0 0 1rem;
 `;
 
-export const Card = styled.div`
+export const Card = styled.section`
   margin: 0 0.5rem;
   height: 100%;
   position: relative;
@@ -86,7 +87,6 @@ export const Card = styled.div`
   :hover {
     transition: all 0.2s ease-out;
     transform: scale(1.02);
-    box-shadow: 0 0 0 5px white;
   };
 `;
 
@@ -96,7 +96,7 @@ export const CardImage = styled.img`
   border-radius: 1rem;
 `;
 
-export const CardTitle = styled.div`
+export const CardTitle = styled.p`
   position: absolute;
   width: 100%;
   color: white;

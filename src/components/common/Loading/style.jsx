@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Load = styled.div`
+export const Load = styled.article`
   height: calc(100vh - 4rem);
   display: flex;
   flex-direction: column;
