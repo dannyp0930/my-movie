@@ -1,47 +1,5 @@
 import styled from "styled-components";
 
-// Home
-export const Article = styled.div`
-  
-`
-
-export const Header = styled.div`
-`;
-
-export const Title = styled.div`
-  text-align: center;
-  font-size: 7rem;
-`
-
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-// Search
-
-export const SearchContainer = styled.div`
-  display: grid;
-  width: 20rem;
-  grid-template-columns: 4fr 1fr;
-  column-gap: 1rem;
-  margin: 5rem auto 2rem;
-`;
-
-export const SearchInput = styled.input`
-  height: 2rem;
-  font-size: 1rem;
-`;
-
-export const SearchButton = styled.button`
-`;
-
-export const NoSearchMovies = styled.div`
-  text-align: center;
-  font-size: 2rem;
-`;
-
-// Detail
 export const MovieBackdrop = styled.div`
   position: relative;
   background-image: url(${props => props.backdrop});
@@ -90,17 +48,3 @@ export const MoiveInfo = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-
-// Hgroup
-export const H1 = styled.h1`
-  
-`
-
-export const H2 = styled.h2`
-  
-`
-
-export const H3 = styled.h3`
-  
-`

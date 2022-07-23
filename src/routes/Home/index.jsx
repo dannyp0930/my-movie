@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Loading from "../components/common/Loading";
-import { Article, Content, Header, Title } from "../styles/styles";
-import { BASE_URL, API_KEY } from "../utils/API";
+import Loading from "../../components/common/Loading";
+import { Article, Content, Header, Title } from "./style";
+import { BASE_URL, API_KEY } from "../../utils/API";
 import axios from "axios";
-import Carousel from "../components/Carousel";
+import Carousel from "../../components/Carousel";
 
 function Home() {
   const [ loading, setLoading ] = useState(true);

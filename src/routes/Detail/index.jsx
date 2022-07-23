@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Loading from "../components/common/Loading";
-import { BASE_URL, API_KEY, IMG_URL } from "../utils/API";
+import Loading from "../../components/common/Loading";
+import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
-import { H1, H2, H3, MoiveInfo, MovieBackdrop, MovieContainer, MovieContent, MovieImg, MovieTitleContent } from "../styles/styles";
-import DefatulPoster from "../assets/images/default_poster.jpg"
-import DefatulBanner from "../assets/images/default_banner.jpg"
+import {
+  MoiveInfo,
+  MovieBackdrop,
+  MovieContainer,
+  MovieContent,
+  MovieImg,
+  MovieTitleContent 
+} from "./style"
+import { H1, H2, H3,} from "../../styles/Hgroup";
+import DefatulPoster from "../../assets/images/default_poster.jpg"
+import DefatulBanner from "../../assets/images/default_banner.jpg"
 import axios from "axios";
-import DonutChart from "../components/DonutChart";
+import DonutChart from "../../components/DonutChart";
 
 function Detail() {
   const [ loading, setLoading ] = useState(true);

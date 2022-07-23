@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Loading from "../components/common/Loading";
+import Loading from "../../components/common/Loading";
 import {
   NoSearchMovies,
   SearchButton,
   SearchContainer,
   SearchInput,
-} from "../styles/styles";
-import { API_KEY, BASE_URL } from "../utils/API";
-import Carousel from "../components/Carousel";
+} from "./style";
+import { API_KEY, BASE_URL } from "../../utils/API";
+import Carousel from "../../components/Carousel";
 
-export function Search() {
+function Search() {
   const [ query, setQuery ] = useState('');
   const [ searchMovies, setSearchMovies ] = useState([]);
   const [ loading, setLoading ] = useState(false);
@@ -61,4 +61,6 @@ export function Search() {
       )}
     </div>
   )
-}
+};
+
+export default Search;

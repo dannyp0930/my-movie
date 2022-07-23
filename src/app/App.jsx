@@ -4,14 +4,8 @@ import Home from "../routes/Home";
 import Detail from "../routes/Detail";
 import Navigation from "../components/common/Navigation";
 import NotFound from "../routes/NotFound";
-import { Search } from "../routes/Search";
-import styled from "styled-components";
-
-const Container = styled.div`
-  width: 100vw;
-  min-height: 100vh;
-  color: white;
-`
+import Search from "../routes/Search";
+import { Container } from "./style";
 
 function App() {
   return (
