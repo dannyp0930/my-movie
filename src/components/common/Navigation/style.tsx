@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Navbar = styled.nav`
   width: calc(100vw - 6rem);
   height: 4rem;
-  background-color: black;
+  background-color: #242323;
   display: flex;
   justify-items: center;
   align-items: center;
