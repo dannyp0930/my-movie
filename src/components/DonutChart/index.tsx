@@ -58,17 +58,14 @@ export default function DonutChart({ percentage }: DounutChartProps) {
           strokeDashoffset={100}
         />
         <text
-          dominantBaseline="central"
           x="50" y="50"
           dx="0" dy="0"
           textAnchor="middle"
-          style={{
-            fontSize: "2rem",
-            fontWeight: "bold",
-            fill: "white"
-          }}
+          fontWeight="bold"
+          fill="white"
         >
-          {percentage}
+          <tspan fontSize="2rem" dominantBaseline="central">{percentage}</tspan>
+          <tspan>%</tspan>
         </text>
       </svg>
     </div>
