@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const MovieBackdrop = styled.div`
+interface MovieBackdropProps {
+  backdrop: string;
+  color: string;
+}
+
+export const MovieBackdrop = styled.div<MovieBackdropProps>`
   position: relative;
   background-image: url(${props => props.backdrop});
   background-size: cover;

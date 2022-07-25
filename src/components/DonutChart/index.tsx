@@ -1,7 +1,11 @@
 import React from "react";
 
-export default function DonutChart({ percentage }) {
-  function getColor(percentage) {
+interface DounutChartProps {
+  percentage: number;
+};
+
+export default function DonutChart({ percentage }: DounutChartProps) {
+  function getColor(percentage: number) {
     if (percentage <= 25) {
       return "#CF4421"
     } else if (percentage <= 50) {
@@ -13,7 +17,7 @@ export default function DonutChart({ percentage }) {
     }
   };
 
-  function getDrawColor(percentage) {
+  function getDrawColor(percentage: number) {
     return 4 * Math.PI * percentage / 5
   };
 

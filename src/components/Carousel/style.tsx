@@ -19,7 +19,7 @@ export const CarouselPagination = styled.div`
   display: flex;
 `;
 
-export const CarouselPage = styled.div`
+export const CarouselPage = styled.div<{ now: boolean }>`
   width: 1rem;
   height: 0.2rem;
   background-color: ${props => props.now ? "gray" : "lightgray"};
@@ -34,7 +34,7 @@ export const CarouselSlide = styled.div`
   overflow: hidden;
 `;
 
-export const CarouselItems = styled.div`
+export const CarouselItems = styled.div<{ currentSlide: number }>`
   position: relative;
   margin: 1rem 0;
   width: 90%;

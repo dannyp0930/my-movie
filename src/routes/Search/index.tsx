@@ -15,7 +15,7 @@ function Search() {
   const [ searchMovies, setSearchMovies ] = useState([]);
   const [ loading, setLoading ] = useState(false);
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value)
   };
 
@@ -32,7 +32,7 @@ function Search() {
     }
   };
 
-  function handleKeyPress(e) {
+  function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter'){
       handleClick();
     }
@@ -53,7 +53,10 @@ function Search() {
       ) : (
       <main>
         {searchMovies.length ? (
-          <Carousel movies={searchMovies}></Carousel>
+          <Carousel
+            movies={searchMovies}
+            title={`"${query}" 검색 결과`}
+          />
         ) : (
           <NoSearchMovies>검색 결과가 없습니다.</NoSearchMovies>
         )}

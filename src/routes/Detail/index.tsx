@@ -17,13 +17,43 @@ import DefatulBanner from "../../assets/images/default_banner.jpg"
 import axios from "axios";
 import DonutChart from "../../components/DonutChart";
 
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface Movie {
+  backdrop_path: string;
+  genres: Genre[];
+  title: string;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  runtime: number;
+  tagline: string;
+  vote_average: number;
+}
+
 function Detail() {
-  const [ loading, setLoading ] = useState(true);
-  const [ color, setColor ] = useState();
+  const [ loading, setLoading ] = useState(false);
+  const [ color, setColor ] = useState<string>();
   const { id } = useParams();
-  const [ movie, setMovie ] = useState();
-  const [ POSTER_PATH, setPOSTER_PATH ] = useState();
-  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState();
+  const [ movie, setMovie ] = useState<Movie>({
+    backdrop_path: '',
+    genres: [],
+    title: '',
+    original_title: '',
+    overview: '',
+    poster_path: '',
+    release_date: '',
+    runtime: 0,
+    tagline: '',
+    vote_average: 0,
+  });
+  const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
+  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
+  const { data } = usePalette(POSTER_PATH);
 
   useEffect(() => {
     const getMovie = async () => {
@@ -48,29 +78,19 @@ function Detail() {
     }
   }, [movie]);
 
-  const { data } = usePalette(POSTER_PATH);
 
   useEffect(() => {
-    setColor(data.darkVibrant);
+    setColor(data.muted);
     setTimeout(() => {
       setLoading(false);
-    }, 300);
+    }, 1000);
   }, [data])
-
-  // data = {
-  //   darkMuted: "#2a324b"
-  //   darkVibrant: "#0e7a4b"
-  //   lightMuted: "#9cceb7"
-  //   lightVibrant: "#a4d4bc"
-  //   muted: "#64aa8a"
-  //   vibrant: "#b4d43c"
-  // }
 
   return (
     <article>
-      { !loading && movie && color && BACKDROP_PATH && POSTER_PATH ? ( 
+      { !loading ? ( 
         <MovieBackdrop
-          color={color}
+          color={color as string}
           backdrop={BACKDROP_PATH}
         >
           <MovieContainer>
@@ -88,11 +108,11 @@ function Detail() {
                 </div>
                 <div style={{fontSize: "1.5rem"}}>·</div>
                 <div>
-                  {parseInt(movie.runtime / 60)}h {movie.runtime % 60}m
+                  {parseInt(String(movie.runtime / 60))}h {movie.runtime % 60}m
                 </div>
               </MovieTitleContent>
               <MoiveInfo>
-                <DonutChart percentage={parseInt(movie.vote_average * 10)}/>
+                <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
                 <H3>{movie.tagline}</H3>
                 <H2>개요</H2>
                 <p>{movie.overview}</p>

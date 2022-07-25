@@ -22,7 +22,18 @@ import { IMG_URL } from "../../utils/API";
 import DefatulBanner from "../../assets/images/default_banner.jpg"
 
 
-export default function Carousel({ movies, title }) {
+interface Movie {
+  id: number;
+  title: string;
+  backdrop_path: string;
+};
+
+interface CarouselProps {
+  movies: Movie[];
+  title: string;
+};
+
+export default function Carousel({ movies, title }: CarouselProps) {
   const totalSlides = Math.ceil(movies.length / 4) - 1;
   const [ currentSlide, setCurrentSlide ] = useState(0);
 
