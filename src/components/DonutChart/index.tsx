@@ -60,5 +60,5 @@ export default function DonutChart({ percentage }: DounutChartProps) {
         </text>
       </svg>
     </div>
-  )
-}
+  );
+};

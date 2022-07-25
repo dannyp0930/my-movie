@@ -6,7 +6,7 @@ import axios from "axios";
 import Carousel from "../../components/Carousel";
 
 function Home() {
-  const [ loading, setLoading ] = useState(true);
+  const [ loading, setLoading ] = useState<boolean>(true);
   const [ popularMovies, setPopularMovies ] = useState([]);
   const [ topMovies, setTopMovies ] = useState([]);
   const [ comeMovies, setComeMovies ] = useState([]);
@@ -32,7 +32,7 @@ function Home() {
     getComeMovies();
     setTimeout(() => {
       setLoading(false);
-    }, 1000)
+    }, 1000);
   }, []);
 
   return (

@@ -11,16 +11,9 @@ import {
   CarouselSlide,
   CarouselHeader,
 } from "./style";
-import MovieCard from "components/MovieCard";
+import MovieCard, { Movie } from "components/MovieCard";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-
-export interface Movie {
-  id: number;
-  title: string;
-  backdrop_path: string;
-};
 
 interface CarouselProps {
   movies: Movie[];
@@ -29,14 +22,14 @@ interface CarouselProps {
 
 export default function Carousel({ movies, title }: CarouselProps) {
   const totalSlides = Math.ceil(movies.length / 4) - 1;
-  const [ currentSlide, setCurrentSlide ] = useState(0);
+  const [ currentSlide, setCurrentSlide ] = useState<number>(0);
 
   function nextSlide() {
     if (currentSlide >= totalSlides) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
-    }
+    };
   };
 
   function prevSlide() {
@@ -44,7 +37,7 @@ export default function Carousel({ movies, title }: CarouselProps) {
       setCurrentSlide(totalSlides);
     } else {
       setCurrentSlide(currentSlide - 1);
-    }
+    };
   };
 
   function pages() {
@@ -55,7 +48,7 @@ export default function Carousel({ movies, title }: CarouselProps) {
           key={i}
           now={i === currentSlide}
         />)
-    }
+    };
     return array;
   };
 
@@ -85,5 +78,5 @@ export default function Carousel({ movies, title }: CarouselProps) {
         </CarouselSlide>
       </CarouselContent>
     </CarouselContainer>
-  )
-}
+  );
+};

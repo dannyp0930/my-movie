@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-// Search
-
 export const SearchContainer = styled.div`
   display: grid;
   width: 20rem;

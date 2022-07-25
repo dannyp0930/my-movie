@@ -1,5 +1,5 @@
 import React from "react";
-import NotFoundImage from "../../assets/images/NotFound.png"
+import NotFoundImage from "../../assets/images/NotFound.png";
 
 function NotFound () {
   return (
@@ -17,7 +17,7 @@ function NotFound () {
         }}
       />
     </article>
-  )
+  );
 };
 
 export default NotFound;

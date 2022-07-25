@@ -21,6 +21,6 @@ export const Spinner = styled.div`
     }
     to {
       transform: rotate(360deg);
-    }
+    };
   };
 `;

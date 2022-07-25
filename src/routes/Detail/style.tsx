@@ -19,7 +19,7 @@ export const MovieBackdrop = styled.div<MovieBackdropProps>`
     left: 0px;
     right: 0px;
     bottom: 0px;
-  }
+  };
 `;
 
 export const MovieContainer = styled.div`

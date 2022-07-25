@@ -60,7 +60,7 @@ export const CarouselButton = styled.button`
 
   :hover {
     background-color: rgba(0, 0, 0, 0.6);
-  }
+  };
 `;
 
 export const CarouselPrev = styled(CarouselButton)`

@@ -10,17 +10,17 @@ import {
   MovieContent,
   MovieImg,
   MovieTitleContent 
-} from "./style"
+} from "./style";
 import { H1, H2, H3,} from "../../styles/Hgroup";
-import DefatulPoster from "../../assets/images/default_poster.jpg"
-import DefatulBanner from "../../assets/images/default_banner.jpg"
+import DefatulPoster from "../../assets/images/default_poster.jpg";
+import DefatulBanner from "../../assets/images/default_banner.jpg";
 import axios from "axios";
 import DonutChart from "../../components/DonutChart";
 
 interface Genre {
   id: number;
   name: string;
-}
+};
 
 interface Movie {
   backdrop_path: string;
@@ -33,10 +33,10 @@ interface Movie {
   runtime: number;
   tagline: string;
   vote_average: number;
-}
+};
 
 function Detail() {
-  const [ loading, setLoading ] = useState(false);
+  const [ loading, setLoading ] = useState<boolean>(false);
   const [ color, setColor ] = useState<string>();
   const { id } = useParams();
   const [ movie, setMovie ] = useState<Movie>({
@@ -61,7 +61,7 @@ function Detail() {
       setMovie(res.data);
     };    
     getMovie();
-  }, [id])
+  }, [id]);
 
   useEffect(() => {
     if (movie) {
