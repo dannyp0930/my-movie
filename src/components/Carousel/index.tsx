@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   CarouselContainer,
-  CarouselItem,
   CarouselItems,
   CarouselTitle,
   CarouselPagination,
@@ -11,18 +10,13 @@ import {
   CarouselContent,
   CarouselSlide,
   CarouselHeader,
-  Card,
-  CardImage,
-  CardTitle,
 } from "./style";
+import MovieCard from "components/MovieCard";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import { IMG_URL } from "../../utils/API";
-import DefatulBanner from "../../assets/images/default_banner.jpg"
 
 
-interface Movie {
+export interface Movie {
   id: number;
   title: string;
   backdrop_path: string;
@@ -84,16 +78,7 @@ export default function Carousel({ movies, title }: CarouselProps) {
           <CarouselItems currentSlide={currentSlide}>
             {movies.map((movie) => {
               return (
-                <CarouselItem
-                  key={movie.id}
-                >
-                  <Link to={`/movie/${movie.id}`}>
-                    <Card>
-                      <CardTitle>{movie.title}</CardTitle>
-                      <CardImage src={movie.backdrop_path ? IMG_URL + movie.backdrop_path : DefatulBanner} alt="poster_img"/>
-                    </Card>
-                  </Link>
-                </CarouselItem>
+                <MovieCard movie={movie}/>
               )
             })}
           </CarouselItems>
