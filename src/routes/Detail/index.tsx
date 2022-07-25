@@ -4,6 +4,8 @@ import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
+  Article,
+  Main,
   MoiveInfo,
   MovieBackdrop,
   MovieContainer,
@@ -88,38 +90,39 @@ function Detail() {
 
   return (
     <article>
-      { !loading ? ( 
-        <MovieBackdrop
-          color={color as string}
-          backdrop={BACKDROP_PATH}
-        >
-          <MovieContainer>
-            <MovieImg src={POSTER_PATH} alt="poster_img"/>
-            <MovieContent>
-              <H1>{movie.title}</H1>
-              <H2>{movie.original_title}</H2>
-              <MovieTitleContent>
-                <div>
-                  {movie.release_date}
-                </div>
-                <div style={{fontSize: "1.5rem"}}>·</div>
-                <div>
-                  {movie.genres.map(genre => genre.name).join(', ')}
-                </div>
-                <div style={{fontSize: "1.5rem"}}>·</div>
-                <div>
-                  {parseInt(String(movie.runtime / 60))}h {movie.runtime % 60}m
-                </div>
-              </MovieTitleContent>
-              <MoiveInfo>
-                <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
-                <H3>{movie.tagline}</H3>
-                <H2>개요</H2>
-                <p>{movie.overview}</p>
-              </MoiveInfo>
-            </MovieContent>
-          </MovieContainer>
-        </MovieBackdrop>
+      { !loading ? (
+        <Article>
+          <Main color={color as string}>
+            <MovieBackdrop backdrop={BACKDROP_PATH}>
+              <MovieContainer>
+                <MovieImg src={POSTER_PATH} alt="poster_img"/>
+                <MovieContent>
+                  <H1>{movie.title}</H1>
+                  <H2>{movie.original_title}</H2>
+                  <MovieTitleContent>
+                    <div>
+                      {movie.release_date}
+                    </div>
+                    <div style={{fontSize: "1.5rem"}}>·</div>
+                    <div>
+                      {movie.genres.map(genre => genre.name).join(', ')}
+                    </div>
+                    <div style={{fontSize: "1.5rem"}}>·</div>
+                    <div>
+                      {parseInt(String(movie.runtime / 60))}h {movie.runtime % 60}m
+                    </div>
+                  </MovieTitleContent>
+                  <MoiveInfo>
+                    <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
+                    <H3>{movie.tagline}</H3>
+                    <H2>개요</H2>
+                    <p>{movie.overview}</p>
+                  </MoiveInfo>
+                </MovieContent>
+              </MovieContainer>
+            </MovieBackdrop>
+          </Main>
+        </Article>
       ) : (
         <Loading />
       )}

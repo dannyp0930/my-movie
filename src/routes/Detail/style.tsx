@@ -1,15 +1,22 @@
 import styled from "styled-components";
 
-interface MovieBackdropProps {
-  backdrop: string;
+interface MainProps {
   color: string;
 }
 
-export const MovieBackdrop = styled.div<MovieBackdropProps>`
+interface MovieBackdropProps {
+  backdrop: string;
+}
+
+export const Article = styled.article`
+  display: flex;
+`
+
+export const Main = styled.main<MainProps>`
+  display: flex;
+  justify-content: center;
   position: relative;
-  background-image: url(${props => props.backdrop});
-  background-size: cover;
-  
+
   &::before {
     content: "";
     background-color: ${props => props.color};
@@ -20,20 +27,31 @@ export const MovieBackdrop = styled.div<MovieBackdropProps>`
     right: 0px;
     bottom: 0px;
   };
+`
+
+export const MovieBackdrop = styled.div<MovieBackdropProps>`
+  background-image: url(${props => props.backdrop});
+  background-size: cover;
+  height: 100%;
+  
+  @media screen and (min-width: 1800px) {
+    width: 50%;
+  };
 `;
 
 export const MovieContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   justify-items: center;
-  margin: 5rem auto;
+  margin: auto;
+  padding: 2rem;
   position: relative;
   column-gap: 1rem;
 `;
 
 export const MovieImg = styled.img`
-  width: 90%;
-  margin: 2rem auto;
+  width: 100%;
+  margin: auto;
   object-fit: fill;
 `;
 
