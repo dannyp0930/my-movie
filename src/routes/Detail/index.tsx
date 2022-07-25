@@ -5,15 +5,16 @@ import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
   Article,
+  H2,
+  H3,
   Main,
-  MoiveInfo,
   MovieBackdrop,
   MovieContainer,
   MovieContent,
   MovieImg,
-  MovieTitleContent 
+  P,
+  Tagline
 } from "./style";
-import { H1, H2, H3,} from "../../styles/Hgroup";
 import DefatulPoster from "../../assets/images/default_poster.jpg";
 import DefatulBanner from "../../assets/images/default_banner.jpg";
 import axios from "axios";
@@ -65,7 +66,9 @@ function Detail() {
     getMovie();
   }, [id]);
 
+
   useEffect(() => {
+    console.log(movie)
     if (movie) {
       if (movie.poster_path) {
         setPOSTER_PATH(IMG_URL + movie.poster_path);
@@ -97,27 +100,18 @@ function Detail() {
               <MovieContainer>
                 <MovieImg src={POSTER_PATH} alt="poster_img"/>
                 <MovieContent>
-                  <H1>{movie.title}</H1>
-                  <H2>{movie.original_title}</H2>
-                  <MovieTitleContent>
-                    <div>
-                      {movie.release_date}
-                    </div>
-                    <div style={{fontSize: "1.5rem"}}>·</div>
-                    <div>
-                      {movie.genres.map(genre => genre.name).join(', ')}
-                    </div>
-                    <div style={{fontSize: "1.5rem"}}>·</div>
-                    <div>
-                      {parseInt(String(movie.runtime / 60))}h {movie.runtime % 60}m
-                    </div>
-                  </MovieTitleContent>
-                  <MoiveInfo>
-                    <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
-                    <H3>{movie.tagline}</H3>
-                    <H2>개요</H2>
-                    <p>{movie.overview}</p>
-                  </MoiveInfo>
+                  <H2>{movie.title}</H2>
+                  <P>
+                    {movie.release_date}
+                    &nbsp;·&nbsp;
+                    {movie.genres.map(genre => genre.name).join(', ')}
+                    &nbsp;·&nbsp;
+                    {parseInt(String(movie.runtime / 60))}h {movie.runtime % 60}m
+                  </P>
+                  <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
+                  <Tagline>{movie.tagline}</Tagline>
+                  <H3>개요</H3>
+                  <P>{movie.overview}</P>
                 </MovieContent>
               </MovieContainer>
             </MovieBackdrop>

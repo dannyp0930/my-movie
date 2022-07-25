@@ -40,9 +40,7 @@ export const MovieBackdrop = styled.div<MovieBackdropProps>`
 `;
 
 export const MovieContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  justify-items: center;
+  display: flex;
   margin: auto;
   padding: 2rem;
   position: relative;
@@ -50,24 +48,37 @@ export const MovieContainer = styled.div`
 `;
 
 export const MovieImg = styled.img`
-  width: 100%;
+  width: 18rem;
   margin: auto;
   object-fit: fill;
 `;
+
+export const H2 = styled.h2`
+  margin: 0;
+`
+
+export const H3 = styled.h3`
+  margin: 0;
+`
+
+export const P = styled.p`
+  margin: 0;
+`
 
 export const MovieContent = styled.section`
   width: 90%;
   color: white;
   margin: 0 auto;
-`;
-
-export const MovieTitleContent = styled.div`
-  display: flex;
-  column-gap: 0.5rem;
-  align-items: center;
-`;
-
-export const MoiveInfo = styled.div`
   display: flex;
   flex-direction: column;
+  row-gap: 12px;
 `;
+
+export const Tagline = styled(H3)`
+  font-weight: normal;
+  font-style: italic;
+`
+
+export const Overview = styled(P)`
+   
+`
