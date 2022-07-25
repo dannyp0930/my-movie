@@ -6,44 +6,56 @@ interface DounutChartProps {
 
 export default function DonutChart({ percentage }: DounutChartProps) {
   function getColor(percentage: number) {
-    if (percentage <= 25) {
-      return "#CF4421"
-    } else if (percentage <= 50) {
-      return "#CF7521"
-    } else if (percentage <= 75) {
-      return "#C0CF21"
+    if (percentage < 40) {
+      return "#DB2360"
+    } else if (percentage < 70) {
+      return "#D2D531"
     } else {
-      return "#21CF32"
+      return "#21D07A"
     }
   };
 
-  function getDrawColor(percentage: number) {
-    return 4 * Math.PI * percentage / 5
+  function getSubColor(percentage: number) {
+    if (percentage < 40) {
+      return "#571435"
+    } else if (percentage < 70) {
+      return "#423D0F"
+    } else {
+      return "#1C3E28"
+    }
+  };
+
+  function getDraw(percentage: number) {
+    const degree = Math.PI * percentage / 50;
+    const x = 50 + 40 * Math.sin(degree);
+    const y = 50 - 40 * Math.cos(degree);
+    return `0 ${(degree > Math.PI ? 1 : 0)} 1 ${x} ${y}`
   };
 
   return (
-    <div
-      style={{
-        margin: "1rem"
-      }}
+    <div style={{ margin: "1rem" }}
     >
       <svg
         width="4rem" height="4rem"
         viewBox="0 0 100 100"
       >
         <circle
-          cx="50" cy="50" r="40"
-          fill="none"
-          stroke="white"
-          strokeWidth="15"
+          cx="50" cy="50" r="50"
+          fill="#081C22"
         />
         <circle
           cx="50" cy="50" r="40"
           fill="none"
+          stroke={getSubColor(percentage)}
+          strokeWidth="10"
+        />
+        <path 
+          d={`M 50 10 A 40 40 ${getDraw(percentage)}`}
+          fill="none"
           stroke={getColor(percentage)}
-          strokeWidth="15"
+          strokeWidth="10"
           strokeLinecap="round"
-          strokeDasharray={getDrawColor(percentage)}
+          strokeDashoffset={100}
         />
         <text
           dominantBaseline="central"
