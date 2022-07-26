@@ -123,8 +123,10 @@ function Detail() {
             <SideInfo>
               <H3>원제</H3>
               <P>{movie.original_title}</P>
-              <H3>원제</H3>
+              <H3>상태</H3>
               <P>{movie.status}</P>
+              <H3>원어</H3>
+              <P>{movie.original_language}</P>
               <H3>제작비</H3>
               <P>{getMoney(movie.budget)}</P>
               <H3>수익</H3>
