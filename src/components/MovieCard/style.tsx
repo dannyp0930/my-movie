@@ -26,10 +26,10 @@ export const CardTitle = styled.p`
   position: absolute;
   width: 100%;
   color: white;
-  font-size: 12px;
+  font-size: 16px;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   text-align: center;
-  bottom: 1px;
+  top: 1px;
   left: 50%;
   transform: translateX(-50%);
 `;
