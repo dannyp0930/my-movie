@@ -71,7 +71,7 @@ export default function Carousel({ movies, title }: CarouselProps) {
           <CarouselItems currentSlide={currentSlide}>
             {movies.map((movie) => {
               return (
-                <MovieCard movie={movie}/>
+                <MovieCard key={movie.id} movie={movie}/>
               )
             })}
           </CarouselItems>
