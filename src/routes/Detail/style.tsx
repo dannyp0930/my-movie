@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 interface MainProps {
   color: string;
-}
+};
 
 interface MovieBackdropProps {
   backdrop: string;
-}
+};
 
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const PrimeInfo = styled.section<MainProps>`
   display: flex;
@@ -28,7 +28,7 @@ export const PrimeInfo = styled.section<MainProps>`
     right: 0px;
     bottom: 0px;
   };
-`
+`;
 
 export const MovieBackdrop = styled.div<MovieBackdropProps>`
   background-image: url(${props => props.backdrop});
@@ -56,15 +56,15 @@ export const MovieImg = styled.img`
 
 export const H2 = styled.h2`
   margin: 0;
-`
+`;
 
 export const H3 = styled.h3`
   margin: 0;
-`
+`;
 
 export const P = styled.p`
   margin: 0;
-`
+`;
 
 export const MovieContent = styled.section`
   width: 90%;
@@ -78,25 +78,39 @@ export const MovieContent = styled.section`
 export const Tagline = styled(H3)`
   font-weight: normal;
   font-style: italic;
-`
+`;
 
 export const Overview = styled(P)`
    
-`
+`;
 
 export const SubInfo = styled.section`
   margin: 2rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
-`
+`;
+
+export const MainInfo = styled.article`
+`;
+
+export const CastContainer = styled.article`
+`;
+
+export const Casts = styled.ol`
+  list-style: none inside;
+`;
+
+export const CardContainer = styled.li`
+  float: left;
+`;
 
 export const SideInfo = styled.aside`
 
   ${H3} {
     margin-top: 1rem;
-  }
+  };
 
   ${P} {
     margin-top: .5rem;
-  }
-`
+  };
+`;

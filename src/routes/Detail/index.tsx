@@ -4,9 +4,13 @@ import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
+  CardContainer,
+  CastContainer,
+  Casts,
   H2,
   H3,
   Main,
+  MainInfo,
   MovieBackdrop,
   MovieContainer,
   MovieContent,
@@ -20,9 +24,10 @@ import {
 import DefatulPoster from "../../assets/images/default_poster.jpg";
 import DefatulBanner from "../../assets/images/default_banner.jpg";
 import axios from "axios";
+import CharacterCard from "../../components/CharacterCard";
 import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
-import { Movie } from "store/types/interfaces";
+import { Cast, Crew, Movie } from "store/types/interfaces";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -55,6 +60,10 @@ function Detail() {
     vote_average: 0,
     vote_count: 0,
   });
+  const [ casts, setCasts ] = useState<Cast[]>([]);
+  const [ directors, setDirectors ] = useState<Crew[]>([]);
+  const [ screenplays, setScreenplays ] = useState<Crew[]>([]);
+  const [ producers, setProducers ] = useState<Crew[]>([]);
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
   const { data } = usePalette(POSTER_PATH);
@@ -64,13 +73,20 @@ function Detail() {
       const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`);
       setMovie(res.data);
     };    
+    const getCredits = async () => {
+      const res = await axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
+      setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 8));
+      setDirectors(res.data.crew.filter((c: Crew) => c.job === "Director"));
+      setScreenplays(res.data.crew.filter((c: Crew) => c.job === "Screenplay"));
+      setProducers(res.data.crew.filter((c: Crew) => c.job === "Producer"));
+    };    
     getMovie();
+    getCredits();
   }, [id]);
 
 
   useEffect(() => {
     if (movie) {
-      console.log(movie)
       if (movie.poster_path) {
         setPOSTER_PATH(IMG_URL + movie.poster_path);
       } else {
@@ -117,9 +133,19 @@ function Detail() {
             </MovieBackdrop>
           </PrimeInfo>
           <SubInfo>
-            <div>
+            <MainInfo>
               <H2>주요 출연진</H2>
-            </div>
+              <CastContainer>
+                <Casts>
+                  {casts.map(cast => {
+                    return (
+                      <CardContainer key={cast.id}>
+                        <CharacterCard cast={cast} />
+                      </CardContainer>
+                  )})}
+                </Casts>
+              </CastContainer>
+            </MainInfo>
             <SideInfo>
               <H3>원제</H3>
               <P>{movie.original_title}</P>
