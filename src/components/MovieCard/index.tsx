@@ -5,11 +5,7 @@ import { Card, CardImage, CardItem, CardTitle } from './style';
 import DefatulBanner from "../../assets/images/default_banner.jpg";
 import { Movie } from 'store/types/interfaces';
 
-interface MovieCardProps {
-  movie: Movie;
-};
-
-export default function MovieCard({ movie }: MovieCardProps) {
+export default function MovieCard({ movie }: { movie: Movie }) {
   return (
     <Card
       key={movie.id}

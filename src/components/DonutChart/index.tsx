@@ -1,10 +1,6 @@
 import React from "react";
 
-interface DounutChartProps {
-  percentage: number;
-};
-
-export default function DonutChart({ percentage }: DounutChartProps) {
+export default function DonutChart({ percentage }: { percentage: number }) {
   function getColor(percentage: number) {
     if (percentage < 40) {
       return "#DB2360"
