@@ -4,7 +4,6 @@ import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
-  Article,
   H2,
   H3,
   Main,
@@ -13,43 +12,33 @@ import {
   MovieContent,
   MovieImg,
   P,
+  PrimeInfo,
+  SideInfo,
+  SubInfo,
   Tagline
 } from "./style";
 import DefatulPoster from "../../assets/images/default_poster.jpg";
 import DefatulBanner from "../../assets/images/default_banner.jpg";
 import axios from "axios";
 import DonutChart from "../../components/DonutChart";
-
-interface Genre {
-  id: number;
-  name: string;
-};
-
-interface Movie {
-  backdrop_path: string;
-  genres: Genre[];
-  title: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  runtime: number;
-  tagline: string;
-  vote_average: number;
-};
+import getMoney from "utils/getMoney";
+import { Movie } from "store/types/interfaces";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
   const [ color, setColor ] = useState<string>();
   const { id } = useParams();
   const [ movie, setMovie ] = useState<Movie>({
+    id: 0,
     backdrop_path: '',
+    budget: 0,
     genres: [],
     title: '',
     original_title: '',
     overview: '',
     poster_path: '',
     release_date: '',
+    revenue: 0,
     runtime: 0,
     tagline: '',
     vote_average: 0,
@@ -68,8 +57,8 @@ function Detail() {
 
 
   useEffect(() => {
-    console.log(movie)
     if (movie) {
+      console.log(movie)
       if (movie.poster_path) {
         setPOSTER_PATH(IMG_URL + movie.poster_path);
       } else {
@@ -83,7 +72,6 @@ function Detail() {
     }
   }, [movie]);
 
-
   useEffect(() => {
     setColor(data.muted);
     setTimeout(() => {
@@ -94,8 +82,8 @@ function Detail() {
   return (
     <article>
       { !loading ? (
-        <Article>
-          <Main color={color as string}>
+        <Main>
+          <PrimeInfo color={color as string}>
             <MovieBackdrop backdrop={BACKDROP_PATH}>
               <MovieContainer>
                 <MovieImg src={POSTER_PATH} alt="poster_img"/>
@@ -115,8 +103,21 @@ function Detail() {
                 </MovieContent>
               </MovieContainer>
             </MovieBackdrop>
-          </Main>
-        </Article>
+          </PrimeInfo>
+          <SubInfo>
+            <div>
+              <H2>주요 출연진</H2>
+            </div>
+            <SideInfo>
+              <H3>원제</H3>
+              <P>{movie.original_title}</P>
+              <H3>제작비</H3>
+              <P>{getMoney(movie.budget)}</P>
+              <H3>수익</H3>
+              <P>{getMoney(movie.revenue)}</P>
+            </SideInfo>
+          </SubInfo>
+        </Main>
       ) : (
         <Loading />
       )}

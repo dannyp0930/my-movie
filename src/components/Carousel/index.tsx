@@ -11,9 +11,10 @@ import {
   CarouselSlide,
   CarouselHeader,
 } from "./style";
-import MovieCard, { Movie } from "components/MovieCard";
+import MovieCard from "components/MovieCard";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Movie } from "store/types/interfaces";
 
 interface CarouselProps {
   movies: Movie[];

@@ -8,11 +8,12 @@ interface MovieBackdropProps {
   backdrop: string;
 }
 
-export const Article = styled.article`
+export const Main = styled.main`
   display: flex;
+  flex-direction: column;
 `
 
-export const Main = styled.main<MainProps>`
+export const PrimeInfo = styled.section<MainProps>`
   display: flex;
   justify-content: center;
   position: relative;
@@ -81,4 +82,21 @@ export const Tagline = styled(H3)`
 
 export const Overview = styled(P)`
    
+`
+
+export const SubInfo = styled.section`
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+`
+
+export const SideInfo = styled.aside`
+
+  ${H3} {
+    margin-top: 1rem;
+  }
+
+  ${P} {
+    margin-top: .5rem;
+  }
 `
