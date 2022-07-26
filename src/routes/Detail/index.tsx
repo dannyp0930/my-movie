@@ -29,19 +29,31 @@ function Detail() {
   const [ color, setColor ] = useState<string>();
   const { id } = useParams();
   const [ movie, setMovie ] = useState<Movie>({
-    id: 0,
-    backdrop_path: '',
+    adult: false,
+    backdrop_path: "",
+    belongs_to_collection: null,
     budget: 0,
     genres: [],
-    title: '',
-    original_title: '',
-    overview: '',
-    poster_path: '',
-    release_date: '',
+    homepage: null,
+    id: 0,
+    imdb_id: null,
+    original_language: "",
+    original_title: "",
+    overview: null,
+    popularity: 0,
+    poster_path: "",
+    production_companies: [],
+    production_countries: [],
+    release_date: "",
     revenue: 0,
     runtime: 0,
-    tagline: '',
+    spoken_languages: [],
+    status: "",
+    tagline: null,
+    title: "",
+    video: false,
     vote_average: 0,
+    vote_count: 0,
   });
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
@@ -111,6 +123,8 @@ function Detail() {
             <SideInfo>
               <H3>원제</H3>
               <P>{movie.original_title}</P>
+              <H3>원제</H3>
+              <P>{movie.status}</P>
               <H3>제작비</H3>
               <P>{getMoney(movie.budget)}</P>
               <H3>수익</H3>
