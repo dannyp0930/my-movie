@@ -20,7 +20,6 @@ export default function Videos({ id }: { id: number }) {
 
   useEffect(() => {
     if (videos.length) {
-      console.log(videos)
       setTrailers(videos.filter((data: Video) => data.type === "Trailer"));
       setClips(videos.filter((data: Video) => data.type === "Clip"));
       setTeasers(videos.filter((data: Video) => data.type === "Teaser"));
