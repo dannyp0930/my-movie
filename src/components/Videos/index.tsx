@@ -30,7 +30,7 @@ export default function Videos({ id }: { id: number }) {
   return (
     <>
       <h2>동영상<span style={{marginLeft: "6px", fontSize: "12px"}}>{videos.length}</span></h2>
-      {trailers.length &&
+      {trailers.length ?
       <>
         <h3>예고편<span style={{marginLeft: "6px", fontSize: "12px"}}>{trailers.length}</span></h3>
         <iframe
@@ -40,8 +40,8 @@ export default function Videos({ id }: { id: number }) {
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
-      </>}
-      {teasers.length &&
+      </> : <></>}
+      {teasers.length !==0 ?
       <>
         <h3>티저<span style={{marginLeft: "6px", fontSize: "12px"}}>{teasers.length}</span></h3>
         <iframe
@@ -51,8 +51,8 @@ export default function Videos({ id }: { id: number }) {
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
-      </>}
-      {clips.length &&
+      </> : <></>}
+      {clips.length ?
       <>
         <h3>클립<span style={{marginLeft: "6px", fontSize: "12px"}}>{clips.length}</span></h3>
         <iframe
@@ -62,8 +62,8 @@ export default function Videos({ id }: { id: number }) {
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
-      </>}
-      {featurettes.length &&
+      </> : <></>}
+      {featurettes.length ?
       <>
         <h3>피처렛<span style={{marginLeft: "6px", fontSize: "12px"}}>{featurettes.length}</span></h3>
         <iframe
@@ -73,7 +73,7 @@ export default function Videos({ id }: { id: number }) {
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
-      </>}
+      </> : <></>}
     </>
   )
 }
