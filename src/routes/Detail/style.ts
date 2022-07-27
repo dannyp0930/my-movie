@@ -54,10 +54,6 @@ export const H3 = styled.h3`
   margin: 0;
 `;
 
-export const H4 = styled.h4`
-  margin: 0;
-`;
-
 export const P = styled.p`
   margin: 0;
 `;
@@ -103,16 +99,6 @@ export const Tagline = styled(H3)`
 export const Overview = styled(P)`
    
 `;
-
-export const Crews = styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  row-gap: 1rem;
-
-  ${H4} {
-    margin-bottom: 0.5rem;
-  }
-  `
 
 export const SubInfo = styled.section`
   margin: 2rem;

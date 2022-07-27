@@ -10,11 +10,9 @@ import {
   CastContainer,
   Casts,
   Certification,
-  Crews,
   Dot,
   H2,
   H3,
-  H4,
   Hompage,
   Hompages,
   Main,
@@ -38,7 +36,7 @@ import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
 import { 
   Cast,
-  Crew,
+  Credits,
   ExternalIds,
   Movie,
   ProductionCountry,
@@ -48,6 +46,7 @@ import {
 import { faSquareFacebook, faSquareInstagram, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Videos from "components/Videos";
+import Crews from "components/Crews";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -97,11 +96,12 @@ function Detail() {
     note: "",
   });
   const [ certification, setCertification ] = useState<string>("");
+  const [ credits, setCredits ] = useState<Credits>({
+    id: 0,
+    cast: [],
+    crew: [], 
+  });
   const [ casts, setCasts ] = useState<Cast[]>([]);
-  const [ directors, setDirectors ] = useState<Crew[]>([]);
-  const [ screenplays, setScreenplays ] = useState<Crew[]>([]);
-  const [ producers, setProducers ] = useState<Crew[]>([]);
-  const [ musics, setMusics ] = useState<Crew[]>([]);
   const [ externalIds, setExternalIds] = useState<ExternalIds>({
     imdb_id: "",
     facebook_id: "",
@@ -120,11 +120,8 @@ function Detail() {
     };    
     async function getCredits() {
       const res = await axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
+      setCredits(res.data);
       setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 10));
-      setDirectors(res.data.crew.filter((c: Crew) => c.job === "Director"));
-      setScreenplays(res.data.crew.filter((c: Crew) => c.job === "Screenplay" || c.job ==="Writer"));
-      setProducers(res.data.crew.filter((c: Crew) => c.job === "Producer"));
-      setMusics(res.data.crew.filter((c: Crew) => c.job === "Original Music Composer"));
     };
     async function getReleaseDates() {
       const res = await axios.get(`${BASE_URL}/movie/${id}/release_dates?api_key=${API_KEY}`);
@@ -221,24 +218,7 @@ function Detail() {
                   <Tagline>{movie.tagline}</Tagline>
                   <H3>개요</H3>
                   <P>{movie.overview}</P>
-                  <Crews>
-                    <div>
-                      <H4>감독</H4>
-                      {directors.map(director => <P key={director.id}>{director.name}</P>)}
-                    </div>
-                    <div>
-                      <H4>각본</H4>
-                      {screenplays.map(screenplay => <P key={screenplay.id}>{screenplay.name}</P>)}
-                    </div>
-                    <div>
-                      <H4>제작</H4>
-                      {producers.map(producer => <P key={producer.id}>{producer.name}</P>)}
-                    </div>
-                    <div>
-                      <H4>음악</H4>
-                      {musics.map(music => <P key={music.id}>{music.name}</P>)}
-                    </div>
-                  </Crews>
+                  <Crews credits={credits}/>
                 </MovieContent>
               </MovieContainer>
             </MovieBackdrop>
