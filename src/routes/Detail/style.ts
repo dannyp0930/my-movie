@@ -119,6 +119,11 @@ export const SubInfo = styled.section`
   display: grid;
   grid-template-columns: 2fr 1fr;
   column-gap: 2rem;
+  margin: 0 auto;
+
+  @media screen and (min-width: 1800px) {
+    width: 50%;
+  };
 `;
 
 export const MainInfo = styled.article`
