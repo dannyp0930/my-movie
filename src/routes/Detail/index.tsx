@@ -5,10 +5,7 @@ import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
   A,
-  BasicInfo,
   CastContainer,
-  Certification,
-  Dot,
   H2,
   H3,
   Hompage,
@@ -24,7 +21,6 @@ import {
   SideInfo,
   SubInfo,
   Tagline,
-  Text
 } from "./style";
 import DefatulPoster from "../../assets/images/default_poster.jpg";
 import DefatulBanner from "../../assets/images/default_banner.jpg";
@@ -37,18 +33,16 @@ import {
   ExternalIds,
   Movie,
   ProductionCountry,
-  ReleaseDate,
-  ReleaseDates
 } from "store/types/interfaces";
 import { faSquareFacebook, faSquareInstagram, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Videos from "components/Videos";
 import Crews from "components/Crews";
 import Casts from "components/Casts";
+import BasicInfo from "components/BasicInfo";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
-  const [ color, setColor ] = useState<string>();
   const { id } = useParams();
   const [ movie, setMovie ] = useState<Movie>({
     adult: false,
@@ -77,23 +71,7 @@ function Detail() {
     vote_average: 0,
     vote_count: 0,
   });
-  const [ releaseDatesList, setReleaseDatesList ] = useState<ReleaseDates[]>([]);
-  const [ KRreleaseDate, setKRReleaseDate ] = useState<ReleaseDate>({
-    certification: "",
-    iso_639_1: "",
-    release_date: "",
-    type: 0,
-    note: "",
-  });
-  const [ productionCountry, setProductContry ] = useState<string>();
-  const [ ORreleaseDate, setORReleaseDate ] = useState<ReleaseDate>({
-    certification: "",
-    iso_639_1: "",
-    release_date: "",
-    type: 0,
-    note: "",
-  });
-  const [ certification, setCertification ] = useState<string>("");
+  const [ productionCountry, setProductContry ] = useState<string>("");
   const [ casts, setCasts ] = useState<Cast[]>([]);
   const [ crews, setCrews ] = useState<Crew[]>([]);
   const [ externalIds, setExternalIds] = useState<ExternalIds>({
@@ -106,7 +84,8 @@ function Detail() {
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
   const { data } = usePalette(POSTER_PATH);
-
+  const [ color, setColor ] = useState<string>();
+  
   useEffect(() => {
     async function getMovie() {
       const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`);
@@ -117,13 +96,8 @@ function Detail() {
       setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 10));
       setCrews(res.data.crew);
     };
-    async function getReleaseDates() {
-      const res = await axios.get(`${BASE_URL}/movie/${id}/release_dates?api_key=${API_KEY}`);
-      setReleaseDatesList(res.data.results);
-    };
     getMovie();
     getCredits();
-    getReleaseDates();
   }, [id]);
 
   useEffect(() => {
@@ -152,32 +126,6 @@ function Detail() {
   }, [movie]);
 
   useEffect(() => {
-    if (releaseDatesList.length) {
-      const res = releaseDatesList.filter((data: ReleaseDates) => data.iso_3166_1 === "KR")[0];
-      if (res) {
-        setKRReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1 && data.type !== 2)[0]);
-      };
-    };
-  }, [releaseDatesList]);
-
-  useEffect(() => {
-    if (releaseDatesList.length) {
-      const res = releaseDatesList.filter((data: ReleaseDates) => data.iso_3166_1 === productionCountry)[0];
-      if (res) {
-        setORReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1 && data.type !== 2)[0]);
-      };
-    };
-  }, [releaseDatesList, productionCountry]);
-
-  useEffect(() => {
-    if (KRreleaseDate.certification) {
-      setCertification(KRreleaseDate.certification)
-    } else if (ORreleaseDate.certification) {
-      setCertification(ORreleaseDate.certification)
-    };
-  }, [KRreleaseDate, ORreleaseDate]);
-
-  useEffect(() => {
     setColor(data.muted);
     setTimeout(() => {
       setLoading(false);
@@ -194,20 +142,12 @@ function Detail() {
                 <MovieImg src={POSTER_PATH} alt="poster_img"/>
                 <MovieContent>
                   <H2>{movie.title}</H2>
-                  <BasicInfo>
-                    {certification && <Certification>{certification}</Certification>}
-                    <Text>
-                      {KRreleaseDate.release_date ? `${KRreleaseDate.release_date.slice(0, 10)}(KR)` : `${ORreleaseDate.release_date.slice(0, 10)}(${productionCountry})`}
-                    </Text>
-                    <Dot>·</Dot>
-                    <Text>
-                      {movie.genres.map(genre => genre.name).join(', ')}
-                    </Text>
-                    <Dot>·</Dot>
-                    <Text>
-                      {parseInt(String(movie.runtime / 60))}h {movie.runtime % 60}m
-                    </Text>
-                  </BasicInfo>
+                  <BasicInfo
+                    id={movie.id}
+                    genres={movie.genres} 
+                    runtime={movie.runtime}
+                    productionCountry={productionCountry}
+                  />
                   <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
                   <Tagline>{movie.tagline}</Tagline>
                   <H3>개요</H3>
