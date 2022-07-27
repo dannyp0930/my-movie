@@ -113,18 +113,3 @@ export const CastContainer = styled.article`
   position: relative;
   justify-content: center;
 `;
-
-export const Hompages = styled.ol`
-  display: inline-block;
-  list-style: none inside;
-  padding: 0;
-`;
-
-export const Hompage = styled.li`
-  float: left;
-  margin-left: 1rem;
-`
-
-export const A = styled.a`
-  color: white;
-`

@@ -4,12 +4,9 @@ import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
-  A,
   CastContainer,
   H2,
   H3,
-  Hompage,
-  Hompages,
   Main,
   MainInfo,
   MovieBackdrop,
@@ -30,16 +27,14 @@ import getMoney from "utils/getMoney";
 import { 
   Cast,
   Crew,
-  ExternalIds,
   Movie,
   ProductionCountry,
 } from "store/types/interfaces";
-import { faSquareFacebook, faSquareInstagram, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Videos from "components/Videos";
 import Crews from "components/Crews";
 import Casts from "components/Casts";
 import BasicInfo from "components/BasicInfo";
+import Homepages from "components/Homepages";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -74,13 +69,6 @@ function Detail() {
   const [ productionCountry, setProductContry ] = useState<string>("");
   const [ casts, setCasts ] = useState<Cast[]>([]);
   const [ crews, setCrews ] = useState<Crew[]>([]);
-  const [ externalIds, setExternalIds] = useState<ExternalIds>({
-    imdb_id: "",
-    facebook_id: "",
-    instagram_id: "",
-    twitter_id: "",
-    id: 0,
-  });
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
   const { data } = usePalette(POSTER_PATH);
@@ -98,14 +86,6 @@ function Detail() {
     };
     getMovie();
     getCredits();
-  }, [id]);
-
-  useEffect(() => {
-    async function getExternalIds() {
-      const res = await axios.get(`${BASE_URL}/movie/${id}/external_ids?api_key=${API_KEY}&`);
-      setExternalIds(res.data)
-    };
-    getExternalIds();
   }, [id]);
 
   useEffect(() => {
@@ -165,23 +145,7 @@ function Detail() {
               </CastContainer>
             </MainInfo>
             <SideInfo>
-              <Hompages>
-                <Hompage>
-                  <A href={`https://www.facebook.com/${externalIds.instagram_id}`} rel="noreferrer" target="_blank">
-                    <FontAwesomeIcon icon={faSquareFacebook} size="3x"/>
-                  </A>
-                </Hompage>
-                <Hompage>
-                  <A href={`https://twitter.com/${externalIds.instagram_id}`} rel="noreferrer" target="_blank">
-                    <FontAwesomeIcon icon={faSquareTwitter} size="3x"/>
-                  </A>
-                </Hompage>
-                <Hompage>
-                  <A href={`https://www.instagram.com/${externalIds.instagram_id}`} rel="noreferrer" target="_blank">
-                    <FontAwesomeIcon icon={faSquareInstagram} size="3x"/>
-                  </A>
-                </Hompage>
-              </Hompages>
+              <Homepages id={movie.id}/>
               <H3>원제</H3>
               <P>{movie.original_title}</P>
               <H3>상태</H3>
