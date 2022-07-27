@@ -112,7 +112,7 @@ export const Crews = styled.section`
   ${H4} {
     margin-bottom: 0.5rem;
   }
-`
+  `
 
 export const SubInfo = styled.section`
   margin: 2rem;
@@ -122,7 +122,19 @@ export const SubInfo = styled.section`
 `;
 
 export const MainInfo = styled.article`
+  margin: 1rem 0;
   height: 25rem;
+  `;
+
+export const SideInfo = styled.aside`
+
+  ${H3} {
+    margin-top: 1rem;
+  };
+
+  ${P} {
+    margin-top: .5rem;
+  };
 `;
 
 export const CastContainer = styled.article`
@@ -154,13 +166,18 @@ export const Casts = styled.div`
 export const CardContainer = styled.div`
 `;
 
-export const SideInfo = styled.aside`
-
-  ${H3} {
-    margin-top: 1rem;
-  };
-
-  ${P} {
-    margin-top: .5rem;
-  };
+export const Hompages = styled.ol`
+  display: inline-block;
+  list-style: none inside;
+  padding: 0;
 `;
+
+export const Hompage = styled.li`
+  float: left;
+  margin-left: 1rem;
+`
+
+export const A = styled.a`
+  /* font-size: 3rem;/ */
+  color: white;
+`

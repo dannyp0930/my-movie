@@ -4,6 +4,7 @@ import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
+  A,
   BasicInfo,
   CardContainer,
   CastContainer,
@@ -14,6 +15,8 @@ import {
   H2,
   H3,
   H4,
+  Hompage,
+  Hompages,
   Main,
   MainInfo,
   MovieBackdrop,
@@ -33,7 +36,9 @@ import axios from "axios";
 import CharacterCard from "../../components/CharacterCard";
 import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
-import { Cast, Crew, Movie, ProductionCountry, ReleaseDate, ReleaseDates, Video } from "store/types/interfaces";
+import { Cast, Crew, ExternalIds, Movie, ProductionCountry, ReleaseDate, ReleaseDates, Video } from "store/types/interfaces";
+import { faSquareFacebook, faSquareInstagram, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -89,6 +94,13 @@ function Detail() {
   const [ producers, setProducers ] = useState<Crew[]>([]);
   const [ musics, setMusics ] = useState<Crew[]>([]);
   const [ videos, setVideos ] = useState<Video[]>([]);
+  const [ externalIds, setExternalIds] = useState<ExternalIds>({
+    imdb_id: "",
+    facebook_id: "",
+    instagram_id: "",
+    twitter_id: "",
+    id: 0,
+  });
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
   const { data } = usePalette(POSTER_PATH);
@@ -124,8 +136,12 @@ function Detail() {
   }, [id]);
 
   useEffect(() => {
-    console.log(videos)
-  }, [videos])
+    async function getExternalIds() {
+      const res = await axios.get(`${BASE_URL}/movie/${id}/external_ids?api_key=${API_KEY}&`);
+      setExternalIds(res.data)
+    };
+    getExternalIds();
+  }, [id]);
 
   useEffect(() => {
     if (movie.production_countries.length) {
@@ -169,7 +185,6 @@ function Detail() {
       setCertification(ORreleaseDate.certification)
     };
   }, [KRreleaseDate, ORreleaseDate]);
-
 
   useEffect(() => {
     setColor(data.muted);
@@ -244,6 +259,23 @@ function Detail() {
               </CastContainer>
             </MainInfo>
             <SideInfo>
+              <Hompages>
+                <Hompage>
+                  <A href={`https://www.facebook.com/${externalIds.instagram_id}`} rel="noreferrer" target="_blank">
+                    <FontAwesomeIcon icon={faSquareFacebook} size="3x"/>
+                  </A>
+                </Hompage>
+                <Hompage>
+                  <A href={`https://twitter.com/${externalIds.instagram_id}`} rel="noreferrer" target="_blank">
+                    <FontAwesomeIcon icon={faSquareTwitter} size="3x"/>
+                  </A>
+                </Hompage>
+                <Hompage>
+                  <A href={`https://www.instagram.com/${externalIds.instagram_id}`} rel="noreferrer" target="_blank">
+                    <FontAwesomeIcon icon={faSquareInstagram} size="3x"/>
+                  </A>
+                </Hompage>
+              </Hompages>
               <H3>원제</H3>
               <P>{movie.original_title}</P>
               <H3>상태</H3>
