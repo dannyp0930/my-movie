@@ -7,8 +7,10 @@ import {
   CardContainer,
   CastContainer,
   Casts,
+  Crews,
   H2,
   H3,
+  H4,
   Main,
   MainInfo,
   MovieBackdrop,
@@ -64,6 +66,7 @@ function Detail() {
   const [ directors, setDirectors ] = useState<Crew[]>([]);
   const [ screenplays, setScreenplays ] = useState<Crew[]>([]);
   const [ producers, setProducers ] = useState<Crew[]>([]);
+  const [ musics, setMusics ] = useState<Crew[]>([]);
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
   const { data } = usePalette(POSTER_PATH);
@@ -75,10 +78,12 @@ function Detail() {
     };    
     const getCredits = async () => {
       const res = await axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
+      console.log(res.data)
       setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 8));
       setDirectors(res.data.crew.filter((c: Crew) => c.job === "Director"));
-      setScreenplays(res.data.crew.filter((c: Crew) => c.job === "Screenplay"));
+      setScreenplays(res.data.crew.filter((c: Crew) => c.job === "Screenplay" || c.job ==="Writer"));
       setProducers(res.data.crew.filter((c: Crew) => c.job === "Producer"));
+      setMusics(res.data.crew.filter((c: Crew) => c.job === "Original Music Composer"));
     };    
     getMovie();
     getCredits();
@@ -128,6 +133,24 @@ function Detail() {
                   <Tagline>{movie.tagline}</Tagline>
                   <H3>개요</H3>
                   <P>{movie.overview}</P>
+                  <Crews>
+                    <div>
+                      <H4>감독</H4>
+                      {directors.map(director => <P key={director.id}>{director.name}</P>)}
+                    </div>
+                    <div>
+                      <H4>각본</H4>
+                      {screenplays.map(screenplay => <P key={screenplay.id}>{screenplay.name}</P>)}
+                    </div>
+                    <div>
+                      <H4>제작</H4>
+                      {producers.map(producer => <P key={producer.id}>{producer.name}</P>)}
+                    </div>
+                    <div>
+                      <H4>음악</H4>
+                      {musics.map(music => <P key={music.id}>{music.name}</P>)}
+                    </div>
+                  </Crews>
                 </MovieContent>
               </MovieContainer>
             </MovieBackdrop>

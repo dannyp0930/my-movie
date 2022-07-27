@@ -1,19 +1,11 @@
 import styled from "styled-components";
 
-interface MainProps {
-  color: string;
-};
-
-interface MovieBackdropProps {
-  backdrop: string;
-};
-
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
 `;
 
-export const PrimeInfo = styled.section<MainProps>`
+export const PrimeInfo = styled.section<{ color: string }>`
   display: flex;
   justify-content: center;
   position: relative;
@@ -30,7 +22,7 @@ export const PrimeInfo = styled.section<MainProps>`
   };
 `;
 
-export const MovieBackdrop = styled.div<MovieBackdropProps>`
+export const MovieBackdrop = styled.div<{ backdrop: string }>`
   background-image: url(${props => props.backdrop});
   background-size: cover;
   height: 100%;
@@ -62,6 +54,10 @@ export const H3 = styled.h3`
   margin: 0;
 `;
 
+export const H4 = styled.h4`
+  margin: 0;
+`;
+
 export const P = styled.p`
   margin: 0;
 `;
@@ -83,6 +79,16 @@ export const Tagline = styled(H3)`
 export const Overview = styled(P)`
    
 `;
+
+export const Crews = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1rem;
+
+  ${H4} {
+    margin-bottom: 0.5rem;
+  }
+`
 
 export const SubInfo = styled.section`
   margin: 2rem;
