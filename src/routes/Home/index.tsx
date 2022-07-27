@@ -9,7 +9,6 @@ function Home() {
   const [ loading, setLoading ] = useState<boolean>(true);
   const [ popularMovies, setPopularMovies ] = useState([]);
   const [ topMovies, setTopMovies ] = useState([]);
-  const [ comeMovies, setComeMovies ] = useState([]);
 
   async function getPopularMovies() {
     const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
@@ -21,15 +20,9 @@ function Home() {
     setTopMovies(res.data.results);
   };
 
-  async function getComeMovies() {
-    const res = await axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=ko-KR`);
-    setComeMovies(res.data.results);
-  };
-
   useEffect(() => {
     getPopularMovies();
     getTopMovies();
-    getComeMovies();
     setTimeout(() => {
       setLoading(false);
     }, 1000);
@@ -54,10 +47,6 @@ function Home() {
             <Carousel
               movies={topMovies}
               title="최고 평점 영화"
-            />
-            <Carousel
-              movies={comeMovies}
-              title="개봉 예정 영화"
             />
           </Content>
         </Article>

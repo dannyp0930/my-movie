@@ -4,10 +4,13 @@ import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
+  BasicInfo,
   CardContainer,
   CastContainer,
   Casts,
+  Certification,
   Crews,
+  Dot,
   H2,
   H3,
   H4,
@@ -21,7 +24,8 @@ import {
   PrimeInfo,
   SideInfo,
   SubInfo,
-  Tagline
+  Tagline,
+  Text
 } from "./style";
 import DefatulPoster from "../../assets/images/default_poster.jpg";
 import DefatulBanner from "../../assets/images/default_banner.jpg";
@@ -29,7 +33,7 @@ import axios from "axios";
 import CharacterCard from "../../components/CharacterCard";
 import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
-import { Cast, Crew, Movie } from "store/types/interfaces";
+import { Cast, Crew, Movie, ProductionCountry, ReleaseDate, ReleaseDates } from "store/types/interfaces";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -62,6 +66,23 @@ function Detail() {
     vote_average: 0,
     vote_count: 0,
   });
+  const [ releaseDatesList, setReleaseDatesList ] = useState<ReleaseDates[]>([]);
+  const [ KRreleaseDate, setKRReleaseDate ] = useState<ReleaseDate>({
+    certification: "",
+    iso_639_1: "",
+    release_date: "",
+    type: 0,
+    note: "",
+  });
+  const [ productionCountry, setProductContry ] = useState<string>();
+  const [ ORreleaseDate, setORReleaseDate ] = useState<ReleaseDate>({
+    certification: "",
+    iso_639_1: "",
+    release_date: "",
+    type: 0,
+    note: "",
+  });
+  const [ certification, setCertification ] = useState<string>("");
   const [ casts, setCasts ] = useState<Cast[]>([]);
   const [ directors, setDirectors ] = useState<Crew[]>([]);
   const [ screenplays, setScreenplays ] = useState<Crew[]>([]);
@@ -72,44 +93,76 @@ function Detail() {
   const { data } = usePalette(POSTER_PATH);
 
   useEffect(() => {
-    const getMovie = async () => {
+    async function getMovie() {
       const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`);
       setMovie(res.data);
     };    
-    const getCredits = async () => {
+    async function getCredits() {
       const res = await axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
       setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 10));
       setDirectors(res.data.crew.filter((c: Crew) => c.job === "Director"));
       setScreenplays(res.data.crew.filter((c: Crew) => c.job === "Screenplay" || c.job ==="Writer"));
       setProducers(res.data.crew.filter((c: Crew) => c.job === "Producer"));
       setMusics(res.data.crew.filter((c: Crew) => c.job === "Original Music Composer"));
-    };    
+    };
+    async function getReleaseDates() {
+      const res = await axios.get(`${BASE_URL}/movie/${id}/release_dates?api_key=${API_KEY}`);
+      setReleaseDatesList(res.data.results);
+    };
     getMovie();
     getCredits();
+    getReleaseDates();
   }, [id]);
 
+  useEffect(() => {
+    if (movie.production_countries.length) {
+      const res = movie.production_countries.filter((data: ProductionCountry) => data.iso_3166_1 !== "KR")[0];
+      setProductContry(res.iso_3166_1);
+    };
+    if (movie.poster_path) {
+      setPOSTER_PATH(IMG_URL + movie.poster_path);
+    } else {
+      setPOSTER_PATH(DefatulPoster);
+    };
+    if (movie.backdrop_path) {
+      setBACKDROP_PATH(IMG_URL + movie.backdrop_path);
+    } else {
+      setBACKDROP_PATH(DefatulBanner);
+    };
+  }, [movie]);
 
   useEffect(() => {
-    if (movie) {
-      if (movie.poster_path) {
-        setPOSTER_PATH(IMG_URL + movie.poster_path);
-      } else {
-        setPOSTER_PATH(DefatulPoster);
-      }
-      if (movie.backdrop_path) {
-        setBACKDROP_PATH(IMG_URL + movie.backdrop_path);
-      } else {
-        setBACKDROP_PATH(DefatulBanner);
-      }
-    }
-  }, [movie]);
+    if (releaseDatesList.length) {
+      const res = releaseDatesList.filter((data: ReleaseDates) => data.iso_3166_1 === "KR")[0];
+      if (res) {
+        setKRReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1 && data.type !== 2)[0]);
+      };
+    };
+  }, [releaseDatesList]);
+
+  useEffect(() => {
+    if (releaseDatesList.length) {
+      const res = releaseDatesList.filter((data: ReleaseDates) => data.iso_3166_1 === productionCountry)[0];
+      if (res) {
+        setORReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1 && data.type !== 2)[0]);
+      };
+    };
+  }, [releaseDatesList, productionCountry]);
+
+  useEffect(() => {
+    if (KRreleaseDate.certification) {
+      setCertification(KRreleaseDate.certification)
+    } else if (ORreleaseDate.certification) {
+      setCertification(ORreleaseDate.certification)
+    };
+  }, [KRreleaseDate, ORreleaseDate]);
 
   useEffect(() => {
     setColor(data.muted);
     setTimeout(() => {
       setLoading(false);
     }, 1000);
-  }, [data])
+  }, [data]);
 
   return (
     <article>
@@ -121,13 +174,20 @@ function Detail() {
                 <MovieImg src={POSTER_PATH} alt="poster_img"/>
                 <MovieContent>
                   <H2>{movie.title}</H2>
-                  <P>
-                    {movie.release_date}
-                    &nbsp;·&nbsp;
-                    {movie.genres.map(genre => genre.name).join(', ')}
-                    &nbsp;·&nbsp;
-                    {parseInt(String(movie.runtime / 60))}h {movie.runtime % 60}m
-                  </P>
+                  <BasicInfo>
+                    {certification && <Certification>{certification}</Certification>}
+                    <Text>
+                      {KRreleaseDate.release_date ? `${KRreleaseDate.release_date.slice(0, 10)}(KR)` : `${ORreleaseDate.release_date.slice(0, 10)}(${productionCountry})`}
+                    </Text>
+                    <Dot>·</Dot>
+                    <Text>
+                      {movie.genres.map(genre => genre.name).join(', ')}
+                    </Text>
+                    <Dot>·</Dot>
+                    <Text>
+                      {parseInt(String(movie.runtime / 60))}h {movie.runtime % 60}m
+                    </Text>
+                  </BasicInfo>
                   <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
                   <Tagline>{movie.tagline}</Tagline>
                   <H3>개요</H3>

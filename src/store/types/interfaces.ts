@@ -76,3 +76,16 @@ export interface Crew {
   department: string;
   job: string;
 };
+
+export interface ReleaseDate {
+  certification: string;
+  iso_639_1: string;
+  release_date: string;
+  type: number;
+  note: string;
+}
+
+export interface ReleaseDates {
+  iso_3166_1: string;
+  release_dates: ReleaseDate[];
+}

@@ -69,6 +69,30 @@ export const MovieContent = styled.section`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
+
+  ${P} {
+    font-size: 16px;
+  };
+`;
+
+export const BasicInfo = styled.div`
+  display: flex;
+  column-gap: .5rem;
+  align-items: center;
+`;
+
+export const Certification = styled.div`
+  border: 1px solid white;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 2px 5px;
+`;
+
+export const Dot = styled.div`
+  font-weight: bold;
+`;
+
+export const Text = styled.div`
 `;
 
 export const Tagline = styled(H3)`
