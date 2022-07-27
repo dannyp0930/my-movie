@@ -33,7 +33,7 @@ import axios from "axios";
 import CharacterCard from "../../components/CharacterCard";
 import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
-import { Cast, Crew, Movie, ProductionCountry, ReleaseDate, ReleaseDates } from "store/types/interfaces";
+import { Cast, Crew, Movie, ProductionCountry, ReleaseDate, ReleaseDates, Video } from "store/types/interfaces";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -88,6 +88,7 @@ function Detail() {
   const [ screenplays, setScreenplays ] = useState<Crew[]>([]);
   const [ producers, setProducers ] = useState<Crew[]>([]);
   const [ musics, setMusics ] = useState<Crew[]>([]);
+  const [ videos, setVideos ] = useState<Video[]>([]);
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
   const { data } = usePalette(POSTER_PATH);
@@ -112,6 +113,14 @@ function Detail() {
     getMovie();
     getCredits();
     getReleaseDates();
+  }, [id]);
+
+  useEffect(() => {
+    async function getVideos() {
+      const res = await axios.get(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&language=ko-KR`);
+      setVideos(res.data.results.filter((data: Video) => data.site === "YouTube"));
+    };
+    getVideos();
   }, [id]);
 
   useEffect(() => {
@@ -156,6 +165,7 @@ function Detail() {
       setCertification(ORreleaseDate.certification)
     };
   }, [KRreleaseDate, ORreleaseDate]);
+
 
   useEffect(() => {
     setColor(data.muted);
@@ -218,6 +228,7 @@ function Detail() {
             <MainInfo>
               <H2>주요 출연진</H2>
               <CastContainer>
+                {casts.length &&
                 <Casts>
                   {casts.map(cast => {
                     return (
@@ -225,7 +236,7 @@ function Detail() {
                         <CharacterCard cast={cast}/>
                       </CardContainer>
                   )})}
-                </Casts>
+                </Casts>}
               </CastContainer>
             </MainInfo>
             <SideInfo>
@@ -240,6 +251,17 @@ function Detail() {
               <H3>수익</H3>
               <P>{getMoney(movie.revenue)}</P>
             </SideInfo>
+            <MainInfo>
+              <H2>동영상</H2>
+              { videos.length ?
+              <iframe
+                width="560" height="315"
+                src={`https://www.youtube.com/embed/${videos[0].key}`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              /> :
+              <></>}
+            </MainInfo>
           </SubInfo>
         </Main>
       ) : (

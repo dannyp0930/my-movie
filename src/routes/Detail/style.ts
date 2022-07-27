@@ -122,6 +122,7 @@ export const SubInfo = styled.section`
 `;
 
 export const MainInfo = styled.article`
+  height: 25rem;
 `;
 
 export const CastContainer = styled.article`

@@ -8,17 +8,17 @@ export interface ProductionCompany {
   id: number;
   logo_path: string | null;
   origin_country: string;
-}
+};
 
 export interface ProductionCountry {
   iso_3166_1: string;
   name: string;
-}
+};
 
 export interface SpokenLanguage {
   iso_639_1: string;
   name: string;
-}
+};
 
 export interface Movie {
   adult: boolean;
@@ -83,9 +83,21 @@ export interface ReleaseDate {
   release_date: string;
   type: number;
   note: string;
-}
+};
 
 export interface ReleaseDates {
   iso_3166_1: string;
   release_dates: ReleaseDate[];
+};
+
+export interface Video {
+  iso_6391: string;
+  iso_3166_1: String;
+  name: string;
+  key: string;
+  site: string;
+  size: number;
+  official: boolean;
+  published_at: string;
+  id: string;
 }
