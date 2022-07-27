@@ -19,7 +19,7 @@ export default function Videos({ id }: { id: number }) {
       setClips(videos.filter((v: Video) => v.type === "Clip"));
       setFeaturettes(videos.filter((v: Video) => v.type === "Featurette"));
     };
-    getVideos();
+    if (id) getVideos();
   }, [id])
 
   function showVideo() {
