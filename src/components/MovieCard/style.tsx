@@ -29,7 +29,7 @@ export const CardTitle = styled.p`
   font-size: 16px;
   text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
   text-align: center;
-  top: 1px;
+  bottom: 1px;
   left: 50%;
   transform: translateX(-50%);
 `;

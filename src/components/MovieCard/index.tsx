@@ -13,7 +13,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
       <Link to={`/movie/${movie.id}`}>
         <CardItem>
           <CardTitle>{movie.title}</CardTitle>
-          <CardImage src={movie.poster_path ? IMG_URL + movie.poster_path : DefatulBanner} alt="poster_img"/>
+          <CardImage src={movie.backdrop_path ? IMG_URL + movie.backdrop_path : DefatulBanner} alt="poster_img"/>
         </CardItem>
       </Link>
     </Card>
