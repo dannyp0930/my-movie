@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
@@ -31,6 +31,7 @@ import Crews from "components/Crews";
 import Casts from "components/Casts";
 import BasicInfo from "components/BasicInfo";
 import Homepages from "components/Homepages";
+import Videos from "components/Videos";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -65,10 +66,6 @@ function Detail() {
   const [ productionCountry, setProductContry ] = useState<string>("");
   const [ casts, setCasts ] = useState<Cast[]>([]);
   const [ crews, setCrews ] = useState<Crew[]>([]);
-  const [ trailers, setTrailers] = useState<Video[]>([]);
-  const [ teasers, setTeasers] = useState<Video[]>([]);
-  const [ clips, setClips] = useState<Video[]>([]);
-  const [ featurettes, setFeaturettes] = useState<Video[]>([]);
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
   const { data } = usePalette(POSTER_PATH);
@@ -84,17 +81,8 @@ function Detail() {
       setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 10));
       setCrews(res.data.crew);
     };
-    async function getVideos() {
-      const res = await axios.get(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&language=ko-KR`);
-      const videos = res.data.results.filter((data: Video) => data.site === "YouTube");
-      setTrailers(videos.filter((v: Video) => v.type === "Trailer"));
-      setTeasers(videos.filter((v: Video) => v.type === "Teaser"));
-      setClips(videos.filter((v: Video) => v.type === "Clip"));
-      setFeaturettes(videos.filter((v: Video) => v.type === "Featurette"));
-    };
     getMovie();
     getCredits();
-    getVideos();
   }, [id]);
 
   useEffect(() => {
@@ -141,7 +129,7 @@ function Detail() {
                   <Tagline>{movie.tagline}</Tagline>
                   <h3>개요</h3>
                   <p>{movie.overview}</p>
-                  <Crews crews={crews}/>
+                  <Crews crews={crews} />
                 </MovieContent>
               </MovieContainer>
             </MovieBackdrop>
@@ -149,7 +137,7 @@ function Detail() {
           <SubInfo>
             <MainInfo>
               <h2>주요 출연진</h2>
-              <Casts casts={casts}/>
+              <Casts casts={casts} />
             </MainInfo>
             <SideInfo>
               <Homepages id={movie.id}/>
@@ -166,11 +154,7 @@ function Detail() {
             </SideInfo>
             <MainInfo>
               <h2>영상</h2>
-              <Link to="trailer" state={{videos: trailers}}>예고편</Link>
-              <Link to="teaser" state={{videos: teasers}}>티저</Link>
-              <Link to="clip" state={{videos: clips}}>클립</Link>
-              <Link to="featurette" state={{videos: featurettes}}>피처렛</Link>
-              <Outlet />
+              <Videos id={movie.id} />
             </MainInfo>
           </SubInfo>
         </Main>

@@ -6,7 +6,6 @@ import Navigation from "../components/common/Navigation";
 import NotFound from "../routes/NotFound";
 import Search from "../routes/Search";
 import { Container } from "./style";
-import Video from "routes/Detail/Videos";
 
 function App() {
   return (
@@ -15,9 +14,7 @@ function App() {
         <Navigation/>
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="movie/:id" element={<Detail/>}>
-            <Route path=":kind" element={<Video />} />
-          </Route>
+          <Route path="movie/:id" element={<Detail/>} />
           <Route path="search" element={<Search/>} />
           <Route path="*" element={<NotFound/>} />
         </Routes>
