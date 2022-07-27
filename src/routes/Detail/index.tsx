@@ -118,10 +118,14 @@ function Detail() {
   useEffect(() => {
     async function getVideos() {
       const res = await axios.get(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&language=ko-KR`);
-      setVideos(res.data.results.filter((data: Video) => data.site === "YouTube"));
+      setVideos(res.data.results.filter((data: Video) => data.site === "YouTube" && data.type === "Trailer"));
     };
     getVideos();
   }, [id]);
+
+  useEffect(() => {
+    console.log(videos)
+  }, [videos])
 
   useEffect(() => {
     if (movie.production_countries.length) {
@@ -252,10 +256,11 @@ function Detail() {
               <P>{getMoney(movie.revenue)}</P>
             </SideInfo>
             <MainInfo>
-              <H2>동영상</H2>
+              <H2>예고편 {videos.length}</H2>
               { videos.length ?
               <iframe
                 width="560" height="315"
+                style={{marginTop: "1rem", border: "none"}}
                 src={`https://www.youtube.com/embed/${videos[0].key}`}
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

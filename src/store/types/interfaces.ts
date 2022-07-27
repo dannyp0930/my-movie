@@ -97,6 +97,7 @@ export interface Video {
   key: string;
   site: string;
   size: number;
+  type: string;
   official: boolean;
   published_at: string;
   id: string;
