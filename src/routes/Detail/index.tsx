@@ -78,7 +78,6 @@ function Detail() {
     };    
     const getCredits = async () => {
       const res = await axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
-      console.log(res.data)
       setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 10));
       setDirectors(res.data.crew.filter((c: Crew) => c.job === "Director"));
       setScreenplays(res.data.crew.filter((c: Crew) => c.job === "Screenplay" || c.job ==="Writer"));
