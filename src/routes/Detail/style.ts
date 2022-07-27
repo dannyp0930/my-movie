@@ -94,20 +94,40 @@ export const SubInfo = styled.section`
   margin: 2rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  column-gap: 2rem;
 `;
 
 export const MainInfo = styled.article`
 `;
 
 export const CastContainer = styled.article`
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
 `;
 
-export const Casts = styled.ol`
-  list-style: none inside;
+export const Casts = styled.div`
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  display: flex;
+  position: absolute;
+
+  &::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  };
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  };
 `;
 
-export const CardContainer = styled.li`
-  float: left;
+export const CardContainer = styled.div`
 `;
 
 export const SideInfo = styled.aside`

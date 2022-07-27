@@ -5,6 +5,6 @@ body {
   justify-content: center;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
-} */
+}
