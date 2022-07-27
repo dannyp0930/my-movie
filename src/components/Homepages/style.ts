@@ -9,8 +9,8 @@ export const Ol = styled.ol`
 export const Li = styled.li`
   float: left;
   margin-left: 1rem;
-`
+`;
 
 export const A = styled.a`
   color: white;
-`
+`;

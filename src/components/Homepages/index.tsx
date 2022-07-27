@@ -41,5 +41,5 @@ export default function Homepages({ id }: { id: number }) {
         </A>
       </Li>
     </Ol>
-  )
-}
+  );
+};

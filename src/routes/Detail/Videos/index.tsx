@@ -23,7 +23,7 @@ function Videos() {
       /> :
       <></>}
     </div>
-  )
+  );
 };
 
 export default Videos;
