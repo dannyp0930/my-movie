@@ -6,9 +6,7 @@ import { usePalette } from "react-palette";
 import {
   A,
   BasicInfo,
-  CardContainer,
   CastContainer,
-  Casts,
   Certification,
   Dot,
   H2,
@@ -31,12 +29,11 @@ import {
 import DefatulPoster from "../../assets/images/default_poster.jpg";
 import DefatulBanner from "../../assets/images/default_banner.jpg";
 import axios from "axios";
-import CharacterCard from "../../components/CharacterCard";
 import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
 import { 
   Cast,
-  Credits,
+  Crew,
   ExternalIds,
   Movie,
   ProductionCountry,
@@ -47,6 +44,7 @@ import { faSquareFacebook, faSquareInstagram, faSquareTwitter } from "@fortaweso
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Videos from "components/Videos";
 import Crews from "components/Crews";
+import Casts from "components/Casts";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -96,12 +94,8 @@ function Detail() {
     note: "",
   });
   const [ certification, setCertification ] = useState<string>("");
-  const [ credits, setCredits ] = useState<Credits>({
-    id: 0,
-    cast: [],
-    crew: [], 
-  });
   const [ casts, setCasts ] = useState<Cast[]>([]);
+  const [ crews, setCrews ] = useState<Crew[]>([]);
   const [ externalIds, setExternalIds] = useState<ExternalIds>({
     imdb_id: "",
     facebook_id: "",
@@ -120,8 +114,8 @@ function Detail() {
     };    
     async function getCredits() {
       const res = await axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
-      setCredits(res.data);
       setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 10));
+      setCrews(res.data.crew);
     };
     async function getReleaseDates() {
       const res = await axios.get(`${BASE_URL}/movie/${id}/release_dates?api_key=${API_KEY}`);
@@ -218,7 +212,7 @@ function Detail() {
                   <Tagline>{movie.tagline}</Tagline>
                   <H3>개요</H3>
                   <P>{movie.overview}</P>
-                  <Crews credits={credits}/>
+                  <Crews crews={crews}/>
                 </MovieContent>
               </MovieContainer>
             </MovieBackdrop>
@@ -227,15 +221,7 @@ function Detail() {
             <MainInfo>
               <H2>주요 출연진</H2>
               <CastContainer>
-                {casts.length &&
-                <Casts>
-                  {casts.map(cast => {
-                    return (
-                      <CardContainer key={cast.id}>
-                        <CharacterCard cast={cast}/>
-                      </CardContainer>
-                  )})}
-                </Casts>}
+                <Casts casts={casts}/>
               </CastContainer>
             </MainInfo>
             <SideInfo>

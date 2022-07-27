@@ -77,12 +77,6 @@ export interface Crew {
   job: string;
 };
 
-export interface Credits {
-  id: number;
-  cast: Cast[];
-  crew: Crew[];
-};
-
 export interface ReleaseDate {
   certification: string;
   iso_639_1: string;

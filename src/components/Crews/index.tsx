@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Credits, Crew } from 'store/types/interfaces';
+import { Crew } from 'store/types/interfaces';
 import { Container } from './style';
 
-export default function Crews({ credits }: { credits:  Credits }) {
+export default function Crews({ crews }: { crews:  Crew[] }) {
   const [ directors, setDirectors ] = useState<Crew[]>([]);
   const [ screenplays, setScreenplays ] = useState<Crew[]>([]);
   const [ producers, setProducers ] = useState<Crew[]>([]);
   const [ musics, setMusics ] = useState<Crew[]>([]);
 
   useEffect(() => {
-    setDirectors(credits.crew.filter((c: Crew) => c.job === "Director"));
-    setScreenplays(credits.crew.filter((c: Crew) => c.job === "Screenplay"));
-    setProducers(credits.crew.filter((c: Crew) => c.job === "Producer"));
-    setMusics(credits.crew.filter((c: Crew) => c.job === "Original Music Composer"));
-  }, [credits]);
+    setDirectors(crews.filter((c: Crew) => c.job === "Director"));
+    setScreenplays(crews.filter((c: Crew) => c.job === "Screenplay"));
+    setProducers(crews.filter((c: Crew) => c.job === "Producer"));
+    setMusics(crews.filter((c: Crew) => c.job === "Original Music Composer"));
+  }, [crews]);
 
   return (
     <Container>
