@@ -20,7 +20,7 @@ export default function Homepages({ id }: { id: number }) {
       const res = await axios.get(`${BASE_URL}/movie/${id}/external_ids?api_key=${API_KEY}&`);
       setExternalIds(res.data)
     };
-    getExternalIds();
+    if (id) getExternalIds();
   }, [id]);
 
   return (

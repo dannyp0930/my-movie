@@ -14,8 +14,8 @@ export default function index({ cast }: { cast: Cast }) {
       return DefaultMan
     } else {
       return DefaultNone
-    }
-  }
+    };
+  };
 
   return (
     <Card>

@@ -34,8 +34,8 @@ export default function BasicInfo({ id, genres, runtime, productionCountry }: Ba
       const res = await axios.get(`${BASE_URL}/movie/${id}/release_dates?api_key=${API_KEY}`);
       setReleaseDatesList(res.data.results);
     };
-    getReleaseDatesList();
-  });
+    if (id) getReleaseDatesList();
+  }, [id]);
 
   useEffect(() => {
     if (releaseDatesList.length) {

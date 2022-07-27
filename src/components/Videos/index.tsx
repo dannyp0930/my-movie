@@ -15,7 +15,7 @@ export default function Videos({ id }: { id: number }) {
       const res = await axios.get(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&language=ko-KR`);
       setVideos(res.data.results.filter((data: Video) => data.site === "YouTube"));
     };
-    getVideos();
+    if (id) getVideos();
   }, [id]);
 
   useEffect(() => {

@@ -8,7 +8,7 @@ export default function DonutChart({ percentage }: { percentage: number }) {
       return "#D2D531"
     } else {
       return "#21D07A"
-    }
+    };
   };
 
   function getSubColor(percentage: number) {
@@ -18,14 +18,14 @@ export default function DonutChart({ percentage }: { percentage: number }) {
       return "#423D0F"
     } else {
       return "#1C3E28"
-    }
+    };
   };
 
   function getDraw(percentage: number) {
     const degree = Math.PI * percentage / 50;
     const x = 50 + 40 * Math.sin(degree);
     const y = 50 - 40 * Math.cos(degree);
-    return `0 ${(degree > Math.PI ? 1 : 0)} 1 ${x} ${y}`
+    return `0 ${(degree > Math.PI ? 1 : 0)} 1 ${x} ${y}`;
   };
 
   return (
