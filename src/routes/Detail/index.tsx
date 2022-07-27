@@ -25,7 +25,6 @@ import {
   Crew,
   Movie,
   ProductionCountry,
-  Video,
 } from "store/types/interfaces";
 import Crews from "components/Crews";
 import Casts from "components/Casts";
