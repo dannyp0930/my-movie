@@ -36,9 +36,18 @@ import axios from "axios";
 import CharacterCard from "../../components/CharacterCard";
 import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
-import { Cast, Crew, ExternalIds, Movie, ProductionCountry, ReleaseDate, ReleaseDates, Video } from "store/types/interfaces";
+import { 
+  Cast,
+  Crew,
+  ExternalIds,
+  Movie,
+  ProductionCountry,
+  ReleaseDate,
+  ReleaseDates
+} from "store/types/interfaces";
 import { faSquareFacebook, faSquareInstagram, faSquareTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Videos from "components/Videos";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(false);
@@ -93,7 +102,6 @@ function Detail() {
   const [ screenplays, setScreenplays ] = useState<Crew[]>([]);
   const [ producers, setProducers ] = useState<Crew[]>([]);
   const [ musics, setMusics ] = useState<Crew[]>([]);
-  const [ videos, setVideos ] = useState<Video[]>([]);
   const [ externalIds, setExternalIds] = useState<ExternalIds>({
     imdb_id: "",
     facebook_id: "",
@@ -125,14 +133,6 @@ function Detail() {
     getMovie();
     getCredits();
     getReleaseDates();
-  }, [id]);
-
-  useEffect(() => {
-    async function getVideos() {
-      const res = await axios.get(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}&language=ko-KR`);
-      setVideos(res.data.results.filter((data: Video) => data.site === "YouTube" && data.type === "Trailer"));
-    };
-    getVideos();
   }, [id]);
 
   useEffect(() => {
@@ -288,16 +288,7 @@ function Detail() {
               <P>{getMoney(movie.revenue)}</P>
             </SideInfo>
             <MainInfo>
-              <H2>예고편 {videos.length}</H2>
-              { videos.length ?
-              <iframe
-                width="560" height="315"
-                style={{marginTop: "1rem", border: "none"}}
-                src={`https://www.youtube.com/embed/${videos[0].key}`}
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              /> :
-              <></>}
+              <Videos id={movie.id}/>
             </MainInfo>
           </SubInfo>
         </Main>

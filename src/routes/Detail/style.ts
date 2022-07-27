@@ -178,6 +178,5 @@ export const Hompage = styled.li`
 `
 
 export const A = styled.a`
-  /* font-size: 3rem;/ */
   color: white;
 `
