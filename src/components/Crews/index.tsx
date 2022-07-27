@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Credits, Crew } from 'store/types/interfaces';
 import { Container } from './style';
 
@@ -13,7 +13,7 @@ export default function Crews({ credits }: { credits:  Credits }) {
     setScreenplays(credits.crew.filter((c: Crew) => c.job === "Screenplay"));
     setProducers(credits.crew.filter((c: Crew) => c.job === "Producer"));
     setMusics(credits.crew.filter((c: Crew) => c.job === "Original Music Composer"));
-  }, [credits])
+  }, [credits]);
 
   return (
     <Container>
@@ -34,5 +34,5 @@ export default function Crews({ credits }: { credits:  Credits }) {
         {musics.map(music => <p key={music.id}>{music.name}</p>)}
       </div>
   </Container>
-  )
-}
+  );
+};
