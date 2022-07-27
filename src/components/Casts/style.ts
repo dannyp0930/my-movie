@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.article`
+  width: 100%;
+  position: relative;
+  justify-content: center;
+`;
+
+export const CastList = styled.div`
   width: 100%;
   overflow: hidden;
   overflow-x: auto;
@@ -20,5 +26,5 @@ export const Container = styled.div`
   };
 `
 
-export const CardContainer = styled.div`
+export const Card = styled.div`
 `;

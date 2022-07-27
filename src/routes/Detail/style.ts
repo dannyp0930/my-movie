@@ -46,18 +46,6 @@ export const MovieImg = styled.img`
   object-fit: fill;
 `;
 
-export const H2 = styled.h2`
-  margin: 0;
-`;
-
-export const H3 = styled.h3`
-  margin: 0;
-`;
-
-export const P = styled.p`
-  margin: 0;
-`;
-
 export const MovieContent = styled.section`
   width: 90%;
   color: white;
@@ -65,18 +53,14 @@ export const MovieContent = styled.section`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
-
-  ${P} {
-    font-size: 16px;
-  };
 `;
 
-export const Tagline = styled(H3)`
+export const Tagline = styled.h3`
   font-weight: normal;
   font-style: italic;
 `;
 
-export const Overview = styled(P)`
+export const Overview = styled.p`
    
 `;
 
@@ -98,18 +82,4 @@ export const MainInfo = styled.article`
   `;
 
 export const SideInfo = styled.aside`
-
-  ${H3} {
-    margin-top: 1rem;
-  };
-
-  ${P} {
-    margin-top: .5rem;
-  };
-`;
-
-export const CastContainer = styled.article`
-  width: 100%;
-  position: relative;
-  justify-content: center;
 `;

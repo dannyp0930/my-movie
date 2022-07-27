@@ -4,16 +4,12 @@ import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
 import { usePalette } from "react-palette";
 import {
-  CastContainer,
-  H2,
-  H3,
   Main,
   MainInfo,
   MovieBackdrop,
   MovieContainer,
   MovieContent,
   MovieImg,
-  P,
   PrimeInfo,
   SideInfo,
   SubInfo,
@@ -121,7 +117,7 @@ function Detail() {
               <MovieContainer>
                 <MovieImg src={POSTER_PATH} alt="poster_img"/>
                 <MovieContent>
-                  <H2>{movie.title}</H2>
+                  <h2>{movie.title}</h2>
                   <BasicInfo
                     id={movie.id}
                     genres={movie.genres} 
@@ -130,8 +126,8 @@ function Detail() {
                   />
                   <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
                   <Tagline>{movie.tagline}</Tagline>
-                  <H3>개요</H3>
-                  <P>{movie.overview}</P>
+                  <h3>개요</h3>
+                  <p>{movie.overview}</p>
                   <Crews crews={crews}/>
                 </MovieContent>
               </MovieContainer>
@@ -139,23 +135,21 @@ function Detail() {
           </PrimeInfo>
           <SubInfo>
             <MainInfo>
-              <H2>주요 출연진</H2>
-              <CastContainer>
-                <Casts casts={casts}/>
-              </CastContainer>
+              <h2>주요 출연진</h2>
+              <Casts casts={casts}/>
             </MainInfo>
             <SideInfo>
               <Homepages id={movie.id}/>
-              <H3>원제</H3>
-              <P>{movie.original_title}</P>
-              <H3>상태</H3>
-              <P>{movie.status}</P>
-              <H3>원어</H3>
-              <P>{movie.original_language}</P>
-              <H3>제작비</H3>
-              <P>{getMoney(movie.budget)}</P>
-              <H3>수익</H3>
-              <P>{getMoney(movie.revenue)}</P>
+              <h3>원제</h3>
+              <p>{movie.original_title}</p>
+              <h3>상태</h3>
+              <p>{movie.status}</p>
+              <h3>원어</h3>
+              <p>{movie.original_language}</p>
+              <h3>제작비</h3>
+              <p>{getMoney(movie.budget)}</p>
+              <h3>수익</h3>
+              <p>{getMoney(movie.revenue)}</p>
             </SideInfo>
             <MainInfo>
               <Videos id={movie.id}/>
