@@ -103,7 +103,6 @@ export const MainInfo = styled.article`
 export const CastContainer = styled.article`
   width: 100%;
   position: relative;
-  display: flex;
   justify-content: center;
 `;
 
