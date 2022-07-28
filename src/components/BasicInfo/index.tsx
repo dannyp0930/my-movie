@@ -9,7 +9,7 @@ interface BasicInfoProps {
   genres: Genre[];
   runtime: number;
   productionCountry: string;
-}
+};
 
 export default function BasicInfo({ id, genres, runtime, productionCountry }: BasicInfoProps) {
   const [ releaseDatesList, setReleaseDatesList ] = useState<ReleaseDates[]>([]);
@@ -78,5 +78,5 @@ export default function BasicInfo({ id, genres, runtime, productionCountry }: Ba
         {parseInt(String(runtime / 60))}h {runtime % 60}m
       </Text>
     </Container>
-  )
-}
+  );
+};

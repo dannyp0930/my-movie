@@ -20,7 +20,7 @@ export default function Videos({ id }: { id: number }) {
       setFeaturettes(videos.filter((v: Video) => v.type === "Featurette"));
     };
     if (id) getVideos();
-  }, [id])
+  }, [id]);
 
   function showVideo() {
     if (select === 0 && trailers.length) {
@@ -71,7 +71,7 @@ export default function Videos({ id }: { id: number }) {
   function noVideo() {
     return (
       <div>영상이 없습니다.</div>
-    )
+    );
   };
 
   return (
