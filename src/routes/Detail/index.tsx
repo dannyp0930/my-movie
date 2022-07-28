@@ -33,7 +33,7 @@ import Homepages from "components/Homepages";
 import Videos from "components/Videos";
 
 function Detail() {
-  const [ loading, setLoading ] = useState<boolean>(false);
+  const [ loading, setLoading ] = useState<boolean>(true);
   const { id } = useParams();
   const [ movie, setMovie ] = useState<Movie>({
     adult: false,
@@ -65,8 +65,8 @@ function Detail() {
   const [ productionCountry, setProductContry ] = useState<string>("");
   const [ casts, setCasts ] = useState<Cast[]>([]);
   const [ crews, setCrews ] = useState<Crew[]>([]);
-  const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>("");
-  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>("");
+  const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>(DefatulPoster);
+  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>(DefatulBanner);
   const { data } = usePalette(POSTER_PATH);
   const [ color, setColor ] = useState<string>();
   
@@ -91,22 +91,21 @@ function Detail() {
     };
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path);
-    } else {
-      setPOSTER_PATH(DefatulPoster);
-    };
+    }
     if (movie.backdrop_path) {
       setBACKDROP_PATH(IMG_URL + movie.backdrop_path);
-    } else {
-      setBACKDROP_PATH(DefatulBanner);
-    };
+    }
   }, [movie]);
 
   useEffect(() => {
     setColor(data.muted);
+  }, [data]);
+
+  useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
-  }, [data]);
+    }, 3000);
+  }, [])
 
   return (
     <article>

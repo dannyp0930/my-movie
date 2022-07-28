@@ -33,7 +33,7 @@ function Home() {
     getUpcommingMovies();
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 3000);
   }, []);
 
   function renderMovies(movies: Movie[]) {
