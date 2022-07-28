@@ -59,7 +59,7 @@ export default function Images({ id, lang }: { id: number, lang:string }) {
           포스터<span>{posters.length}</span>
         </Li>
       </Dl>
-      {select === 0 && ImageSlide(posters)}
+      {select === 0 && ImageSlide(backdrops)}
       {select === 1 && ImageSlide(logos)}
       {select === 2 && ImageSlide(posters)}
     </Container>
