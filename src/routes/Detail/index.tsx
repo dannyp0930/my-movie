@@ -85,7 +85,6 @@ function Detail() {
   }, [id]);
 
   useEffect(() => {
-    console.log(movie)
     if (movie.production_countries.length) {
       const res = movie.production_countries.filter((data: ProductionCountry) => data.iso_3166_1 !== "KR")[0];
       setProductContry(res.iso_3166_1);
