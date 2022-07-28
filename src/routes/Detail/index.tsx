@@ -136,6 +136,7 @@ function Detail() {
             <MainInfo>
               <h2>주요 출연진</h2>
               <Casts casts={casts} />
+              <Videos id={movie.id} />
             </MainInfo>
             <SideInfo>
               <Homepages id={movie.id}/>
@@ -150,9 +151,6 @@ function Detail() {
               <h3>수익</h3>
               <p>{getMoney(movie.revenue)}</p>
             </SideInfo>
-            <MainInfo>
-              <Videos id={movie.id} />
-            </MainInfo>
           </SubInfo>
         </Main>
       ) : (

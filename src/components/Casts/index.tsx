@@ -1,7 +1,7 @@
-import CharacterCard from 'components/CharacterCard'
-import React from 'react'
-import { Cast } from 'store/types/interfaces'
-import { Card, CastList, Container } from './style'
+import React from 'react';
+import CharacterCard from 'components/CharacterCard';
+import { Cast } from 'store/types/interfaces';
+import { Card, CastList, Container } from './style';
 
 export default function Casts({ casts }: {casts: Cast[]}) {
   return (
@@ -15,5 +15,5 @@ export default function Casts({ casts }: {casts: Cast[]}) {
         )})}
       </CastList>
     </Container>
-  )
-}
+  );
+};
