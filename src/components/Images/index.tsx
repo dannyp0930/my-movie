@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Image, images } from 'store/types/interfaces';
+import { Image } from 'store/types/interfaces';
 import { API_KEY, BASE_URL, IMG_URL } from 'utils/API';
 import { Container, Dl, Img, ImgCard, ImgContainer, ImgList, Li } from './style';
 
 export default function Images({ id, lang }: { id: number, lang:string }) {
   const [ select, setSelect ] = useState<number>(0);
-  const [ images, setImages ] = useState<images>();
   const [ backdrops, setBackdrops ] = useState<Image[]>([]);
   const [ logos, setLogos ] = useState<Image[]>([]);
   const [ posters, setPosters ] = useState<Image[]>([]);
@@ -14,7 +13,6 @@ export default function Images({ id, lang }: { id: number, lang:string }) {
   useEffect(() => {
     async function getImages() {
       const res = await axios.get(`${BASE_URL}/movie/${id}/images?api_key=${API_KEY}&include_image_language=ko,${lang},null`);
-      setImages(res.data)
       setBackdrops(res.data.backdrops.sort(function (a: Image, b: Image) { return a.vote_average - b.vote_average }));
       setLogos(res.data.logos.sort(function (a: Image, b: Image) { return a.vote_average - b.vote_average }));
       setPosters(res.data.posters.sort(function (a: Image, b: Image) { return a.vote_average - b.vote_average }));
