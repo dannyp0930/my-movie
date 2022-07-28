@@ -79,8 +79,8 @@ export const SubInfo = styled.section`
 `;
 
 export const MainInfo = styled.article`
-  margin: 1rem 0;
-  `;
+  margin: 1rem 3rem;
+`;
 
 export const SideInfo = styled.aside`
 `;

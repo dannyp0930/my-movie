@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  margin: 3rem;
 `;
 
 export const Dl = styled.nav`
