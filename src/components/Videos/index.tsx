@@ -1,12 +1,15 @@
+import { faAngleDoubleLeft, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Video } from 'store/types/interfaces';
 import { API_KEY, BASE_URL } from 'utils/API';
-import { Container, Count, Dl, Li } from './style';
+import { Button, Container, Count, Dl, Iframe, Li, VideoContainer } from './style';
 
 export default function Videos({ id }: { id: number }) {
   const [ moviesCnt, setMoviesCnt ] = useState<number>(0);
   const [ select, setSelect ] = useState<number>(0);
+  const [ current, setCurrent ] = useState<number>(0);
   const [ trailers, setTrailers] = useState<Video[]>([]);
   const [ teasers, setTeasers] = useState<Video[]>([]);
   const [ clips, setClips] = useState<Video[]>([]);
@@ -24,47 +27,23 @@ export default function Videos({ id }: { id: number }) {
     };
     if (id) getVideos();
   }, [id]);
-
-  function showVideo() {
-    if (select === 0 && trailers.length) {
+  
+  function showVideos(videos: Video[]) {
+    if (videos.length) {
       return (
-        <iframe
-          width="560" height="315"
-          style={{marginTop: "1rem", border: "none"}}
-          src={`https://www.youtube.com/embed/${trailers[0].key}`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        />
-      );
-    } else if (select === 1 && teasers.length) {
-      return (
-        <iframe
-          width="560" height="315"
-          style={{marginTop: "1rem", border: "none"}}
-          src={`https://www.youtube.com/embed/${teasers[0].key}`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        />
-      );
-    } else if (select === 2 && clips.length) {
-      return (
-        <iframe
-          width="560" height="315"
-          style={{marginTop: "1rem", border: "none"}}
-          src={`https://www.youtube.com/embed/${clips[0].key}`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        />
-      );
-    } else if (select === 3 && featurettes.length) {
-      return (
-        <iframe
-          width="560" height="315"
-          style={{marginTop: "1rem", border: "none"}}
-          src={`https://www.youtube.com/embed/${featurettes[0].key}`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        />
+        <VideoContainer>
+          <Button onClick={() => setCurrent(current - 1)} disabled={current === 0}>
+            <FontAwesomeIcon icon={faAngleLeft} size="2x"/>
+          </Button>
+          <Iframe
+            src={`https://www.youtube.com/embed/${videos[current].key}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          />
+          <Button onClick={() => setCurrent(current + 1)} disabled={current === videos.length - 1}>
+            <FontAwesomeIcon icon={faAngleRight} size="2x"/>
+          </Button>
+        </VideoContainer>
       );
     } else {
       return noVideo();
@@ -75,9 +54,9 @@ export default function Videos({ id }: { id: number }) {
     return (
       <div
         style={{
-          marginTop:"16px",
+          marginTop:"1rem",
           width:"560px",
-          height:"320px"
+          height:"315px"
       }}>
         영상이 없습니다.
       </div>
@@ -89,32 +68,35 @@ export default function Videos({ id }: { id: number }) {
       <h2>영상<span style={{fontSize: "12px", marginLeft:"5px"}}>{moviesCnt}</span></h2>
       <Dl>
         <Li 
-          onClick={() => setSelect(0)}
+          onClick={() => {setSelect(0); setCurrent(0);}}
           select={select === 0}
         >
             예고편
             <Count>{trailers.length}</Count>
         </Li>
         <Li
-          onClick={() => setSelect(1)}
+          onClick={() => {setSelect(1); setCurrent(0);}}
           select={select === 1}
         >
           티저<Count>{teasers.length}</Count>
         </Li>
         <Li
-          onClick={() => setSelect(2)}
+          onClick={() => {setSelect(2); setCurrent(0);}}
           select={select === 2}
         >
           클립<Count>{clips.length}</Count>
         </Li>
         <Li
-          onClick={() => setSelect(3)}
+          onClick={() => {setSelect(3); setCurrent(0);}}
           select={select === 3}
         >
           피처렛<Count>{featurettes.length}</Count>
         </Li>
       </Dl>
-      {showVideo()}
+      { select === 0 && showVideos(trailers)}
+      { select === 1 && showVideos(teasers)}
+      { select === 2 && showVideos(clips)}
+      { select === 3 && showVideos(featurettes)}
     </Container>
   );
 };

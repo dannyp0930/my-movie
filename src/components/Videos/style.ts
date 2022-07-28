@@ -28,3 +28,24 @@ export const Count = styled.span`
   font-size: 12px;
   margin-left: 5px;
 `;
+
+export const VideoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Iframe = styled.iframe`
+  width: 560px;
+  height: 315px;
+  border: none;
+  margin-top: 1rem;
+`;
+
+export const Button = styled.button<{ disabled: boolean }>`
+  margin: auto;
+  border: none;
+  background: none;
+  color: ${props => props.disabled ? "gray": "white"};
+  cursor: ${props => props.disabled ? "default": "pointer"};
+  padding: 1rem;
+`;
