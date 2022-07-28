@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/common/Loading";
 import { BASE_URL, API_KEY, IMG_URL } from "../../utils/API";
-import { usePalette } from "react-palette";
 import {
   Main,
   MainInfo,
@@ -33,6 +32,7 @@ import Homepages from "components/Homepages";
 import Videos from "components/Videos";
 import Images from "components/Images";
 import Recommendations from "components/Recommendations";
+import { Palette } from "color-thief-react";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(true);
@@ -69,8 +69,6 @@ function Detail() {
   const [ crews, setCrews ] = useState<Crew[]>([]);
   const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>(DefatulPoster);
   const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>(DefatulBanner);
-  const { data } = usePalette(POSTER_PATH);
-  const [ color, setColor ] = useState<string>();
   
   useEffect(() => {
     async function getMovie() {
@@ -100,10 +98,6 @@ function Detail() {
   }, [movie]);
 
   useEffect(() => {
-    setColor(data.muted);
-  }, [data]);
-
-  useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -113,7 +107,7 @@ function Detail() {
     <article>
       { !loading ? (
         <Main>
-          <PrimeInfo color={color as string}>
+          <PrimeInfo color="black">
             <MovieBackdrop backdrop={BACKDROP_PATH}>
               <MovieContainer>
                 <MovieImg src={POSTER_PATH} alt="poster_img"/>

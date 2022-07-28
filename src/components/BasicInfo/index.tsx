@@ -49,7 +49,6 @@ export default function BasicInfo({ id, genres, runtime, productionCountry }: Ba
   useEffect(() => {
     if (releaseDatesList.length) {
       const res = releaseDatesList.filter((data: ReleaseDates) => data.iso_3166_1 === productionCountry)[0];
-      console.log(res)
       if (res) {
         setORReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1)[0]);
       };
