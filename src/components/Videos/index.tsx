@@ -73,13 +73,20 @@ export default function Videos({ id }: { id: number }) {
 
   function noVideo() {
     return (
-      <div>영상이 없습니다.</div>
+      <div
+        style={{
+          marginTop:"16px",
+          width:"560px",
+          height:"320px"
+      }}>
+        영상이 없습니다.
+      </div>
     );
   };
 
   return (
     <Container>
-      <h2>영상<span>{moviesCnt}</span></h2>
+      <h2>영상<span style={{fontSize: "12px", marginLeft:"5px"}}>{moviesCnt}</span></h2>
       <Dl>
         <Li 
           onClick={() => setSelect(0)}

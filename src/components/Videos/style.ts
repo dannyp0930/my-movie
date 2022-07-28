@@ -26,4 +26,5 @@ export const Li = styled.div<{ select: boolean }>`
 
 export const Count = styled.span`
   font-size: 12px;
+  margin-left: 5px;
 `;
