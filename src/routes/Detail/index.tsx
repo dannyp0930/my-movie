@@ -32,6 +32,7 @@ import BasicInfo from "components/BasicInfo";
 import Homepages from "components/Homepages";
 import Videos from "components/Videos";
 import Images from "components/Images";
+import Recommendations from "components/Recommendations";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(true);
@@ -154,6 +155,7 @@ function Detail() {
               <p>{getMoney(movie.budget)}</p>
               <h3>수익</h3>
               <p>{getMoney(movie.revenue)}</p>
+              <Recommendations id={movie.id}/>
             </SideInfo>
           </SubInfo>
         </Main>

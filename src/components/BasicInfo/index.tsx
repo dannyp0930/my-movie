@@ -41,7 +41,7 @@ export default function BasicInfo({ id, genres, runtime, productionCountry }: Ba
     if (releaseDatesList.length) {
       const res = releaseDatesList.filter((data: ReleaseDates) => data.iso_3166_1 === "KR")[0];
       if (res) {
-        setKRReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1 && data.type !== 2)[0]);
+        setKRReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1)[0]);
       };
     };
   }, [releaseDatesList]);
@@ -49,8 +49,9 @@ export default function BasicInfo({ id, genres, runtime, productionCountry }: Ba
   useEffect(() => {
     if (releaseDatesList.length) {
       const res = releaseDatesList.filter((data: ReleaseDates) => data.iso_3166_1 === productionCountry)[0];
+      console.log(res)
       if (res) {
-        setORReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1 && data.type !== 2)[0]);
+        setORReleaseDate(res.release_dates.filter((data: ReleaseDate) => data.type !== 1)[0]);
       };
     };
   }, [releaseDatesList, productionCountry]);
