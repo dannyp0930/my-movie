@@ -32,7 +32,6 @@ import Homepages from "components/Homepages";
 import Videos from "components/Videos";
 import Images from "components/Images";
 import Recommendations from "components/Recommendations";
-import { Palette } from "color-thief-react";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(true);
