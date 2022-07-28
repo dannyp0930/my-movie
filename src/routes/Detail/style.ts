@@ -25,6 +25,7 @@ export const PrimeInfo = styled.section<{ color: string }>`
 export const MovieBackdrop = styled.div<{ backdrop: string }>`
   background-image: url(${props => props.backdrop});
   background-size: cover;
+  width: 100%;
   height: 100%;
   
   @media screen and (min-width: 1800px) {
@@ -70,6 +71,7 @@ export const SubInfo = styled.section`
   grid-template-columns: 2fr 1fr;
   column-gap: 2rem;
   margin: 0 auto;
+  width: 100%;
 
   @media screen and (min-width: 1800px) {
     width: 50%;
