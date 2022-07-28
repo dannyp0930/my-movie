@@ -4,6 +4,7 @@ import { Article, Content, Header, Title } from "./style";
 import { BASE_URL, API_KEY } from "../../utils/API";
 import axios from "axios";
 import Carousel from "../../components/Carousel";
+import { Movie } from "store/types/interfaces";
 
 function Home() {
   const [ loading, setLoading ] = useState<boolean>(true);
@@ -35,6 +36,15 @@ function Home() {
     }, 1000);
   }, []);
 
+  function renderMovies(movies: Movie[]) {
+    return (
+      <Carousel
+        movies={movies}
+        title="현재 인기 영화"
+      />
+    )
+  };
+
   return (
     <>
       {loading ? (
@@ -47,18 +57,9 @@ function Home() {
             </Title>
           </Header>
           <Content>
-            <Carousel
-              movies={popularMovies}
-              title="현재 인기 영화"
-            />
-            <Carousel
-              movies={topMovies}
-              title="최고 평점 영화"
-            />
-            <Carousel
-              movies={upcommingMovies}
-              title="개봉 예정 영화"
-            />
+            {renderMovies(popularMovies)}
+            {renderMovies(topMovies)}
+            {renderMovies(upcommingMovies)}
           </Content>
         </Article>
       )}
