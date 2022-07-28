@@ -85,6 +85,7 @@ function Detail() {
   }, [id]);
 
   useEffect(() => {
+    console.log(movie)
     if (movie.production_countries.length) {
       const res = movie.production_countries.filter((data: ProductionCountry) => data.iso_3166_1 !== "KR")[0];
       setProductContry(res.iso_3166_1);
@@ -123,7 +124,10 @@ function Detail() {
                     runtime={movie.runtime}
                     productionCountry={productionCountry}
                   />
-                  <DonutChart percentage={parseInt(String(movie.vote_average * 10))}/>
+                  <DonutChart
+                    percentage={parseInt(String(movie.vote_average * 10))}
+                    cnt={movie.vote_count}
+                  />
                   <Tagline>{movie.tagline}</Tagline>
                   <h3>개요</h3>
                   <p>{movie.overview}</p>

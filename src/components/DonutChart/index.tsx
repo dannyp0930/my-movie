@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function DonutChart({ percentage }: { percentage: number }) {
+interface DonutChartProps {
+  percentage: number;
+  cnt: number;
+}
+
+export default function DonutChart({ percentage, cnt }: DonutChartProps) {
   function getColor(percentage: number) {
     if (percentage < 40) {
       return "#DB2360"
@@ -12,7 +17,9 @@ export default function DonutChart({ percentage }: { percentage: number }) {
   };
 
   function getSubColor(percentage: number) {
-    if (percentage < 40) {
+    if (cnt === 0) {
+      return "#666666"
+    } else if (percentage < 40) {
       return "#571435"
     } else if (percentage < 70) {
       return "#423D0F"
@@ -45,6 +52,7 @@ export default function DonutChart({ percentage }: { percentage: number }) {
           stroke={getSubColor(percentage)}
           strokeWidth="10"
         />
+        {cnt &&
         <path 
           d={`M 50 10 A 40 40 ${getDraw(percentage)}`}
           fill="none"
@@ -52,7 +60,7 @@ export default function DonutChart({ percentage }: { percentage: number }) {
           strokeWidth="10"
           strokeLinecap="round"
           strokeDashoffset={100}
-        />
+        />}
         <text
           x="50" y="50"
           dx="0" dy="0"
@@ -60,8 +68,8 @@ export default function DonutChart({ percentage }: { percentage: number }) {
           fontWeight="bold"
           fill="white"
         >
-          <tspan fontSize="2rem" dominantBaseline="central">{percentage}</tspan>
-          <tspan>%</tspan>
+          <tspan fontSize="2rem" dominantBaseline="central">{cnt ? percentage : "NR"}</tspan>
+          {cnt !== 0 && <tspan>%</tspan>}
         </text>
       </svg>
     </div>
