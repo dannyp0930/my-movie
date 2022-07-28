@@ -151,7 +151,6 @@ function Detail() {
               <p>{getMoney(movie.revenue)}</p>
             </SideInfo>
             <MainInfo>
-              <h2>영상</h2>
               <Videos id={movie.id} />
             </MainInfo>
           </SubInfo>

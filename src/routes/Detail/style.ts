@@ -80,7 +80,6 @@ export const SubInfo = styled.section`
 
 export const MainInfo = styled.article`
   margin: 1rem 0;
-  height: 25rem;
   `;
 
 export const SideInfo = styled.aside`
