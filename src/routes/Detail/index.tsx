@@ -31,6 +31,7 @@ import Casts from "components/Casts";
 import BasicInfo from "components/BasicInfo";
 import Homepages from "components/Homepages";
 import Videos from "components/Videos";
+import Images from "components/Images";
 
 function Detail() {
   const [ loading, setLoading ] = useState<boolean>(true);
@@ -137,9 +138,9 @@ function Detail() {
           </PrimeInfo>
           <SubInfo>
             <MainInfo>
-              <h2>주요 출연진</h2>
               <Casts casts={casts} />
               <Videos id={movie.id} />
+              <Images id={movie.id} lang={movie.original_language}/>
             </MainInfo>
             <SideInfo>
               <Homepages id={movie.id}/>

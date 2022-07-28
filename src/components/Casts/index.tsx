@@ -6,6 +6,7 @@ import { Card, CastList, Container } from './style';
 export default function Casts({ casts }: {casts: Cast[]}) {
   return (
     <Container>
+      <h2>주요 출연진</h2>
       <CastList>
         {casts.map(cast => {
           return (

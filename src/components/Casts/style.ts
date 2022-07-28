@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
-export const Container = styled.article`
+export const Container = styled.section`
   width: 100%;
-  height: 23rem;
+  height: 25rem;
   position: relative;
   justify-content: center;
 `;
 
 export const CastList = styled.div`
   width: 100%;
-  overflow: hidden;
   overflow-x: auto;
   display: flex;
   position: absolute;
@@ -25,7 +24,7 @@ export const CastList = styled.div`
     background: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
   };
-`
+`;
 
 export const Card = styled.div`
 `;
