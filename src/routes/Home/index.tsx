@@ -36,11 +36,11 @@ function Home() {
     }, 3000);
   }, []);
 
-  function renderMovies(movies: Movie[]) {
+  function renderMovies(movies: Movie[], string: string) {
     return (
       <Carousel
         movies={movies}
-        title="현재 인기 영화"
+        title={string}
       />
     )
   };
@@ -57,9 +57,9 @@ function Home() {
             </Title>
           </Header>
           <Content>
-            {renderMovies(popularMovies)}
-            {renderMovies(topMovies)}
-            {renderMovies(upcommingMovies)}
+            {renderMovies(popularMovies, "현재 인기 영화")}
+            {renderMovies(topMovies, "최고 평점 영화")}
+            {renderMovies(upcommingMovies, "개봉 예정 영화")}
           </Content>
         </Article>
       )}
