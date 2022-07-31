@@ -1,8 +1,12 @@
 # my-movie
 
-[ReactJS로 영화 웹 서비스 만들기](https://nomadcoders.co/react-for-beginners/lobby) 강의를 학습하며 만드는 영화 웹 서비스 클론 코딩 프로젝트 입니다.
+TMDB API를 활용하여 영화 정보 검색 사이트를 만드는 토이 프로젝트
 
+## 개발 환경
 
+- React
+  - React-Router-Dom
+  - Styled-component
 
 ## deploy
 
