@@ -100,7 +100,7 @@ function Detail() {
     setTimeout(() => {
       setLoading(false);
     }, 3000);
-  }, [])
+  }, []);
 
   return (
     <article>
