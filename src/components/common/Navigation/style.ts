@@ -20,3 +20,20 @@ export const NavbarLink = styled(NavLink)`
   font-size: 1.5rem;
   margin-right: 1rem;
 `;
+
+export const SearchButton = styled.button`
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: white;
+`;
+
+export const SearchInput = styled.input`
+  height: 2rem;
+  width: 15rem;
+  font-size: 1rem;
+  border: 1px solid white;
+  outline: none;
+  background: none;
+  color: white;
+`;

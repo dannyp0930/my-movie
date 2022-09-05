@@ -1,53 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "../../components/common/Loading";
 import {
   NoSearchMovies,
-  SearchButton,
-  SearchContainer,
-  SearchInput,
 } from "./style";
 import { API_KEY, BASE_URL } from "../../utils/API";
 import Carousel from "../../components/Carousel";
+import { useLocation } from "react-router-dom";
+import { Movie } from "store/types/interfaces";
 
 function Search() {
-  const [ loading, setLoading ] = useState<boolean>(false);
-  const [ query, setQuery ] = useState<string>('');
-  const [ searchMovies, setSearchMovies ] = useState([]);
+  const { state } = useLocation();
+  const [ loading, setLoading ] = useState<boolean>(true);
+  const [ searchMovies, setSearchMovies ] = useState<Movie[]>([]);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setQuery(e.target.value);
-  };
-
-  async function handleClick() {
-    if (query) {
+  useEffect(() => {
+    async function getSearch() {
       setLoading(true);
-      const res = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=ko-KR`);
+      const res = await axios.get(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${state}&language=ko-KR`);
       setSearchMovies(res.data.results);
-      setTimeout(() => {
-        setLoading(false);
-      }, 300);
-    } else {
-      alert("검색어를 입력하세요.")
-    };
-  };
-
-  function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter'){
-      handleClick();
-    };
-  };
+    }
+    getSearch();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, [state])
 
   return (
     <article>
-      <SearchContainer>
-        <SearchInput
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-          placeholder="검색어를 입력하세요."
-        />
-        <SearchButton onClick={handleClick}>검색</SearchButton>
-      </SearchContainer>
       { loading ? (
         <Loading />
       ) : (
@@ -55,7 +35,7 @@ function Search() {
         {searchMovies.length ? (
           <Carousel
             movies={searchMovies}
-            title={`"${query}" 검색 결과`}
+            title={`"${state}" 검색 결과`}
           />
         ) : (
           <NoSearchMovies>검색 결과가 없습니다.</NoSearchMovies>
