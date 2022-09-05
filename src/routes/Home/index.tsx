@@ -14,17 +14,17 @@ function Home() {
 
   async function getPopularMovies() {
     const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
-    setPopularMovies(res.data.results);
+    setPopularMovies(res.data.results.slice(0, 12));
   };
 
   async function getTopMovies() {
     const res = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`);
-    setTopMovies(res.data.results);
+    setTopMovies(res.data.results.slice(0, 12));
   };
 
   async function getUpcommingMovies() {
     const res = await axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=ko-KR`);
-    setUpcomingMovies(res.data.results);
+    setUpcomingMovies(res.data.results.slice(0, 12));
   };
 
   useEffect(() => {

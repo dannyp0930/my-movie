@@ -15,4 +15,5 @@ export const Title = styled.h1`
 export const Content = styled.main`
   display: flex;
   flex-direction: column;
+  padding-bottom: 10rem;
 `;
