@@ -48,3 +48,17 @@ export const Button = styled.button<{ disabled: boolean }>`
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   padding: 1rem;
 `;
+
+export const NoResult = styled.div`
+  display: flex;
+  margin-top: 1rem;
+  width: 560px;
+  height: 315px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NoResultText = styled.p`
+  font-size: 2rem;
+  font-weight: bold;
+`

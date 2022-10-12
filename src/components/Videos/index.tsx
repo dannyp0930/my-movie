@@ -11,6 +11,8 @@ import {
   Dl,
   Iframe,
   Li,
+  NoResult,
+  NoResultText,
   VideoContainer,
 } from "./style";
 
@@ -70,15 +72,9 @@ export default function Videos({ id }: { id: number }) {
 
   function noVideo() {
     return (
-      <div
-        style={{
-          marginTop: "1rem",
-          width: "560px",
-          height: "315px",
-        }}
-      >
-        영상이 없습니다.
-      </div>
+      <NoResult>
+        <NoResultText>영상이 없습니다.</NoResultText>
+      </NoResult>
     );
   }
 
