@@ -13,7 +13,7 @@ export const CardItem = styled.section`
   :hover {
     transition: all 0.2s ease-out;
     transform: scale(1.02);
-  };
+  }
 `;
 
 export const CardImage = styled.img`

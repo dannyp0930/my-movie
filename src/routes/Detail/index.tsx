@@ -19,12 +19,7 @@ import DefatulBanner from "../../assets/images/default_banner.jpg";
 import axios from "axios";
 import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
-import { 
-  Cast,
-  Crew,
-  Movie,
-  ProductionCountry,
-} from "store/types/interfaces";
+import { Cast, Crew, Movie, ProductionCountry } from "store/types/interfaces";
 import Crews from "components/Crews";
 import Casts from "components/Casts";
 import BasicInfo from "components/BasicInfo";
@@ -34,9 +29,9 @@ import Images from "components/Images";
 import Recommendations from "components/Recommendations";
 
 function Detail() {
-  const [ loading, setLoading ] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const { id } = useParams();
-  const [ movie, setMovie ] = useState<Movie>({
+  const [movie, setMovie] = useState<Movie>({
     adult: false,
     backdrop_path: "",
     belongs_to_collection: null,
@@ -63,31 +58,43 @@ function Detail() {
     vote_average: 0,
     vote_count: 0,
   });
-  const [ productionCountry, setProductContry ] = useState<string>("");
-  const [ casts, setCasts ] = useState<Cast[]>([]);
-  const [ crews, setCrews ] = useState<Crew[]>([]);
-  const [ POSTER_PATH, setPOSTER_PATH ] = useState<string>(DefatulPoster);
-  const [ BACKDROP_PATH, setBACKDROP_PATH ] = useState<string>(DefatulBanner);
-  
+  const [productionCountry, setProductContry] = useState<string>("");
+  const [casts, setCasts] = useState<Cast[]>([]);
+  const [crews, setCrews] = useState<Crew[]>([]);
+  const [POSTER_PATH, setPOSTER_PATH] = useState<string>(DefatulPoster);
+  const [BACKDROP_PATH, setBACKDROP_PATH] = useState<string>(DefatulBanner);
+
   useEffect(() => {
     async function getMovie() {
-      const res = await axios.get(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`);
+      const res = await axios.get(
+        `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=ko-KR`
+      );
       setMovie(res.data);
-    };    
+    }
     async function getCredits() {
-      const res = await axios.get(`${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`);
-      setCasts(res.data.cast.sort(function (a: Cast, b:Cast) { return a.order - b.order}).slice(0, 10));
+      const res = await axios.get(
+        `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`
+      );
+      setCasts(
+        res.data.cast
+          .sort(function (a: Cast, b: Cast) {
+            return a.order - b.order;
+          })
+          .slice(0, 10)
+      );
       setCrews(res.data.crew);
-    };
+    }
     getMovie();
     getCredits();
   }, [id]);
 
   useEffect(() => {
     if (movie.production_countries.length) {
-      const res = movie.production_countries.filter((data: ProductionCountry) => data.iso_3166_1 !== "KR")[0];
+      const res = movie.production_countries.filter(
+        (data: ProductionCountry) => data.iso_3166_1 !== "KR"
+      )[0];
       setProductContry(res.iso_3166_1);
-    };
+    }
     if (movie.poster_path) {
       setPOSTER_PATH(IMG_URL + movie.poster_path);
     }
@@ -104,17 +111,17 @@ function Detail() {
 
   return (
     <article>
-      { !loading ? (
+      {!loading ? (
         <Main>
           <PrimeInfo color="black">
             <MovieBackdrop backdrop={BACKDROP_PATH}>
               <MovieContainer>
-                <MovieImg src={POSTER_PATH} alt="poster_img"/>
+                <MovieImg src={POSTER_PATH} alt="poster_img" />
                 <MovieContent>
                   <h2>{movie.title}</h2>
                   <BasicInfo
                     id={movie.id}
-                    genres={movie.genres} 
+                    genres={movie.genres}
                     runtime={movie.runtime}
                     productionCountry={productionCountry}
                   />
@@ -134,10 +141,10 @@ function Detail() {
             <MainInfo>
               <Casts casts={casts} />
               <Videos id={movie.id} />
-              <Images id={movie.id} lang={movie.original_language}/>
+              <Images id={movie.id} lang={movie.original_language} />
             </MainInfo>
             <SideInfo>
-              <Homepages id={movie.id}/>
+              <Homepages id={movie.id} />
               <h3>원제</h3>
               <p>{movie.original_title}</p>
               <h3>상태</h3>
@@ -148,7 +155,7 @@ function Detail() {
               <p>{getMoney(movie.budget)}</p>
               <h3>수익</h3>
               <p>{getMoney(movie.revenue)}</p>
-              <Recommendations id={movie.id}/>
+              <Recommendations id={movie.id} />
             </SideInfo>
           </SubInfo>
         </Main>
@@ -157,6 +164,6 @@ function Detail() {
       )}
     </article>
   );
-};
+}
 
 export default Detail;

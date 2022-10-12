@@ -11,8 +11,8 @@ export const Load = styled.article`
 export const Spinner = styled.div`
   width: 5rem;
   height: 5rem;
-  border: 8px solid #E9EBEE;
-  border-top: 8px solid #00B8FF;
+  border: 8px solid #e9ebee;
+  border-top: 8px solid #00b8ff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   @keyframes spin {
@@ -21,6 +21,6 @@ export const Spinner = styled.div`
     }
     to {
       transform: rotate(360deg);
-    };
-  };
+    }
+  } ;
 `;

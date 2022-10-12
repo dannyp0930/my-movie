@@ -1,24 +1,24 @@
 export interface Genre {
   id: number;
   name: string;
-};
+}
 
 export interface ProductionCompany {
   name: string;
   id: number;
   logo_path: string | null;
   origin_country: string;
-};
+}
 
 export interface ProductionCountry {
   iso_3166_1: string;
   name: string;
-};
+}
 
 export interface SpokenLanguage {
   iso_639_1: string;
   name: string;
-};
+}
 
 export interface Movie {
   adult: boolean;
@@ -46,7 +46,7 @@ export interface Movie {
   video: boolean;
   vote_average: number;
   vote_count: number;
-};
+}
 
 export interface Cast {
   adult: boolean;
@@ -61,7 +61,7 @@ export interface Cast {
   character: string;
   credit_id: string;
   order: number;
-};
+}
 
 export interface Crew {
   adult: boolean;
@@ -75,7 +75,7 @@ export interface Crew {
   cast_id: number;
   department: string;
   job: string;
-};
+}
 
 export interface ReleaseDate {
   certification: string;
@@ -83,12 +83,12 @@ export interface ReleaseDate {
   release_date: string;
   type: number;
   note: string;
-};
+}
 
 export interface ReleaseDates {
   iso_3166_1: string;
   release_dates: ReleaseDate[];
-};
+}
 
 export interface Video {
   iso_6391: string;
@@ -101,7 +101,7 @@ export interface Video {
   official: boolean;
   published_at: string;
   id: string;
-};
+}
 
 export interface ExternalIds {
   imdb_id: string;
@@ -109,7 +109,7 @@ export interface ExternalIds {
   instagram_id: string;
   twitter_id: string;
   id: number;
-};
+}
 
 export interface Image {
   aspect_ratio: number;
@@ -119,10 +119,10 @@ export interface Image {
   vote_average: number;
   vote_count: number;
   width: number;
-};
+}
 
 export interface images {
   backdrops: Image[];
   logos: Image[];
   posters: Image[];
-};
+}

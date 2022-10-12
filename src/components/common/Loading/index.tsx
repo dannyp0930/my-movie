@@ -7,6 +7,6 @@ function Loading() {
       <Spinner />
     </Load>
   );
-};
+}
 
 export default Loading;

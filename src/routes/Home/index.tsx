@@ -7,25 +7,31 @@ import Carousel from "../../components/Carousel";
 import { Movie } from "store/types/interfaces";
 
 function Home() {
-  const [ loading, setLoading ] = useState<boolean>(true);
-  const [ popularMovies, setPopularMovies ] = useState([]);
-  const [ topMovies, setTopMovies ] = useState([]);
-  const [ upcommingMovies, setUpcomingMovies ] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [topMovies, setTopMovies] = useState([]);
+  const [upcommingMovies, setUpcomingMovies] = useState([]);
 
   async function getPopularMovies() {
-    const res = await axios.get(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`);
+    const res = await axios.get(
+      `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR`
+    );
     setPopularMovies(res.data.results.slice(0, 12));
-  };
+  }
 
   async function getTopMovies() {
-    const res = await axios.get(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`);
+    const res = await axios.get(
+      `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=ko-KR`
+    );
     setTopMovies(res.data.results.slice(0, 12));
-  };
+  }
 
   async function getUpcommingMovies() {
-    const res = await axios.get(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=ko-KR`);
+    const res = await axios.get(
+      `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=ko-KR`
+    );
     setUpcomingMovies(res.data.results.slice(0, 12));
-  };
+  }
 
   useEffect(() => {
     getPopularMovies();
@@ -37,24 +43,17 @@ function Home() {
   }, []);
 
   function renderMovies(movies: Movie[], string: string) {
-    return (
-      <Carousel
-        movies={movies}
-        title={string}
-      />
-    )
-  };
+    return <Carousel movies={movies} title={string} />;
+  }
 
   return (
     <>
       {loading ? (
-          <Loading />
-        ) : (
+        <Loading />
+      ) : (
         <Article>
           <Header>
-            <Title>
-              My Movie
-            </Title>
+            <Title>My Movie</Title>
           </Header>
           <Content>
             {renderMovies(popularMovies, "현재 인기 영화")}
@@ -65,6 +64,6 @@ function Home() {
       )}
     </>
   );
-};
+}
 
 export default Home;

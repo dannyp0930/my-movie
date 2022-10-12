@@ -12,25 +12,25 @@ export const PrimeInfo = styled.section<{ color: string }>`
 
   &::before {
     content: "";
-    background-color: ${props => props.color};
+    background-color: ${(props) => props.color};
     opacity: 0.8;
     position: absolute;
     top: 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
-  };
+  }
 `;
 
 export const MovieBackdrop = styled.div<{ backdrop: string }>`
-  background-image: url(${props => props.backdrop});
+  background-image: url(${(props) => props.backdrop});
   background-size: cover;
   width: 100%;
   height: 100%;
-  
+
   @media screen and (min-width: 1800px) {
     width: 50%;
-  };
+  } ;
 `;
 
 export const MovieContainer = styled.div`
@@ -61,9 +61,7 @@ export const Tagline = styled.h3`
   font-style: italic;
 `;
 
-export const Overview = styled.p`
-   
-`;
+export const Overview = styled.p``;
 
 export const SubInfo = styled.section`
   margin: 2rem;
@@ -75,12 +73,11 @@ export const SubInfo = styled.section`
 
   @media screen and (min-width: 1800px) {
     width: 50%;
-  };
+  } ;
 `;
 
 export const MainInfo = styled.article`
   margin: 1rem 3rem;
 `;
 
-export const SideInfo = styled.aside`
-`;
+export const SideInfo = styled.aside``;

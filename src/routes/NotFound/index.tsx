@@ -1,7 +1,7 @@
 import React from "react";
 import NotFoundImage from "../../assets/images/NotFound.png";
 
-function NotFound () {
+function NotFound() {
   return (
     <article
       style={{
@@ -18,6 +18,6 @@ function NotFound () {
       />
     </article>
   );
-};
+}
 
 export default NotFound;

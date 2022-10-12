@@ -22,7 +22,7 @@ export const CarouselPagination = styled.div`
 export const CarouselPage = styled.div<{ now: boolean }>`
   width: 1rem;
   height: 0.2rem;
-  background-color: ${props => props.now ? "gray" : "lightgray"};
+  background-color: ${(props) => (props.now ? "gray" : "lightgray")};
   margin: auto 0.1rem;
 `;
 
@@ -41,7 +41,7 @@ export const CarouselItems = styled.div<{ currentSlide: number }>`
   display: flex;
   left: 5%;
   transition: all 0.5s ease-in-out;
-  transform: translateX(-${props => props.currentSlide * 100}%);
+  transform: translateX(-${(props) => props.currentSlide * 100}%);
 `;
 
 export const CarouselButton = styled.button`
@@ -60,7 +60,7 @@ export const CarouselButton = styled.button`
 
   :hover {
     background-color: rgba(0, 0, 0, 0.6);
-  };
+  }
 `;
 
 export const CarouselPrev = styled(CarouselButton)`

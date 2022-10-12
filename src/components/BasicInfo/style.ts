@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  column-gap: .5rem;
+  column-gap: 0.5rem;
   align-items: center;
 `;
 
@@ -17,5 +17,4 @@ export const Dot = styled.div`
   font-weight: bold;
 `;
 
-export const Text = styled.div`
-`;
+export const Text = styled.div``;

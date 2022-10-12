@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.section`
-`;
+export const Container = styled.section``;
 
 export const Dl = styled.nav`
   margin: 0;
@@ -13,15 +12,15 @@ export const Li = styled.div<{ select: boolean }>`
   font-weight: bold;
   box-sizing: border-box;
   padding: 1rem;
-  border: ${props => props.select ? "1px solid white" : "none"};
-  border-bottom: ${props => props.select ? "none" : "1px solid white" };
+  border: ${(props) => (props.select ? "1px solid white" : "none")};
+  border-bottom: ${(props) => (props.select ? "none" : "1px solid white")};
   border-radius: 5px 5px 0 0;
   cursor: pointer;
 
   :hover {
     background-color: white;
     color: black;
-  };
+  }
 `;
 
 export const Count = styled.span`
@@ -45,7 +44,7 @@ export const Button = styled.button<{ disabled: boolean }>`
   margin: auto;
   border: none;
   background: none;
-  color: ${props => props.disabled ? "gray": "white"};
-  cursor: ${props => props.disabled ? "default": "pointer"};
+  color: ${(props) => (props.disabled ? "gray" : "white")};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   padding: 1rem;
 `;
