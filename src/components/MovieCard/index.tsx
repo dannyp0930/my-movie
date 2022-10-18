@@ -7,9 +7,13 @@ import { Movie } from "store/types/interfaces";
 
 export default function MovieCard({ movie }: { movie: Movie }) {
   const [movieBackdrop, setMovieBackdrop] = useState<string>(DefaultBanner);
+  const [isBackdrop, setIsBackdrop] = useState<boolean>(false);
   useEffect(() => {
     if (movie.backdrop_path) {
       setMovieBackdrop(IMG_URL + movie.backdrop_path);
+      setTimeout(() => {
+        setIsBackdrop(true);
+      });
     }
   }, [movie]);
 
@@ -18,7 +22,10 @@ export default function MovieCard({ movie }: { movie: Movie }) {
       <Link to={`/movie/${movie.id}`}>
         <CardItem>
           <CardTitle>{movie.title}</CardTitle>
-          <CardImage src={movieBackdrop} alt="poster_img" />
+          <CardImage
+            src={isBackdrop ? movieBackdrop : DefaultBanner}
+            alt="poster_img"
+          />
         </CardItem>
       </Link>
     </Card>
