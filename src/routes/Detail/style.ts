@@ -42,7 +42,7 @@ export const MovieContainer = styled.div`
 `;
 
 export const MovieImg = styled.img`
-  width: 18rem;
+  width: 25%;
   margin: auto;
   object-fit: fill;
 `;
