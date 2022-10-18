@@ -14,8 +14,8 @@ import {
   SubInfo,
   Tagline,
 } from "./style";
-import DefatulPoster from "../../assets/images/default_poster.jpg";
-import DefatulBanner from "../../assets/images/default_banner.jpg";
+import DefaultPoster from "../../assets/images/default_poster.jpg";
+import DefaultBanner from "../../assets/images/default_banner.jpg";
 import axios from "axios";
 import DonutChart from "../../components/DonutChart";
 import getMoney from "utils/getMoney";
@@ -61,8 +61,8 @@ function Detail() {
   const [productionCountry, setProductContry] = useState<string>("");
   const [casts, setCasts] = useState<Cast[]>([]);
   const [crews, setCrews] = useState<Crew[]>([]);
-  const [POSTER_PATH, setPOSTER_PATH] = useState<string>(DefatulPoster);
-  const [BACKDROP_PATH, setBACKDROP_PATH] = useState<string>(DefatulBanner);
+  const [POSTER_PATH, setPOSTER_PATH] = useState<string>(DefaultPoster);
+  const [BACKDROP_PATH, setBACKDROP_PATH] = useState<string>(DefaultBanner);
 
   useEffect(() => {
     async function getMovie() {
